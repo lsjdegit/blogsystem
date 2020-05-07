@@ -12,7 +12,7 @@ import java.io.Serializable;
 @ToString
 public class Blog implements Serializable {
 
-	private Integer bids;
+	private Integer bid;
 	private Integer uid;
 	private String btitle;
 	private String bcontent;
