@@ -15,6 +15,7 @@ public class Comment implements Serializable {
 	private Integer cid;
 	private Integer bid;
 	private Integer uid;
+	private Integer parentid;
 	private String cocontext;
 
 
