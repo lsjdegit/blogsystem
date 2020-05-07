@@ -19,6 +19,5 @@ public class Blog implements Serializable {
 	private String bcreatetime;
 	private Integer btid;
 	private Integer bnumber;
-	private int a;
 
 }
