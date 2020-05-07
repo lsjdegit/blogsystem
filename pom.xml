@@ -64,6 +64,13 @@
             <version>1.3.2</version>
         </dependency>
 
+        <!-- mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.8</version>
+        </dependency>
+
         <!-- pagehelper 插件实现分页-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
