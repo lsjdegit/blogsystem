@@ -43,6 +43,14 @@ public class UserController {
     public String register(){
         return "register";
     }
+
+    /**
+     * 进入注册页面
+     */
+    @RequestMapping("index")
+    public String index(){
+        return "index";
+    }
     /**
      * 用户注册
      */
