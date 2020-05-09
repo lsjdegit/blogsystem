@@ -14,9 +14,18 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private  UserMapper userMapper;
-    @Override
-    //登录
+
+    /**
+     * 登录
+     */
+
     public User Login(User user) {
         return userMapper.Login(user);
+    }
+    /**
+     *  注册
+     */
+    public int Register(User user) {
+        return userMapper.Register(user);
     }
 }
