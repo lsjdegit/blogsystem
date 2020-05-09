@@ -7,6 +7,13 @@ import com.zt.entity.User;
  * @create 2020-05-08 19:25
  */
 public interface UserService {
-    //登录
+    /**
+     * 登录
+     */
+
     public User Login(User user);
+    /**
+     * 注册
+     */
+    public int Register(User user);
 }

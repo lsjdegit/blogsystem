@@ -1,16 +1,17 @@
-package com.zt.mapper;
+package com.zt.service;
 
 import com.zt.entity.Blogtype;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface BlogtypeMapper {
+/**
+ * @author scj
+ * @create 2020-05-09 15:31
+ */
+public interface BlogTypeService {
 
     /**
      * 遍历所有博客类型
      */
-
-    @Select("select * from blogtype")
     public List<Blogtype> selectallblogtype();
 }
