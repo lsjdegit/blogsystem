@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class exceptional {
+public class exceptional implements Serializable {
 
     private Integer eid;
     private Integer bid;
