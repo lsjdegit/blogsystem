@@ -38,22 +38,33 @@ public class PageController {
         return "blog";
     }
 
-
+    /**
+     * 进入addblag页面
+     */
     @RequestMapping("addbolg")
     public String addbolg(){
         return "addbolg";
     }
 
+    /**
+     * 进入管理员页面
+     */
     @RequestMapping("adminindex")
     public String adminindex(){
         return "adminindex";
     }
 
+    /**
+     * 进入我的博客页面
+     */
     @RequestMapping("myblog")
     public String myblog(){
         return "myblog";
     }
 
+    /**
+     * 进入个人中心页面
+     */
     @RequestMapping("personal")
     public String personal(){
         return "personal";
