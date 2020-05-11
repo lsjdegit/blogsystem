@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author scj
  * @create 2020-05-08 19:31
@@ -23,10 +25,9 @@ public class UserController {
      */
     @RequestMapping("login")
     @ResponseBody
-    public User LoginUser(User user, Model model){
+    public User LoginUser(User user, HttpSession session){
         user=userService.Login(user);
-        model.addAttribute("user",user);
-        System.out.println(user);
+        session.setAttribute("loginUser",user);
         return user;
     }
 
