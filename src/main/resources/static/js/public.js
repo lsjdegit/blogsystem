@@ -14,7 +14,8 @@ $(function(){
 	$("#head-user").hover(function(){
 		$("#user-login").show();
 		if($("#head-user>span").html() == "未登录"){
-			$("#user-login>span").click(function () {
+			$("#user-login>span").unbind();
+			$("#user-login>span").bind("click",function () {
 				location.href="login";
 			});
 		}else{
@@ -23,14 +24,21 @@ $(function(){
 				url: 'user/logout',
 				async: false,
 				success: function (result) {
-					$("#user-login>span").click(function () {
-						var img = $("<img th:src=\"@{/img/userhead.png}\"/>");
-						$("#head-img>img").replaceWith(img);
-						var span = $("<span th:if=\"${session.loginUser == null}\">未登录</span>");
-						$("#head-user>span").replaceWith(span);
+					$("#user-login>span").unbind();
+					$("#user-login>span").bind("click",function () {
+						if(confirm("注销当前账户？")){
+							var img = $("<img src=\""+ctxPath+"/img/userhead.png\"/>");
+							$("#head-img>img").replaceWith(img);
+							var span = $("<span>未登录</span>");
+							$("#head-user>span").replaceWith(span);
+							$("#user-login>span").html("登录");
+							return ;
+						}else{
+							return ;
+						}
 					});
 				}
-			}）
+			})
         }
 	},function(){
 		$("#user-login").hide();
