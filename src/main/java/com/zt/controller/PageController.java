@@ -29,6 +29,9 @@ public class PageController {
     public String index(){
         return "forward:/blogtype/all";
     }
-
+    @RequestMapping("blog")
+    public String blog(){
+        return "blog";
+    }
 
 }
