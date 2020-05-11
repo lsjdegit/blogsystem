@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+	</head>
+	<link href="//at.alicdn.com/t/font_1803890_br7y3itdnoi.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/personal.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/public.css}"/>
+	<script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/public.js}"></script>
+	<script type="text/javascript" th:src="@{js/personal.js}"></script>
+	<style type="text/css">
+		.iconfont{
+		   font-family:"iconfont" !important;
+		   font-size:16px !important;
+		   font-style:normal;
+		}	
+	</style>
+	<body style="background-color: #f5f6f7;">
+		
+		
+		<!-- Header -->
+		<div id="head">
+			<div id="head-logo">
+				<img src="img/blog.png" />
+			</div>
+			<ul id="head-ul">
+				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
+			</ul>
+			<div id="head-user">
+				<div id="head-img">
+					<img src="img/1.png" />
+				</div>
+				<span>用户名</span>
+				<div id="user-login">
+					<span class="btn">注销</span>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="div1" style="margin-top: 20px;">
+			<div class="dleft">
+				<ul class="ul1">
+					<li><span class="iconfont icon-gerenziliao"></span> <span>个人资料</span></li>
+					<li><span class="iconfont icon-shoucang1"></span><span>我的收藏</span></li>
+					<li><span class="iconfont icon-shoucang-not11"></span> <span>我关注的人</span></li>
+					<li><span class="iconfont icon-fensi"></span> <span>我的粉丝</span></li>
+					<li><span class="iconfont icon--"></span> <span>我的钱包</span></li>
+					<li><span class="iconfont icon-shezhi"></span> <span>账号设置</span></li>
+				</ul>
+			</div>
+			<div class="dright">
+				<p class="p1">个人资料</p>
+				<div class="imghead">
+					<img src="img/ly.jpg" alt="头像" />
+					<input type="file" class="file" name="avatar" id="avatar" style="display: none;">
+					<p><label for="avatar">修改头像</label></p>
+				</div>
+				<div class="xx">
+					<div class="xx1">
+						<span>用户名：凛冽零</span><br>
+						<span>关注 0</span><span>粉丝 1</span><span>|</span><span>余额 0</span><span>充值</span>
+					</div>
+					<div class="xx2">
+						<p>姓名：</p>
+						<!-- Button to trigger modal -->
+						<p class="pyou"><a href="#myModal" role="button" class="btn" data-toggle="modal">修改资料</a></p>
+						<p>性别：</p>
+						<p>年龄：</p>
+						<p>邮箱：</p>
+						<p>简介：</p>
+					</div>
+
+				</div>
+
+
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<p id="myModalLabel" style="text-align: center;font-size: 16px;">修改信息</p>
+								
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal">
+
+									<div class="form-group">
+										<label for="inputname" class="col-sm-2 control-label">姓名</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="inputname">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputage" class="col-sm-2 control-label">年龄</label>
+										<div class="col-sm-10">
+											<input type="number" class="form-control" id="inputage">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="email" class="form-control" id="inputEmail3">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<div class="checkbox">
+												<label>
+													<input type="radio" name="sex" value="男" checked="checked">男 <input type="radio" name="sex" value="女"
+													 style="margin-left: 50px;">女
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputjie" class="col-sm-2 control-label">简介</label>
+										<div class="col-sm-10">
+											<textarea class="form-control" rows="3" id="inputjie"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+								<button class="btn btn-primary" id="cun">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- foot -->
+		<div id="foot" style="margin-top: 20px;">
+			<p>
+				<span><i class="iconfont icon-qq"></i>QQ:<a href="#">2807728147</a></span>
+				<span><i class="iconfont icon-weixin"></i>Wechat:<a href="#">17687974843</a></span>
+				<span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
+			</p>
+		</div> 
+	</body>
+</html>

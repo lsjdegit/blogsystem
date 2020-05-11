@@ -1,0 +1,136 @@
+* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		.admmain {
+			width: 80%;
+			background-color: white;
+			margin-top: 30px;
+			margin: 0 auto;
+			height: 600px;
+			padding-left: 2%;
+			padding-right: 2%;
+		}
+		.admmain_er{
+			width: 100%;
+			height: 60px;
+			
+		}
+		.admmain_er ul{
+			width: 100%;
+			height: 60px;
+			border-bottom: #F5F6F7 1.5px solid;
+		}
+		.admmain_er ul li{
+			display: inline-block;
+			width: 15%;
+			height: 60px;
+			text-align: center;
+			font-size: 14px;
+			line-height:60px; 
+			font-weight: bold;
+		}
+		.uler{
+			border-bottom: #00BFF3 1.5px solid;
+		}
+		
+		.admin_suo{
+			width: 100%;
+			height: 80px;
+			padding-top: 13px;
+			padding-bottom: 13px;
+			margin-top: 5px;
+		}
+		.suo_nei{
+			width: 100%;
+			height: 100%;
+			background-color:#f2f5f7;
+			border-radius: 3px;
+			padding-left: 2%;
+			padding-top: 15px;
+			padding-bottom: 5px;
+		}
+		.suo_nei:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.suo_nei div{
+			display: inline-block;
+			width: 25%;
+		}
+		.suo_nei span{
+			font-size: 12px;
+			color: #5E5E5E;
+			font-weight: bold;
+		}
+		.suo_nei span:nth-of-type(2){
+			margin-left: 5%;
+		}
+		.suo_nei span:nth-of-type(3){
+			margin-right: 5%;
+		}
+		.suo_nei input{
+			border: #9D9D9D 1px solid;
+			border-radius: 3px;
+		} 
+		.suo_nei button{
+			border: #9D9D9D 1px solid;
+			background-color: #00BFF3;
+			color: white;
+			margin-left: 1%;
+			font-size: 13px;
+			width: 5%;
+			height: ;
+			border-radius: 3px;
+		}
+		.suo_nei select{
+			width: 8%;
+			height: 25px;
+			border: #737373 1px solid;
+			border-radius: 3px;
+		}
+		.mybolgli{
+			width: 100%;
+			height: 80px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			border-bottom: #F2F5F7 1.5px solid;
+		}
+		.ybyb{
+			width: 100%;
+			height: 100%;
+		}
+		.ybyb div:first-of-type{
+			float: left;
+		}
+		.ybyb div:last-of-type{
+			float: right;
+		}
+		.ybyb p{
+			font-size: 17px;
+			color: #666666;
+			cursor: pointer;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			width: 100%;
+		}
+		.ybyb div span{
+			font-size: 10px;
+			margin-right: 20px;
+		}
+		.ybyb div:first-of-type span{
+			color: #999999;
+		}
+		.ybyb div:last-of-type span:first-of-type{
+			color: #00BFF3;
+			cursor: pointer;
+			font-size: 14px;
+		}
+		.ybyb div:last-of-type span:last-of-type{
+			color: #00BFF3;
+			cursor: pointer;
+			font-size: 14px;
+		}

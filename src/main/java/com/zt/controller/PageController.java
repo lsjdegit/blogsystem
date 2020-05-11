@@ -30,5 +30,25 @@ public class PageController {
         return "index";
     }
 
+    @RequestMapping("addbolg")
+    public String addbolg(){
+        return "addbolg";
+    }
+
+    @RequestMapping("adminindex")
+    public String adminindex(){
+        return "adminindex";
+    }
+
+    @RequestMapping("myblog")
+    public String myblog(){
+        return "myblog";
+    }
+
+    @RequestMapping("personal")
+    public String personal(){
+        return "personal";
+    }
+
 
 }
