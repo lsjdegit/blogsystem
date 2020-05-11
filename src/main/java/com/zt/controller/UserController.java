@@ -13,22 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create 2020-05-08 19:31
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
     /**
-     * 进入登录页面
-     */
-    @RequestMapping("login")
-    public String login(){
-        return "login1";
-    }
-
-    /**
      * 验证登录信息
      */
-    @RequestMapping("loginuser")
+    @RequestMapping("login")
     @ResponseBody
     public User LoginUser(User user, Model model){
         user=userService.Login(user);
@@ -36,25 +29,11 @@ public class UserController {
         System.out.println(user);
         return user;
     }
-    /**
-     * 进入注册页面
-     */
-    @RequestMapping("register")
-    public String register(){
-        return "register";
-    }
 
-    /**
-     * 进入注册页面
-     */
-    @RequestMapping("index")
-    public String index(){
-        return "index";
-    }
     /**
      * 用户注册
      */
-    @RequestMapping("registeruser")
+    @RequestMapping("register")
     public String registerUser(User user){
        int reg= userService.Register(user);
        if(reg>0){

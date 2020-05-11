@@ -13,5 +13,5 @@ public interface BlogTypeService {
     /**
      * 遍历所有博客类型
      */
-    public List<Blogtype> selectallblogtype();
+    public List<Blogtype> selectAllBlogType();
 }

@@ -17,7 +17,7 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     @Autowired
     private BlogtypeMapper blogtypeMapper;
 
-    public List<Blogtype> selectallblogtype() {
-        return blogtypeMapper.selectallblogtype();
+    public List<Blogtype> selectAllBlogType() {
+        return blogtypeMapper.selectAllBlogType();
     }
 }

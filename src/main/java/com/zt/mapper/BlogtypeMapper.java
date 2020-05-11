@@ -10,7 +10,6 @@ public interface BlogtypeMapper {
     /**
      * 遍历所有博客类型
      */
-
     @Select("select * from blogtype")
-    public List<Blogtype> selectallblogtype();
+    public List<Blogtype> selectAllBlogType();
 }
