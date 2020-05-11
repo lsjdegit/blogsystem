@@ -18,7 +18,6 @@ $(function(){
             data:'uname='+name+'&upassword='+pwd,
             success:function(result){
                 var us=eval(result);
-                alert("aa");
                 if(us!=null){//登录成功
                     if("admin"==us){//管理员登录
                         location.href="success.html";
