@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>管理员主页</title>
+	</head>
+	<style type="text/css">
+		
+	</style>
+	<link rel="stylesheet" type="text/css" th:href="@{css/adminindex.css}" />
+	<link href="//at.alicdn.com/t/font_1803890_br7y3itdnoi.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/public.css}"/>
+	<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/public.js}"></script>
+	<script type="text/javascript" th:src="@{/js/adminindex.js}"></script>
+	<body style="background-color: #F5F6F7;">
+		
+		<!-- Header -->
+		<div id="head">
+			<div id="head-logo">
+				<img src="img/blog.png"/>
+			</div>
+			<ul id="head-ul">
+				<li>博客管理</li><li>博主管理</li>
+			</ul>
+			<div id="head-user">
+				<div id="head-img">
+					<img src="img/hyxd.png" th:src="@{/img/hyxd.jpg}" />
+				</div>
+				<span>管理员</span>
+			</div>
+		</div>
+		
+		<div class="admmain" style="margin-top: 10px;">
+			<div class="admmain_er">
+				<ul>
+					<li>已审核</li><li>待审核</li>
+				</ul>
+			</div>
+			<div class="admin_suo">
+				<div class="suo_nei">
+					<span>时间</span> <input type="date">
+						<span>类型</span> 
+						<select>
+							<option>请选择</option>
+							<option>java</option>
+							<option>mysql</option>
+							<option>css</option>
+						</select> 
+						<span class="iconfont icon-shezhi">添加</span>
+						<input type="text" name="" /><button>搜索</button>
+				</div>
+			</div>
+			<div class="bolgall">
+				<div class="mybolgli">
+					<div class="ybyb">
+						<p title="查看">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
+						<div><span>2020-05-9</span> <span class="iconfont icon-liulan">8</span><span class="iconfont icon-liulan">6</span><span class="iconfont icon-liulan">4</span></div>
+						<div><span>博主：</span><span>凛冽零</span></div>
+					</div>
+				</div>
+				<div class="mybolgli">
+					<div class="ybyb">
+						<p title="查看">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
+						<div><span>2020-05-9</span> <span class="iconfont icon-liulan">8</span><span class="iconfont icon-liulan">6</span><span class="iconfont icon-liulan">4</span></div>
+						<div><span>博主：</span><span>凛冽零</span></div>
+					</div>
+				</div>
+				
+				<div class="mybolgli">
+					<div class="ybyb">
+						<p title="查看">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
+						<div><span>2020-05-9</span> <span class="iconfont icon-liulan">8</span><span class="iconfont icon-liulan">6</span><span class="iconfont icon-liulan">4</span></div>
+						<div><span>博主：</span><span>凛冽零</span></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div id="foot" style="margin-top: 20px;">
+			<p>
+				<span><i class="iconfont icon-qq"></i>QQ:<a href="#">2807728147</a></span>
+				<span><i class="iconfont icon-weixin"></i>Wechat:<a href="#">17687974843</a></span>
+				<span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
+			</p>
+		</div> 
+		
+	</body>
+	<style type="text/css">
+		.iconfont{
+		   font-family:"iconfont" !important;
+		   font-size:14px !important;
+		   font-style:normal;
+		}
+	</style>
+</html>
