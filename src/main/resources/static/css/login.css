@@ -1,0 +1,64 @@
+.center{
+    width:400px;
+    height:520px;
+    border: 1px antiquewhite solid;
+    margin-left: 600px;
+    margin-top: 100px;
+    background: white;
+}
+.title{
+    font-size:22px;
+    font-weight: bold;
+    margin-left:150px;
+    margin-top: 20px;
+}
+.divuser{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+.uname{
+    font-size: 18px;
+}
+#user{
+    background: url(img/username.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+.upwd{
+    font-size: 18px;
+}
+.divpwd{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+.divyz{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+#password{
+    background: url(img/userpassword.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+#login{
+    width:220px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: 80px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.mo{
+    margin-left:220px;
+    margin-top: 50px;
+}
+#yanzheng{
+    background: url(img/code.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
