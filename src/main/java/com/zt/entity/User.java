@@ -21,6 +21,8 @@ public class User implements Serializable {
 	private String email;
 	private Integer age;
 	private Integer blance;
+	private String intro;
+	private Integer isexpert;
 
 	public User(String uname, String upassword) {
 		this.uname = uname;

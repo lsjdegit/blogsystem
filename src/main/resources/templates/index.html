@@ -43,16 +43,7 @@
 			<ul class="list-group" id="main-ul">
 				<li>推荐</li>
 				<li>动态</li>
-				<li>Java</li>
-				<li>Python</li>
-				<li>前端</li>
-				<li>架构</li>
-				<li>大数据</li>
-				<li>区块链</li>
-				<li>前端</li>
-				<li>架构</li>
-				<li>大数据</li>
-				<li>区块链</li>
+				<li th:each="blogtype,status:${blogtypeList}" th:text="blogtype.tname"></li>
 			</ul>
 			<div id="main-centre">
 				<div id="centre-search">

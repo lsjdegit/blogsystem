@@ -20,4 +20,6 @@ public class Blog implements Serializable {
 	private Integer btid;
 	private Integer bnumber;
 	private Integer bstatusid;
+	private String babstract;
+
 }
