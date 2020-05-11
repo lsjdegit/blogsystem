@@ -20,7 +20,7 @@
     font-size: 18px;
 }
 #user{
-    background: url(img/username.png);
+    background: url(../img/username.png);
     background-size: 25px;
     background-position: 1% 50%;
     background-repeat: no-repeat;
@@ -38,7 +38,7 @@
     margin-top: 30px;
 }
 #password{
-    background: url(img/userpassword.png);
+    background: url(../img/userpassword.png);
     background-size: contain;
     background-repeat: no-repeat;
     text-indent: 2em;
@@ -56,7 +56,7 @@
     margin-top: 50px;
 }
 #yanzheng{
-    background: url(img/code.png);
+    background: url(../img/code.png);
     background-size: 25px;
     background-position: 1% 50%;
     background-repeat: no-repeat;
