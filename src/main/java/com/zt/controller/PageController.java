@@ -29,9 +29,36 @@ public class PageController {
     public String index(){
         return "forward:/blogtype/all";
     }
+
+    /**
+     * 进入blag页面
+     */
     @RequestMapping("blog")
     public String blog(){
         return "blog";
     }
+
+
+    @RequestMapping("addbolg")
+    public String addbolg(){
+        return "addbolg";
+    }
+
+    @RequestMapping("adminindex")
+    public String adminindex(){
+        return "adminindex";
+    }
+
+    @RequestMapping("myblog")
+    public String myblog(){
+        return "myblog";
+    }
+
+    @RequestMapping("personal")
+    public String personal(){
+        return "personal";
+    }
+
+
 
 }
