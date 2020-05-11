@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}"/>
+		    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+		    <link rel="stylesheet" type="text/css" th:href="@{/js/jquery-easyui-1.2.6/themes/default/easyui.css}">
+			<link rel="stylesheet" type="text/css" th:href="@{/js/jquery-easyui-1.2.6/demo/demo.css}">
+			<link rel="stylesheet" type="text/css" th:href="@{/js/jquery-easyui-1.2.6/themes/icon.css}" />
+			<link rel="stylesheet" type="text/css" th:href="@{/js/login.css}" />
+			<script type="text/javascript" th:src="@{/js/jquery-easyui-1.2.6/jquery-1.7.2.min.js}"></script>
+			<script type="text/javascript" th:src="@{/js/jquery-easyui-1.2.6/jquery.easyui.min.js}"></script>
+			<script type="text/javascript" th:src="@{/js/login.js}"></script>
+		<title></title>
+	</head>
+	<body>
+		<div class="center">
+			<p class="title">欢迎登录</p>
+				<form class="form-horizontal" id="bodyfrom" method="post">
+					<div class="divuser">
+						 <p class="uname">用户名</p>
+						 <input name="uname" type="text" class="form-control" id="user"
+									style="width: 320px; margin-top: 10px;" placeholder="请输入用户名" required="required">
+				   </div>
+				   <div class="divpwd">
+						<p class="upwd">密码</p>
+						<input name="upassword" type="password" class="form-control" id="password"
+									style="width: 320px; margin-top: 10px;" placeholder="请输入密码" required="required">
+				   </div>
+				   <div class="divyz">
+						<p style="font-size: 18px;">验证码</p>
+						<input type="text" class="form-control" id="yanzheng" placeholder="请输入验证码" required="required"style="width: 160px; margin-top: 10px;">
+				   </div>
+				    <button type="button" class="btn btn-info" id="login" title="点击此按钮登录账号">登录</button>
+				   <div class="mo">
+					  <span>还没有注册账号？</span><a href="register" style="color: red; margin-right: 10px;font-size: 14px;"title="点击此按钮跳转到注册页面">去注册!</a>
+				   </div>
+				</form>
+		</div>
+	</body>
+</html>
