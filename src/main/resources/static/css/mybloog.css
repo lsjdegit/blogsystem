@@ -1,0 +1,178 @@
+       *{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		.dle{
+			background-color:rgba(51,153,234,0.1);
+			color: #85c5ee;
+		}
+		.li{
+			background-color:#85c5ee;
+			color: white;
+			/* border-left: #FF4500 2px solid; */
+		}
+		
+		.bolg1{
+			width: 80%;
+			
+			margin: 0 auto;
+			background-color: white;
+		}
+		.bolg1:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.ybyb:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.bolgf{
+			float: left;
+			width: 20%;
+			border:0.5px #F5F6F7 solid;
+		}
+		.bolgf1{
+			width: 100%;
+			border:0.5px #F5F6F7 solid;
+		}
+		.bolgf1 img{
+			width: 100%;
+			margin-top: 10px;
+		}
+		.bolgf ul{
+			margin: 0px;
+			padding: 0px;
+			border:0.5px #F5F6F7 solid;
+		}
+		.bolgf ul li{
+			list-style: none;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			cursor: default;
+			font-size: 15px;
+			text-align: center;
+		}
+		
+		.bolgr{
+			float: left;
+			width: 79.5%;
+			height: 650px;
+			background-color: white;
+			padding-top:20px ;
+			padding-left: 5%;
+			padding-right: 5%;
+			border:0.5px #F5F6F7 solid;
+		}
+		.ulsh{
+			border-bottom: #F5F6F7 1.5px solid;
+		}
+		.ulsh:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.ulsh li{
+			list-style: none;
+			display: inline-block;
+			float: left;
+			height: 50px;
+			line-height: 50px;
+			cursor: pointer;
+			font-size: 12px;
+			font-weight: bold;
+			text-align: center;
+			margin-right: 30px;
+			color: #8C8C8C;
+		}
+		.bolgrs{
+			width: 100%;
+			height: 50px;
+			background-color: #f2f5f7;
+			margin-top: 10px;
+			padding-top: 8px;
+			padding-bottom: 8px;
+			padding-left: 20%;
+			padding-right: 20%;
+		}
+		.bolgrsz{
+			width: 100%;
+			
+			height: 100%;
+			position: relative;
+		}
+		.bolgrsz input:first-of-type{
+			width: 70%;
+			height: 100%;
+			position: relative;
+			top: -1px;
+			text-indent: 1em;
+			border: #C0C0C0 0.5px solid;
+			border-radius: 3px;
+			font
+		}
+		.bolgrsz input:last-of-type{
+			width: 25%;
+			height: 100%;
+			margin-left: 2%;
+			border: #C0C0C0 0.5px solid;
+			border-radius: 3px;
+			background-color: #87CEEB;
+			color: whitesmoke;
+			font-size: 15px;
+			font-weight: bolder;
+		}
+		.lih{
+			color: red;
+		}
+		.lic{
+			border-bottom: red 1px solid;
+		}
+		.mybolgall{
+			width: 100%;
+			
+		}
+		.mybolgli{
+			width: 100%;
+			height: 80px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			border-bottom: #F2F5F7 1.5px solid;
+		}
+		.ybyb{
+			width: 100%;
+			height: 100%;
+		}
+		.ybyb div:first-of-type{
+			float: left;
+		}
+		.ybyb div:last-of-type{
+			float: right;
+		}
+		.ybyb p{
+			font-size: 17px;
+			color: #666666;
+			cursor: pointer;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			width: 100%;
+		}
+		.ybyb div span{
+			font-size: 10px;
+			margin-right: 20px;
+		}
+		.ybyb div:first-of-type span{
+			color: #999999;
+		}
+		.ybyb div:last-of-type span:first-of-type{
+			color: #00BFF3;
+			cursor: pointer;
+		}
+		.ybyb div:last-of-type span:last-of-type{
+			color: #C12E2A;
+			cursor: pointer;
+		}
