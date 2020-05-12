@@ -29,4 +29,14 @@ public class BlogtypeController {
         m.addAttribute("blogtypeList",blogtypeList);
         return blogtypeList;
     }
+
+    /**
+     *添加博客类型
+     */
+    @RequestMapping("add")
+    @ResponseBody
+    public int addBlogTypea(Blogtype bty){
+        System.out.println(bty.getTname());
+        return blogTypeService.addBlogType(bty);
+    }
 }

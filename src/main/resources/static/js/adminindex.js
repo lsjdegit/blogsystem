@@ -22,4 +22,25 @@ $(function(){
 			}
 		}
 	})
+
+	$("#addblogtype").click(function(){
+		var tname=$(".form-group input").val();
+		var sel=$("select");
+		alert(name);
+		$.ajax({
+			type:'post',
+			url: 'blogtype/add',
+			data:'tname='+tname,
+			success:function(result){
+				var add=eval(result);
+				if(add>0){
+					$("#myModal").modal('hide');
+					sel.append("<option>"+tname+"</option>");
+				}else{
+					$("#myModal").modal('hide');
+				}
+			}
 		})
+	})
+		})
+
