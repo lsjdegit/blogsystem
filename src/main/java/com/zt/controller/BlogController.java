@@ -8,6 +8,7 @@ import com.zt.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class BlogController {
     private BlogService blogService;
     private Integer pageSize = 4;
 
-    @RequestMapping("select")
+    @RequestMapping(value = "select",method = RequestMethod.POST)
     @ResponseBody
     public ListPage selectBlog(BlogParameter blogParameter){
         Integer totalSize = blogService.selectBlog(blogParameter.getBtid(),blogParameter.getUid(),blogParameter.getSearchBlog(),0,0).size();
