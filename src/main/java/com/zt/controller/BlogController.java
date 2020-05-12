@@ -2,6 +2,7 @@ package com.zt.controller;
 
 import com.zt.entity.Blog;
 import com.zt.mapper.BlogMapper;
+import com.zt.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +14,17 @@ import java.util.List;
 @RequestMapping("/blog")
 public class BlogController {
     @Autowired
-    private BlogMapper blogMapper;
+    private BlogService blogService;
+    private Integer pageSize = 4;
 
-//    @RequestMapping("select")
-//    @ResponseBody
-//    public List<Blog> selectBlog(){
-//        List<Blog> blogList = blogMapper.selectBlog(0,"",1,2);
-//        System.out.println("blogList.size() = " + blogList.size());
-//        for (Blog blog : blogList) {
-//            System.out.println("blog = " + blog);
-//        }
-//        return blogList;
-//    }
+    @RequestMapping("select")
+    @ResponseBody
+    public List<Blog> selectBlog(Integer btid,Integer uid,String searchBlog,Integer pageIndex){
+
+        Integer first = pageIndex%pageSize==0?pageIndex/pageSize:pageIndex/pageSize+1;
+        List<Blog> blogList = blogService.selectBlog(1,0,"",0,pageSize);
+        return blogList;
+    }
 
 
 }

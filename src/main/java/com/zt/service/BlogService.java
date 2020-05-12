@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Blog;
+import com.zt.entity.User;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface BlogService {
      * @param pageSize
      * @return
      */
-    public List<Blog> selectBlog(Integer btid,List<Integer> utids, String search, Integer first, Integer pageSize);
+    public List<Blog> selectBlog(Integer btid, Integer uid, String search, Integer first, Integer pageSize);
 }
