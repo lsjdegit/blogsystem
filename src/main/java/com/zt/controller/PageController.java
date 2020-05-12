@@ -78,4 +78,13 @@ public class PageController {
     }
 
 
+    /**
+     * 进入他人信息页面
+     */
+    @RequestMapping("homepage")
+    public String homepage(){
+        return "homepage";
+    }
+
+
 }
