@@ -68,12 +68,11 @@ body{
 
 #head-user{
 	display: inline-block;
-	width: 8%;
+	width: 12%;
 	height: 60px;
 	padding-top: 10px;
 	box-sizing: border-box;
-	margin-left: 7%;
-	position: absolute;
+    float: right;
 }
 
 #head-img{

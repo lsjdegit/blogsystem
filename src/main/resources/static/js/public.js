@@ -1,4 +1,9 @@
 $(function(){
+    
+    //body宽度
+    var maxWidth = window.screen.width;
+    $("body").css("width",maxWidth);
+    
 	$("#head-ul li:eq(0)").addClass("clickli");
 	$("#head-ul li").hover(function(){
 		$(this).addClass("hoverli");
