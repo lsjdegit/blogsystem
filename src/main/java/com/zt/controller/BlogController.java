@@ -1,6 +1,8 @@
 package com.zt.controller;
 
 import com.zt.entity.Blog;
+import com.zt.entity.BlogParameter;
+import com.zt.entity.ListPage;
 import com.zt.mapper.BlogMapper;
 import com.zt.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,15 @@ public class BlogController {
 
     @RequestMapping("select")
     @ResponseBody
-    public List<Blog> selectBlog(Integer btid,Integer uid,String searchBlog,Integer pageIndex){
-
-        Integer first = pageIndex%pageSize==0?pageIndex/pageSize:pageIndex/pageSize+1;
-        List<Blog> blogList = blogService.selectBlog(1,0,"",0,pageSize);
-        return blogList;
+    public ListPage selectBlog(BlogParameter blogParameter){
+        Integer totalSize = blogService.selectBlog(blogParameter.getBtid(),blogParameter.getUid(),blogParameter.getSearchBlog(),0,0).size();
+        Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+        Integer first = pageSize*(blogParameter.getPageIndex()-1);
+        List<Blog> blogList = blogService.selectBlog(blogParameter.getBtid(),blogParameter.getUid(),blogParameter.getSearchBlog(),first,pageSize);
+        ListPage listPage = new ListPage();
+        listPage.setList(blogList);
+        listPage.setTotalPage(totalPage);
+        return listPage;
     }
 
 

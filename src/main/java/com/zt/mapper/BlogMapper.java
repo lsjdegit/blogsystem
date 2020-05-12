@@ -55,6 +55,11 @@ public interface BlogMapper {
             +"LIMIT #{first},#{pageSize}"
             +"</if>"
             +"</script>")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="bid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectByBlog")),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
+    })
     public List<Blog> selectBlog(@Param("btid") Integer btid, @Param("userList") List<User> userList, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
 
 
