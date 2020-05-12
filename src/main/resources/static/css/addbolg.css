@@ -33,7 +33,7 @@
 			padding-top: 20px;
 			position: relative;
 		}
-		.fushu span:first-of-type{
+		.fushu span{
 			font-size: 12px;
 			color: #666666;
 		}
@@ -67,4 +67,9 @@
 		.pb_fa button:first-of-type:hover{
 			background-color: #85c5ee;
 			color: white;
+		}
+		.fushu input{
+			width: 70%;
+			border: 1px solid #00BFF3;
+			border-radius: 3px;
 		}
