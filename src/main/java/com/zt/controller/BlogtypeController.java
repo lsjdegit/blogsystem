@@ -22,4 +22,11 @@ public class BlogtypeController {
         m.addAttribute("blogtypeList",blogtypeList);
         return "forward:../user/expert";
     }
+    @RequestMapping("alla")
+    @ResponseBody
+    public List<Blogtype> getBlogTypea(Model m ) {
+        List<Blogtype> blogtypeList = blogTypeService.selectAllBlogType();
+        m.addAttribute("blogtypeList",blogtypeList);
+        return blogtypeList;
+    }
 }
