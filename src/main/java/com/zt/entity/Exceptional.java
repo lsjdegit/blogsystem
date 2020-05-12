@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class exceptional implements Serializable {
+public class Exceptional implements Serializable {
 
     private Integer eid;
     private Integer bid;

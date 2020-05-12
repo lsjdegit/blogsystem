@@ -42,9 +42,9 @@
 
 		<div id="main">
 			<ul class="list-group" id="main-ul">
-				<li>推荐</li>
-				<li>动态</li>
-				<li th:each="blogtype,status:${blogtypeList}" th:text="${blogtype.tname}"></li>
+				<li value="0">推荐</li>
+				<li value="0">动态</li>
+				<li th:each="blogtype,status:${blogtypeList}" th:text="${blogtype.tname}" th:value="${blogtype.btid}"></li>
 			</ul>
 			<div id="main-centre">
 				<div id="centre-search">
