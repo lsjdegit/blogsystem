@@ -16,5 +16,7 @@ public class Message implements Serializable {
 	private Integer mtypeid;
 	private Integer bid;
 	private Integer status;
+	private Integer yuid;
+	private Integer uid;
 
 }

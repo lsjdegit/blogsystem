@@ -9,4 +9,7 @@ $(function(){
 		$(this).siblings().removeClass("main-clickli");
 		$(this).addClass("main-clickli");
 	});
+	$("#main-ul li:eq(4)").click(function(){
+		window.location.href="/user/";
+	});
 })
