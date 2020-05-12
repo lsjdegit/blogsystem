@@ -1,4 +1,5 @@
 $(function() {
+	$("#main-ul li:eq(4)").addClass("main-clickli");
 			$("#gul li").click(function() {
 				$(this).css("border-bottom", "red 5px solid");
 				$(this).siblings().css("border-bottom", "white 1px solid");

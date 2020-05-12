@@ -104,6 +104,8 @@
 		}
 		.ybyb div:first-of-type{
 			float: left;
+
+			width: 30%;
 		}
 		.ybyb div:last-of-type{
 			float: right;
@@ -121,15 +123,16 @@
 			font-size: 10px;
 			margin-right: 20px;
 		}
-		.ybyb div:first-of-type span{
+		.ybyb div:last-of-type span{
 			color: #999999;
 		}
-		.ybyb div:last-of-type span:first-of-type{
-			color: #00BFF3;
+		.ybyb div:first-of-type img{
+			width: 20px;
 			cursor: pointer;
-			font-size: 14px;
+			margin-right: 20%;
+			border-radius: 50%;
 		}
-		.ybyb div:last-of-type span:last-of-type{
+		.ybyb div:first-of-type span{
 			color: #00BFF3;
 			cursor: pointer;
 			font-size: 14px;
