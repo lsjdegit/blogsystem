@@ -25,6 +25,7 @@ public class Blog implements Serializable {
 	private String babstract;
 	private List<Collect> collects;
 	private List<Praise> praises;
+	private List<Comment> comments;
 
 
 }
