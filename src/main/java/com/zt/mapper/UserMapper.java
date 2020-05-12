@@ -30,4 +30,23 @@ public interface UserMapper {
     })
     public List<User> expertUser();
 
+    /**
+     * 根据点赞数量的用户排行榜
+     * @return
+     */
+    @Select("SELECT uid FROM blog GROUP BY uid ORDER BY SUM(gnumber) DESC")
+    public List<Integer> rankingUser();
+
+    /**
+     * 根据id获得用户
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="uid",property="uid"),
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+    })
+    public User getUserById(@Param("uid") Integer uid);
+
 }

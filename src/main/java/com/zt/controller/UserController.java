@@ -1,5 +1,6 @@
 package com.zt.controller;
 
+import com.zt.entity.Blog;
 import com.zt.entity.User;
 import com.zt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,28 @@ public class UserController {
         for (User user : eUserList) {
             System.out.println("user = " + user);
         }
+        return "forward:/guser";
+    }
+
+    /**
+     * 点赞排行榜前三
+     * @param m
+     * @return
+     */
+    @RequestMapping("guser")
+    public String gUser(Model m){
+        List<User> guserList = userService.rankingUser();
+        List<Integer> glist = new ArrayList<>();
+        for (User user : guserList) {
+            List<Blog> blogList = user.getBlogs();
+            Integer gnumber = 0;
+            for (Blog blog : blogList) {
+                gnumber += blog.getBnumber();
+            }
+            glist.add(gnumber);
+        }
+        m.addAttribute("guserList",guserList);
+        m.addAttribute("glist",glist);
         return "index";
     }
 

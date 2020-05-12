@@ -6,6 +6,7 @@ import com.zt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +39,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> expertUser() {
         return userMapper.expertUser();
+    }
+
+    public List<User> rankingUser(){
+        List<User> userList = new ArrayList<>();
+        List<Integer> uids = userMapper.rankingUser();
+        for (Integer uid : uids) {
+            User user = userMapper.getUserById(uid);
+            userList.add(user);
+        }
+        return userList;
     }
 }

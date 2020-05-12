@@ -25,4 +25,10 @@ public interface UserService {
      * @return
      */
     public List<User> expertUser();
+
+    /**
+     * 根据点赞数量的用户排行榜
+     * @return
+     */
+    public List<User> rankingUser();
 }

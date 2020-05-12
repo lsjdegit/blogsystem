@@ -18,6 +18,7 @@ public class Blog implements Serializable {
 	private String bcontent;
 	private String bcreatetime;
 	private Integer btid;
+	private Integer gnumber;
 	private Integer bnumber;
 	private Integer bstatusid;
 	private String babstract;
