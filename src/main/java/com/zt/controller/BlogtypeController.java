@@ -20,6 +20,6 @@ public class BlogtypeController {
     public String getBlogType(Model m ) {
         List<Blogtype> blogtypeList = blogTypeService.selectAllBlogType();
         m.addAttribute("blogtypeList",blogtypeList);
-        return "index";
+        return "forward:../user/expert";
     }
 }

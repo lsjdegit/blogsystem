@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<!--js-->
@@ -143,35 +143,15 @@
 						</span>
 					</p>
 					<ul>
-						<li>
+						<li th:each="user,status:${eUserList}">
 							<div>
 								<div>
-									<img src="img/hyxd.jpg" th:src="@{/img/hyxd.jpg}" />
+									<img src="img/hyxd.jpg" th:src="@{'/upload/'+${user.uimage}}" />
 								</div>
-								<span>用户名</span>
-								<span>博客&nbsp;1314&nbsp;篇</span>
+								<span th:text="${user.uname}">用户名</span>
+								<span>博客&nbsp;<span th:text="${user.blogs.size()}"></span>&nbsp;篇</span>
 							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
-						</li>
-						<li>
-							<div>
-								<div>
-									<img src="img/hyxd.jpg" />
-								</div>
-								<span>用户名</span>
-								<span>博客&nbsp;1314&nbsp;篇</span>
-							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
-						</li>
-						<li>
-							<div>
-								<div>
-									<img src="img/hyxd.jpg" />
-								</div>
-								<span>用户名</span>
-								<span>博客&nbsp;1314&nbsp;篇</span>
-							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
+							<p th:text="${user.intro}">个人简介个人简介个人简介个人简介个人简介个人简介</p>
 						</li>
 					</ul>
 				</div>
@@ -180,30 +160,10 @@
 						博客排行榜
 					</p>
 					<ul>
-						<li>
+						<li th:each="user,status:${userList}" th:if="${status.index} lt 3">
 							<div>
 								<div>
 									<img src="img/hyxd.jpg" th:src="@{/img/hyxd.jpg}" />
-								</div>
-								<span>用户名</span>
-								<span>获赞&nbsp;1314&nbsp;</span>
-							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
-						</li>
-						<li>
-							<div>
-								<div>
-									<img src="img/hyxd.jpg" />
-								</div>
-								<span>用户名</span>
-								<span>获赞&nbsp;1314&nbsp;</span>
-							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
-						</li>
-						<li>
-							<div>
-								<div>
-									<img src="img/hyxd.jpg" />
 								</div>
 								<span>用户名</span>
 								<span>获赞&nbsp;1314&nbsp;</span>

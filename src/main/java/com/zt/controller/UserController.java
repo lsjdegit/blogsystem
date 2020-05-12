@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author scj
@@ -52,4 +55,42 @@ public class UserController {
            return "register";
        }
     }
+
+    /**
+     * 随机三个专家用户
+     * @param m
+     * @return
+     */
+    @RequestMapping("expert")
+    public String expertUser(Model m){
+        List<User> userList = userService.expertUser();
+        List<User> eUserList = new ArrayList<>();
+        do{
+            for (User user : userList) {
+                int i = Math.random()>0.5?1:0;
+                if(eUserList.size()<3 ){
+                    if(i == 1){
+                        boolean flag = true;
+                        for (User u : eUserList) {
+                            if(u.getUid().equals(user.getUid())){
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if(flag){
+                            eUserList.add(user);
+                        }
+                    }
+                }else {
+                    break;
+                }
+            }
+        }while (eUserList.size()<3);
+        m.addAttribute("eUserList",eUserList);
+        for (User user : eUserList) {
+            System.out.println("user = " + user);
+        }
+        return "index";
+    }
+
 }

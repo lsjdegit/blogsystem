@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +24,7 @@ public class User implements Serializable {
 	private Integer blance;
 	private String intro;
 	private Integer isexpert;
+	private List<Blog> blogs;
 
 	public User(String uname, String upassword) {
 		this.uname = uname;
