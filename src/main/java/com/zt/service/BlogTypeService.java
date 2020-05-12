@@ -14,4 +14,9 @@ public interface BlogTypeService {
      * 遍历所有博客类型
      */
     public List<Blogtype> selectAllBlogType();
+
+    /**
+     * 添加博客类型
+     */
+    public int addBlogType(Blogtype bty);
 }

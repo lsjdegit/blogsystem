@@ -20,4 +20,9 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     public List<Blogtype> selectAllBlogType() {
         return blogtypeMapper.selectAllBlogType();
     }
+
+    @Override
+    public int addBlogType(Blogtype bty) {
+        return blogtypeMapper.addBlogType(bty);
+    }
 }
