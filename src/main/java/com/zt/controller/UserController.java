@@ -91,7 +91,7 @@ public class UserController {
         for (User user : eUserList) {
             System.out.println("user = " + user);
         }
-        return "forward:/guser";
+        return "forward:guser";
     }
 
     /**
@@ -102,17 +102,23 @@ public class UserController {
     @RequestMapping("guser")
     public String gUser(Model m){
         List<User> guserList = userService.rankingUser();
-        List<Integer> glist = new ArrayList<>();
+        List<Integer> gList = new ArrayList<>();
         for (User user : guserList) {
             List<Blog> blogList = user.getBlogs();
             Integer gnumber = 0;
             for (Blog blog : blogList) {
-                gnumber += blog.getBnumber();
+                gnumber += blog.getGnumber();
             }
-            glist.add(gnumber);
+            gList.add(gnumber);
         }
         m.addAttribute("guserList",guserList);
-        m.addAttribute("glist",glist);
+        for (User user : guserList) {
+            System.out.println("user = " + user);
+        }
+        m.addAttribute("gList",gList);
+        for (Integer integer : gList) {
+            System.out.println("integer = " + integer);
+        }
         return "index";
     }
 

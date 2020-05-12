@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         List<User> userList = new ArrayList<>();
         List<Integer> uids = userMapper.rankingUser();
         for (Integer uid : uids) {
+            System.out.println(uid);
             User user = userMapper.getUserById(uid);
             userList.add(user);
         }

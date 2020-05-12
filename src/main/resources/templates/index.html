@@ -160,15 +160,15 @@
 						博客排行榜
 					</p>
 					<ul>
-						<li th:each="user,status:${userList}" th:if="${status.index} lt 3">
+						<li th:each="user,status:${guserList}" th:if="${status.index} lt 3">
 							<div>
 								<div>
-									<img src="img/hyxd.jpg" th:src="@{/img/hyxd.jpg}" />
+									<img src="img/hyxd.jpg" th:src="@{'/upload/'+${user.uimage}}" />
 								</div>
-								<span>用户名</span>
-								<span>获赞&nbsp;1314&nbsp;</span>
+								<span th:text="${user.uname}">用户名</span>
+								<span>获赞&nbsp;<span th:text="${gList[status.index]}"></span>&nbsp;</span>
 							</div>
-							<p>个人简介个人简介个人简介个人简介个人简介个人简介</p>
+							<p th:text="${user.intro}">个人简介个人简介个人简介个人简介个人简介个人简介</p>
 						</li>
 					</ul>
 				</div>
