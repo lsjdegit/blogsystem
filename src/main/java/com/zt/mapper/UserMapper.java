@@ -45,8 +45,35 @@ public interface UserMapper {
     @Select("select * from user where uid=#{uid}")
     @Results({
             @Result(id=true,column="uid",property="uid"),
-            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser")),
+            @Result(column="uid",property="rblogs",many=@Many(select="com.zt.mapper.BlogMapper.getRblogByUser")),
+            @Result(column="uid",property="cares",many=@Many(select="com.zt.mapper.UserMapper.getCareByUser")),
+            @Result(column="uid",property="fans",many=@Many(select="com.zt.mapper.UserMapper.getFansByUser"))
     })
     public User getUserById(@Param("uid") Integer uid);
+
+    /**
+     * 根据博客id获取互动用户集合
+     * @param bid
+     * @return
+     */
+    @Select("select * from user where uid in(select uid from ubrelevance where bid=#{bid})")
+    public List<User> getUserByBlog(@Param("bid")Integer bid);
+
+    /**
+     * 根据用户id查关注的用户集合
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid in(select uid from uurelevance where fansid=#{uid})")
+    public List<User> getCareByUser(@Param("uid")Integer uid);
+
+    /**
+     * 根据用户id查粉丝的用户集合
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid in(select fansid from uurelevance where uid=#{uid})")
+    public List<User> getFansByUser(@Param("uid")Integer uid);
 
 }

@@ -25,6 +25,9 @@ public class User implements Serializable {
 	private String intro;
 	private Integer isexpert;
 	private List<Blog> blogs;
+	private List<Blog> rblogs;
+	private List<User> cares;
+	private List<User> fans;
 
 	public User(String uname, String upassword) {
 		this.uname = uname;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,5 +23,6 @@ public class Blog implements Serializable {
 	private Integer bnumber;
 	private Integer bstatusid;
 	private String babstract;
+	private List<User> users;
 
 }
