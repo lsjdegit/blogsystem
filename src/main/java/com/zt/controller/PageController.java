@@ -69,7 +69,13 @@ public class PageController {
     public String personal(){
         return "personal";
     }
-
+    /**
+     * 进入消息中心页面
+     */
+    @RequestMapping("news")
+    public String news(){
+        return "news";
+    }
 
 
 }
