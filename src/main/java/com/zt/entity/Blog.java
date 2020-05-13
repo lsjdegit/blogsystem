@@ -23,6 +23,7 @@ public class Blog implements Serializable {
 	private Integer bnumber;
 	private Integer bstatusid;
 	private String babstract;
+	private User user;
 	private List<Collect> collects;
 	private List<Praise> praises;
 	private List<Comment> comments;

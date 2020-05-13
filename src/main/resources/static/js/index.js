@@ -6,9 +6,30 @@ $(function(){
 		contentType:"application/json",
 		data:JSON.stringify({"btid":0,"uid":0,"pageIndex":1,"searchBlog":""}),
 		success:function(result){
-			// var blist = result.getList();
-			// var totalPage = result.getTotalPage();
-			alert(result[0]);
+			var blist = result.list;
+			var totalPage = result.totalPage;
+			for(var i=0;i<blist.length;i++){
+			    var blog = blist[i];
+                var $blog = $("<div class=\"blog\">" +
+                    "<p>"+blog.btitle+"</p>" +
+                    "<span>"+blog.bcontent+"</span>" +
+                    "<div>" +
+                    "<div class=\"blog-user\">" +
+                    "<div class=\"user-img\">" +
+                    "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
+                    "</div>" +
+                    "<span>"+blog.user.uname+"</span>" +
+                    "</div>" +
+                    "<div class=\"blog-msg\">" +
+                    "<span class=\"iconfont icon-zan\"></span>" +
+                    "<span>"+blog.gnumber+"</span>\n" +
+                    "<span class=\"iconfont icon-liulan\"></span>" +
+                    "<span>"+blog.bnumber+"</span>\n" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>");
+                $("#centre-blog").prepend($blog);
+            }
 		}
 	})
 
