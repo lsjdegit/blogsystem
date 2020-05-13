@@ -37,6 +37,7 @@ $(function(){
 							var span = $("<span>未登录</span>");
 							$("#head-user>span").replaceWith(span);
 							$("#user-login>span").html("登录");
+							$("input[name=loginUid]").val("");
 							return ;
 						}else{
 							return ;

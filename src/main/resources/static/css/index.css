@@ -76,13 +76,15 @@
 }
 
 .blog{
-	height: 130px;
-	width: 100%;
+	/*height: 130px;*/
+	/*width: 100%;*/
+	height: 0px;
+	width: 0px;
 	border-bottom: 1px #E3E3E3 solid;
 	padding: 20px;
 	box-sizing: border-box;
 	cursor: pointer;
-	transition: all 1s;
+	/*display: none;*/
 }
 
 .blog>p{
@@ -177,6 +179,7 @@
 	border-top: 1px #00BFF3 solid;
 	padding: 10px;
 	box-sizing: border-box;
+	display: none;
 }
 
 .pag{

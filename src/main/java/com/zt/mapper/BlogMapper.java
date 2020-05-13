@@ -45,7 +45,7 @@ public interface BlogMapper {
             +"#{user.uid}"
             +"</foreach>"
             +"</if>"
-            +"<if test=\"userList!=null and uids.size==0\" >"
+            +"<if test=\"userList!=null and userList.size==0\" >"
             +"AND uid=0"
             +"</if>"
             +"<if test=\"search!=null and search!=''\" >"

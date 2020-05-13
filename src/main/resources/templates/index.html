@@ -27,6 +27,7 @@
 				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
 			</ul>
 			<div id="head-user">
+				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
 				<div id="head-img">
 					<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
 					<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
@@ -41,6 +42,7 @@
 		</div>
 
 		<div id="main">
+			<input type="hidden" name="btid" value="0">
 			<ul class="list-group" id="main-ul">
 				<li value="0">推荐</li>
 				<li value="0">动态</li>
@@ -50,7 +52,7 @@
 				<div id="centre-search">
 					<div>
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="搜索博客">
+							<input type="text" class="form-control" placeholder="搜索推荐博客">
 							<span class="input-group-btn">
 								<button class="btn btn-default iconfont icon-552cc1e587668" type="button"></button>
 							</span>
@@ -82,7 +84,7 @@
 						<li id="next"><button onclick="change(this)">下</button></li>
 						<li id="end"><button onclick="change(this)" style="width: 50px;height: 35px;">尾页</button></li>
 					</ul>
-					<input type="hidden" id="totalPage" value="3"/>
+					<input type="hidden" id="totalPage" value="1"/>
 					<input type="hidden" id="currentPage" value="1"/>
 				</div>
 			</div>
@@ -139,18 +141,7 @@
 	</body>
 	<script type="text/javascript">
   	$(function(){
-  		var totalPage = parseInt($("#totalPage").val());
-  		if(totalPage<2){
-  			$(".pag").hide();
-  		}else{
-  			for(var i=0;i<totalPage;i++){
-  				var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
-  				if(i==0){
-  					li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">"+(i+1)+"</button></li>");
-  				}
-  				$("#next").before(li);
-  			}
-  		}
+
   	})
   </script>
 </html>
