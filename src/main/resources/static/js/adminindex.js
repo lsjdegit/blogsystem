@@ -93,6 +93,12 @@ $(function(){
 				$(this).addClass("uler");
 			})
 
+            $("#head-ul li:eq(0)").addClass("ttou");
+            $("#head-ul li").click(function(){
+                $("#head-ul li").removeClass("ttou");
+                $(this).addClass("ttou");
+            })
+
 	/**
 	 * 遍历博客类型
 	 */
