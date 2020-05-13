@@ -51,4 +51,12 @@ public class UserServiceImpl implements UserService {
         }
         return userList;
     }
+
+    /**
+     * 根据用户id查用户数据（关注、粉丝、浏览记录）
+     */
+    @Override
+    public User getUserById(Integer uid) {
+        return userMapper.getUserById(uid);
+    }
 }

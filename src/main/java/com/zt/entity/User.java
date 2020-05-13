@@ -21,7 +21,7 @@ public class User implements Serializable {
 	private String sex;
 	private String email;
 	private Integer age;
-	private Integer blance;
+	private Integer balance;
 	private String intro;
 	private Integer isexpert;
 	private List<Blog> blogs;

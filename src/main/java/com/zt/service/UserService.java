@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,4 +32,9 @@ public interface UserService {
      * @return
      */
     public List<User> rankingUser();
+
+    /**
+     * 根据用户id查用户数据（关注、粉丝、浏览记录）
+     */
+    public User getUserById(Integer uid);
 }

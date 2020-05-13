@@ -49,4 +49,19 @@ $(function(){
 	},function(){
 		$("#user-login").hide();
 	});
+
+	$("#head-ul li:eq(4)").click(function(){
+		var static=$("#head-user span:eq(0)").text();
+		if(static=="未登录"){
+			if(confirm("请先登录！")){
+				window.location.href="login";
+			}else{
+				$("#head-ul li:eq(0)").addClass("clickli");
+				$("#head-ul li:eq(4)").removeClass("clickli");
+			}
+		}else{
+			window.location.href="personal";
+		}
+	});
+
 })

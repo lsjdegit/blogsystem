@@ -67,4 +67,12 @@ public interface UserMapper {
     @Select("select * from user where uid in(select fansid from uurelevance where uid=#{uid})")
     public List<User> getFansByUser(@Param("uid")Integer uid);
 
+    /**
+     * 根据用户id修改用户基础信息
+     * @param user
+     * @return
+     */
+    @Update("UPDATE USER SET sex=#{sex},uname=#{uname},email=#{email},age=#{age},intro=#{intro} WHERE uid=#{uid}")
+    public int updateUser(User user);
+
 }

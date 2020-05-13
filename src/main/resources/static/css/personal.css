@@ -121,4 +121,8 @@
 		}
 		.xx2{
 			padding-top: 20px;
+			height: 400px;
+		}
+		.xx2 p{
+			height: 40px;
 		}
