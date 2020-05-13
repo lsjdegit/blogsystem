@@ -5,6 +5,7 @@ import com.zt.service.BlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class BlogtypeController {
      */
     @RequestMapping("add")
     @ResponseBody
-    public int addBlogTypea(Blogtype bty){
+    public int addBlogTypea(@RequestBody Blogtype bty){
         System.out.println(bty.getTname());
         return blogTypeService.addBlogType(bty);
     }

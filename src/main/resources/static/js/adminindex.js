@@ -30,7 +30,8 @@ $(function(){
 		$.ajax({
 			type:'post',
 			url: 'blogtype/add',
-			data:'tname='+tname,
+			contentType:'application/json',
+			data:JSON.stringify({"tname":$(".form-group input").val()}),
 			success:function(result){
 				var add=eval(result);
 				if(add>0){
@@ -42,5 +43,7 @@ $(function(){
 			}
 		})
 	})
+
+
 		})
 
