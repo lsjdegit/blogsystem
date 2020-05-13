@@ -73,7 +73,6 @@ $(function() {
             }
 
         })
-
         $("#myModal").hidden();
     });
 
@@ -82,7 +81,7 @@ $(function() {
 		window.location.href="index";
 	}
 
-
+	//头部样式
 	$("#head-ul li:eq(4)").addClass("clickli");
 
 	$("#gul li").click(function() {
@@ -106,6 +105,8 @@ $(function() {
 		$(".ul1 li").removeClass("li");
 		$(this).addClass("li");
 	})
+
+    //更换头像
 	$("#avatar").change(function() {
 		var choose_file = $(this)[0].files[0];
 		var ftype = choose_file.name.substring(choose_file.name.lastIndexOf(".") + 1);

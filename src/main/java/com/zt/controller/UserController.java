@@ -3,15 +3,19 @@ package com.zt.controller;
 import com.zt.entity.Blog;
 import com.zt.entity.User;
 import com.zt.service.UserService;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -156,6 +160,27 @@ public class UserController {
             return false;
         }
         return true;
+    }
+
+
+    @RequestMapping(value="updateUserimg",method= RequestMethod.POST)
+    @ResponseBody
+    public boolean uploadImg(@RequestBody HttpServletRequest request, Model m,HttpSession sess, User user){
+        User uu= (User) sess.getAttribute("loginUser");
+        user.setUid(uu.getUid());
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile file = req.getFile(user.getUimage());
+        String path = request.getRealPath("/upload")+"/"+uu.getUid()+"head.jpg";
+        File destFile = new File(path);
+        //m.addAttribute("image", "/upload/"+file.getOriginalFilename());
+        try {
+            FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
+            return true;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

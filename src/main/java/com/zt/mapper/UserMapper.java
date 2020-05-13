@@ -83,6 +83,14 @@ public interface UserMapper {
     @Update("UPDATE USER SET balance=#{balance} WHERE uid=#{uid}")
     public int updateUserBalance(User user);
 
+    /**
+     * 根据用户id修改用户头像
+     * @param user
+     * @return
+     */
+    @Update("UPDATE USER SET uimage=#{uimage} WHERE uid=#{uid}")
+    public int updateUserimg(User user);
+
 
 
 }
