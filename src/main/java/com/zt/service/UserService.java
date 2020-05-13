@@ -44,4 +44,11 @@ public interface UserService {
      * @return
      */
     public int updateUser(User user);
+
+    /**
+     * 根据用户id修改用户头像
+     * @param user
+     * @return
+     */
+    public int updateUserimg(User user);
 }

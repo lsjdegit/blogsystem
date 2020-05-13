@@ -68,4 +68,12 @@ public class UserServiceImpl implements UserService {
     public int updateUser(User user) {
         return userMapper.updateUser(user);
     }
+
+    /**
+     * 根据用户id修改用户头像
+     */
+    @Override
+    public int updateUserimg(User user) {
+        return userMapper.updateUserimg(user);
+    }
 }
