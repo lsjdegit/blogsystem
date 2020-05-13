@@ -41,9 +41,9 @@ public class PageController {
     /**
      * 进入addblag页面
      */
-    @RequestMapping("addbolg")
+    @RequestMapping("addblog")
     public String addbolg(){
-        return "addbolg";
+        return "addblog";
     }
 
     /**

@@ -26,13 +26,10 @@
         <img src="img/blog.png" th:src="@{/img/blog.png}"/>
     </div>
     <ul id="head-ul">
-        <li>主页</li>
-        <li>我的博客</li>
-        <li>写博客</li>
-        <li>消息中心</li>
-        <li>个人中心</li>
+        <li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
     </ul>
     <div id="head-user">
+        <input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
         <div id="head-img">
             <img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}"/>
             <img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
@@ -238,8 +235,15 @@
     </ul>
 </div>
 </div>
+</div>
 
-
+<!--------------Footer--------------->
+<div id="foot">
+    <p>
+        <span><i class="iconfont icon-qq"></i>QQ:<a href="#">2807728147</a></span>
+        <span><i class="iconfont icon-weixin"></i>Wechat:<a href="#">17687974843</a></span>
+        <span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
+    </p>
 </div>
 </body>
 </html>
