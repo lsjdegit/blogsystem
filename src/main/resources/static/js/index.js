@@ -92,6 +92,7 @@ function change(obj){
 
 $(function(){
 
+    //头列表样式
     $("#head-ul li:eq(0)").addClass("clickli");
 
     //单击悬浮改变样式

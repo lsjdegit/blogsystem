@@ -3,21 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<title>写博客</title>
-	</head>
-		<script type="text/javascript">
-			
-		</script>
 		<link href="//at.alicdn.com/t/font_1803890_br7y3itdnoi.css" type="text/css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" th:href="@{/css/addblog.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 		<link rel="stylesheet" type="text/css" th:href="@{/css/public.css}"/>
-		<script type="text/javascript" th:src="@{/js/addblog.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/addblog.css}" />
 		<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
 		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-		<script type="text/javascript" th:src="@{/js/public.js}"></script>
 		<script type="text/javascript" th:src="@{/js/wangEditor.min.js}"></script>
-	<body style="background-color: #F5F6F7;">
+		<script type="text/javascript" th:src="@{/js/public.js}"></script>
+		<script type="text/javascript" th:src="@{/js/addblog.js}"></script>
+		<script type="text/javascript" th:inline="javascript">
+			var ctxPath = [[@{/}]];
+		</script>
+	</head>
+	<body>
 	<!-- Header -->
 	<div id="head">
 		<div id="head-logo">
@@ -43,17 +43,25 @@
 		
 		<div class="addb">
 			<div class="ti">
-				<input type="text" name="btitle" placeholder="请输入文章标题" maxlength="100">
+				<input class="form-control" type="text" name="btitle" placeholder="请输入文章标题" maxlength="100">
+				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请填写博客标题"></button>-->
+				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="请多写点内容"></button>-->
 			</div>
 		    <div class="dome01"></div>
-			<div class="fushu">
-				<span>摘要：</span>
-				<input type="text" name="">
-				<br>
-				<br>
-				<span>文章类型</span>:
-				<select><option>请选择</option><option>Java</option><option>mysql</option><option>框架</option><option>css</option></select>
-				<p class="pb_fa"><button class="">发布博客</button> </p>
+			<div class="fushu" >
+				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择博客类型"></button>-->
+				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请填写博客摘要"></button>-->
+				<p>
+					<span>摘要：</span>
+					<textarea class="form-control" rows="3"></textarea>
+				</p>
+				<span>
+					文章类型:
+				</span>
+				<select class="form-control">
+					<option value="0">请选择</option>
+				</select>
+				<p class="pb_fa"><button class="form-control">发布博客</button> </p>
 			</div>
 		</div>
 		
@@ -63,16 +71,10 @@
 				<span><i class="iconfont icon-weixin"></i>Wechat:<a href="#">17687974843</a></span>
 				<span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
 			</p>
-		</div> 
+		</div>
+		<div class="popover fade right in" id="popover575669" role="tooltip" style="left: 984.65px; top: 97px;"><div class="arrow"></div><h3 class="popover-title" style="display: none;"></h3><div class="popover-content">请填写博客标题</div></div>
+		<div class="popover fade top in" id="popover748664" role="tooltip" style="left: 1187.86px; top: 117px;"><div class="arrow"></div><h3 class="popover-title" style="display: none;"></h3><div class="popover-content">请填写博客内容</div></div>
+		<div class="popover fade right in" id="popover647756" role="tooltip" style="left: 1030.35px; top: 609px;"><div class="arrow"></div><h3 class="popover-title" style="display: none;"></h3><div class="popover-content">请填写博客摘要</div></div>
+		<div class="popover fade right in" id="popover19436" role="tooltip" style="left: 436.22px; top: 708px;"><div class="arrow"></div><h3 class="popover-title" style="display: none;"></h3><div class="popover-content">请选择博客类型</div></div>
 	</body>
-	
-	
-	<script type=text/javascript>
-		var E = window.wangEditor;
-		var editor = new E('.dome01');
-		editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
-		// 关闭粘贴样式的过滤
-        editor.customConfig.pasteFilterStyle = false;
-		editor.create();
-	</script>
 </html>
