@@ -15,4 +15,6 @@ public interface BlogService {
      * @return
      */
     public List<Blog> selectBlog(Integer btid, Integer uid, String search, Integer first, Integer pageSize);
+
+    public List<Blog> selectBlogst(Integer btid, Integer uid, String search, Integer first, Integer pageSize,String bcreatetime,Integer bstatusid);
 }

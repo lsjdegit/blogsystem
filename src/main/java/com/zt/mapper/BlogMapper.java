@@ -35,7 +35,7 @@ public interface BlogMapper {
      */
     @Select("<script>"
             +"SELECT * FROM blog "
-            +"WHERE 1=1"
+            +"WHERE bstatusid=1"
             +"<if test=\"btid!=null and btid!=0\" >"
             +"AND btid=#{btid}"
             +"</if>"
@@ -63,5 +63,40 @@ public interface BlogMapper {
     })
     public List<Blog> selectBlog(@Param("btid") Integer btid, @Param("userList") List<User> userList, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
 
+    /**
+     *
+     * @param btid
+     * @param userList
+     * @param search
+     * @param first
+     * @param pageSize
+     * @param bcreatetime
+     * @param bcreatetime
+     * @param bstatusid
+     * @return
+     */
+    @Select("<script>"
+            +"SELECT * FROM blog"
+            +" WHERE bstatusid=#{bstatusid}"
+            +"<if test=\"btid!=null and btid!=0\" >"
+            +"AND btid=#{btid}"
+            +"</if>"
+            +"<if test=\"bcreatetime!=null and bcreatetime!=''\" >"
+            +"AND bcreatetime=#{bcreatetime}"
+            +"</if>"
+            +"<if test=\"search!=null and search!=''\" >"
+            +"AND btitle LIKE '%${search}%'"
+            +"</if>"
+            +"<if test=\"pageSize!=null and pageSize!=0\" >"
+            +"LIMIT #{first},#{pageSize}"
+            +"</if>"
+            +"</script>")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
+            @Result(column="bid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectByBlog")),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
+    })
+    public List<Blog> selectBlogst(@Param("btid") Integer btid, @Param("userList") List<User> userList, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize,@Param("bcreatetime")String bcreatetime,@Param("bstatusid")Integer bstatusid);
 
 }

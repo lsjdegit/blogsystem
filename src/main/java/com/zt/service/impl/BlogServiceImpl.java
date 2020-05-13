@@ -29,4 +29,10 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.selectBlog(btid, userList, search, first, pageSize);
     }
 
+    @Override
+    public List<Blog> selectBlogst(Integer btid, Integer uid, String search, Integer first, Integer pageSize, String bcreatetime,Integer bstatusid) {
+        List<User> userList = new ArrayList<>();
+        return blogMapper.selectBlogst(btid, userList, search, first, pageSize,bcreatetime,bstatusid);
+    }
+
 }

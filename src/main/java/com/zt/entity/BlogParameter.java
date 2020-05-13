@@ -8,4 +8,6 @@ public class BlogParameter {
     private Integer uid;
     private Integer pageIndex;
     private String searchBlog;
+    private String bcreatetime;
+    private Integer bstatusid;
 }

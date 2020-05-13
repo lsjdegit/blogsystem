@@ -34,6 +34,18 @@ public class BlogController {
         listPage.setTotalPage(totalPage);
         return listPage;
     }
-
+    @RequestMapping(value = "selectst",method = RequestMethod.POST)
+    @ResponseBody
+    public ListPage selectBlogst(@RequestBody BlogParameter blogParameter){
+        System.out.println("状态："+blogParameter.getBstatusid());
+        Integer totalSize=blogService.selectBlogst(blogParameter.getBtid(),blogParameter.getUid(),blogParameter.getSearchBlog(),0,0,blogParameter.getBcreatetime(),blogParameter.getBstatusid()).size();
+        Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+        Integer first = pageSize*(blogParameter.getPageIndex()-1);
+        List<Blog> blogList = blogService.selectBlogst(blogParameter.getBtid(),blogParameter.getUid(),blogParameter.getSearchBlog(),first,pageSize,blogParameter.getBcreatetime(),blogParameter.getBstatusid());
+        ListPage listPage = new ListPage();
+        listPage.setList(blogList);
+        listPage.setTotalPage(totalPage);
+        return listPage;
+    }
 
 }

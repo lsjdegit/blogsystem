@@ -1,5 +1,7 @@
 package com.zt.controller;
 
+import com.zt.entity.Blog;
+import com.zt.entity.BlogParameter;
 import com.zt.entity.Blogtype;
 import com.zt.service.BlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -23,11 +26,11 @@ public class BlogtypeController {
         m.addAttribute("blogtypeList",blogtypeList);
         return "forward:../user/expert";
     }
+
     @RequestMapping("alla")
     @ResponseBody
-    public List<Blogtype> getBlogTypea(Model m ) {
+    public List<Blogtype> getBlogTypea() {
         List<Blogtype> blogtypeList = blogTypeService.selectAllBlogType();
-        m.addAttribute("blogtypeList",blogtypeList);
         return blogtypeList;
     }
 
