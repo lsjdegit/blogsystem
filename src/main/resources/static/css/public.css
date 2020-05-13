@@ -73,6 +73,7 @@ body{
 	padding-top: 10px;
 	box-sizing: border-box;
     float: right;
+	position: relative;
 }
 
 #head-img{
@@ -92,9 +93,9 @@ body{
 	border: 1px #ccc solid;
 	border-radius: 20px;
 	z-index: 999999;
-	position: relative;
-	bottom: 38px;
-	left: 45px;
+	position: absolute;
+	top: 12px;
+	left: 42px;
 	overflow: hidden;
 	cursor: pointer;
 	display: none;

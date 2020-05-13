@@ -82,6 +82,7 @@
 	padding: 20px;
 	box-sizing: border-box;
 	cursor: pointer;
+	transition: all 1s;
 }
 
 .blog>p{
@@ -141,7 +142,7 @@
 .blog-msg{
 	float: right;
 	height: 30px;
-	width: 10%;
+	width: 15%;
 }
 
 .blog-msg span{
@@ -154,6 +155,7 @@
 }
 
 .blog-msg span:nth-of-type(2){
+	margin-left: 2px;
 	color: #5c7dd4;
 }
 
@@ -162,6 +164,7 @@
 }
 
 .blog-msg span:nth-of-type(4){
+	margin-left: 2px;
 	color: #5c7dd4;
 }
 
