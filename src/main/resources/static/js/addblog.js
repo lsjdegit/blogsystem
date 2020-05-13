@@ -8,7 +8,7 @@ $(function () {
 
     //富文本编辑器
     var E = window.wangEditor;
-    var editor = new E('.dome01');
+    var editor = new E('#dome01');
     // 使用 base64 保存图片
     editor.customConfig.uploadImgShowBase64 = true;
     // 将图片大小限制为 3M
@@ -40,39 +40,34 @@ $(function () {
         }
     })
 
+    //获取焦点
+    $(".ti input[name=\"btitle\"]").focus(function () {
+        $("#popover575669").css("display","none");
+    });
+    $(".fushu>p:eq(0)>textarea").focus(function () {
+        $("#popover647756").css("display","none");
+    });
+    $(".fushu>select").focus(function () {
+        $("#popover19436").css("display","none");
+    });
     //失去焦点验证
     $(".ti input[name=\"btitle\"]").blur(function () {
         if($(this).val() == ""){
             $("#popover575669").css("display","block");
         }
     });
-    $("#dome01").blur(function () {
-        if(editor.txt.html().length < 25){
-            $("#popover748664").css("display","block");
-        }
-    });
     $(".fushu>p:eq(0)>textarea").blur(function () {
         if($(this).val() == ""){
             $("#popover647756").css("display","block");
         }
+        if(editor.txt.html().length > 25){
+            $("#popover748664").css("display","none");
+        }
     });
-    $(".fushu>select option:selected").blur(function () {
+    $(".fushu>select").blur(function () {
         if($(this).val() == 0){
             $("#popover19436").css("display","block");
         }
-    });
-    //获取焦点
-    $(".ti input[name=\"btitle\"]").blur(function () {
-        $("#popover575669").css("display","none");
-    });
-    $("#dome01").blur(function () {
-        $("#popover748664").css("display","none");
-    });
-    $(".fushu>p:eq(0)>textarea").blur(function () {
-        $("#popover647756").css("display","none");
-    });
-    $(".fushu>select option:selected").blur(function () {
-        $("#popover19436").css("display","none");
     });
 
     //发布博客
@@ -83,16 +78,23 @@ $(function () {
         var btid = $(".fushu>select option:selected").val();
         var flag = true;
         if(btitle == ""){
-            $("#popover575669").css("display","blok");
+            $("#popover575669").css("display","block");
+            flag = false;
         }
         if(bcontent.length < 25){
-            $("#popover748664").css("display","blok");
+            $("#popover748664").css("display","block");
+            flag = false;
         }
         if(babstract == ""){
-            $("#popover647756").css("display","blok");
+            $("#popover647756").css("display","block");
+            flag = false;
         }
         if(btid == 0){
-            $("#popover19436").css("display","blok");
+            $("#popover19436").css("display","block");
+            flag = false;
+        }
+        if(flag){
+
         }
     });
 
