@@ -26,20 +26,56 @@ $(function() {
 			$(".xx2 p:eq(3)").html("年龄："+age);
 			$(".xx2 p:eq(4)").html("邮箱："+email);
 			$(".xx2 p:eq(5)").html("简介："+dc);
-			//model
-			$("#inputname").val(name);
-			$("#inputage").val(age);
-			$("#inputemail").val(email);
-			if(sex=="男"){
-				$("input[value=男]").prop("checked",true);
-			}else{
-				$("input[value=女]").prop("checked",true);
-			}
 
-			$(".form-control").html(dc);
+
 		}
 
 	});
+	//获取文本域
+    /*$("#inputintro").on("input propertychange",function(){
+       $(this).val();
+    });*/
+
+    $(".pyou").click(function(){
+        //model
+        $("#inputname").val($(".xx1 span:eq(0)").html().substr(4));
+        $("#inputage").val($(".xx2 p:eq(3)").html().substr(3));
+        $("#inputemail").val($(".xx2 p:eq(4)").html().substr(3));
+        var sex=$(".xx2 p:eq(2)").html().substr(3);
+        if(sex=="男"){
+            $("input[value=男]").prop("checked",true);
+        }else{
+            $("input[value=女]").prop("checked",true);
+        }
+        $(".form-control").html($(".xx2 p:eq(5)").html().substr(3));
+
+    })
+	//修改用户
+    $("#cun").click(function(){
+
+        var name=$("#inputname").val();
+        var age=$("#inputage").val();
+        var email=$("#inputemail").val();
+        var sex=$("input[name=sex]:checked").val();
+        var intro=$("#inputintro").val();
+        $.ajax({
+            type:'POST',
+            url:ctxPath+"/user/updateuser",
+            contentType:"application/json",
+            data:JSON.stringify({"uname":name,"age":age,"email":email,"sex":sex,"intro":intro}),
+            success:function(result){
+                if(result){
+                    window.location.href="personal";
+                }else{
+                    window.location.href="personal";
+                    alert("修改失败");
+                }
+            }
+
+        })
+
+        $("#myModal").hidden();
+    });
 
 	var log=$("#head-user span:eq(0)").text();
 	if(log=="未登录"){

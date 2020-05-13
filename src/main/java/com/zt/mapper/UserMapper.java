@@ -75,4 +75,14 @@ public interface UserMapper {
     @Update("UPDATE USER SET sex=#{sex},uname=#{uname},email=#{email},age=#{age},intro=#{intro} WHERE uid=#{uid}")
     public int updateUser(User user);
 
+    /**
+     * 根据用户id修改用户余额
+     * @param user
+     * @return
+     */
+    @Update("UPDATE USER SET balance=#{balance} WHERE uid=#{uid}")
+    public int updateUserBalance(User user);
+
+
+
 }

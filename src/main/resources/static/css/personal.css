@@ -26,6 +26,7 @@
 			float: left;
 			background-color: white;
 			width: 79.5%;
+
 			border:0.5px #F5F6F7 solid;
 		}
 		.dleft ul{
@@ -121,8 +122,8 @@
 		}
 		.xx2{
 			padding-top: 20px;
-			height: 400px;
+			padding-bottom: 30px;
 		}
 		.xx2 p{
-			height: 40px;
+			margin-bottom: 20px;
 		}

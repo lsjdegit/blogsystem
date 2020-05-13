@@ -37,4 +37,11 @@ public interface UserService {
      * 根据用户id查用户数据（关注、粉丝、浏览记录）
      */
     public User getUserById(Integer uid);
+
+    /**
+     * 根据用户id修改用户基础信息
+     * @param user
+     * @return
+     */
+    public int updateUser(User user);
 }

@@ -6,6 +6,7 @@ import com.zt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -123,6 +124,11 @@ public class UserController {
         return "index";
     }
 
+    /**
+     * 个人中心数据
+     * @param sess
+     * @return
+     */
     @RequestMapping("pansonalselect")
     @ResponseBody
     public User personalselect(HttpSession sess){
@@ -132,6 +138,24 @@ public class UserController {
         System.out.println(puser.getFans().size());
         System.out.println(puser.getBalance());
         return puser;
+    }
+
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+    @RequestMapping("/updateuser")
+    @ResponseBody
+    public boolean updateUser(@RequestBody User user,HttpSession sess){
+        User ui= (User) sess.getAttribute("loginUser");
+        user.setUid(ui.getUid());
+        int num=userService.updateUser(user);
+        System.out.println(num);
+        if(num==0){
+            return false;
+        }
+        return true;
     }
 
 
