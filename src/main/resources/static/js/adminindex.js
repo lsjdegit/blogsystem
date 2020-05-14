@@ -598,7 +598,6 @@ $(function(){
                     contentType:'application/json',
                     data:JSON.stringify({"bid":uid}),
                     success:function (result) {
-                        
                     }
                 })
             }
