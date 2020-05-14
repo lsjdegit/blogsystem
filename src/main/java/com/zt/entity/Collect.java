@@ -4,16 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import java.io.Serializable;
 
-import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Collect {
+public class Collect implements Serializable {
     private Integer collectid;
     private Integer uid;
     private Integer bid;
-    private Blog blog;
     private User user;
+    private Blog blog;
+
 }

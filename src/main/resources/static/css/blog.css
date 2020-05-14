@@ -96,8 +96,8 @@
     font-weight: bold;
 }
 .rcenter{
-    width:98%;
-    padding: 20px;
+    width:100%;
+    padding: 20px 40px;
     box-sizing: border-box;
     border: 1px white solid;
     display: none;

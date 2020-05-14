@@ -15,5 +15,5 @@ public class Praise {
     private Integer uid;
     private Integer bid;
     private User user;
-    private Blog blog;
+
 }

@@ -1,5 +1,6 @@
 package com.zt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,10 @@ public class Blog implements Serializable {
 	private Integer bstatusid;
 	private String babstract;
 	private User user;
+	@JsonIgnore
 	private List<Collect> collects;
 	private List<Praise> praises;
+	@JsonIgnore
 	private List<Comment> comments;
-
 
 }
