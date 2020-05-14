@@ -10,4 +10,6 @@ public class BlogParameter {
     private String searchBlog;
     private String bcreatetime;
     private Integer bstatusid;
+    private String uname;
+    private Integer isexpert;
 }

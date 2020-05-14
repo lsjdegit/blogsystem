@@ -91,6 +91,24 @@ public interface UserMapper {
     @Update("UPDATE USER SET uimage=#{uimage} WHERE uid=#{uid}")
     public int updateUserimg(User user);
 
-
-
+    /**
+     *
+     * @param uname
+     * @param isexpert
+     * @return
+     */
+   @Select("<script>"
+           +"select * from user"
+           +" where isadmin=0"
+           +"<if test=\"uname!=null and uname!=''\" >"
+           +"AND uname LIKE '%${uname}%'"
+           +"</if>"
+           +"<if test=\"isexpert!=null and isexpert!=''\" >"
+           +"AND isexpert=#{isexpert}"
+           +"</if>"
+           +"<if test=\"pageSize!=null and pageSize!=0\" >"
+           +"LIMIT #{first},#{pageSize}"
+           +"</if>"
+           +"</script>")
+    public List<User> selectAll(@Param("uname")String uname,@Param("isexpert")Integer isexpert,@Param("first")Integer first, @Param("pageSize")Integer pageSize);
 }

@@ -1,6 +1,8 @@
 package com.zt.controller;
 
 import com.zt.entity.Blog;
+import com.zt.entity.BlogParameter;
+import com.zt.entity.ListPage;
 import com.zt.entity.User;
 import com.zt.service.UserService;
 
@@ -29,6 +31,7 @@ import java.util.Random;
 public class UserController {
     @Autowired
     private UserService userService;
+    private Integer pageSize = 4;
 
     /**
      * 验证登录信息
@@ -183,6 +186,18 @@ public class UserController {
         return false;
     }
 
-
+      @RequestMapping(value = "selectall",method = RequestMethod.POST)
+      @ResponseBody
+      public ListPage selectall(@RequestBody BlogParameter blogParameter){
+          System.out.println(blogParameter.getUname());
+          Integer totalSize=userService.selectAll(blogParameter.getUname(),blogParameter.getIsexpert(),0,0).size();
+          Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+          Integer first = pageSize*(blogParameter.getPageIndex()-1);
+          List<User> list= userService.selectAll(blogParameter.getUname(),blogParameter.getIsexpert(),first,pageSize);
+          ListPage listPage = new ListPage();
+          listPage.setList(list);
+          listPage.setTotalPage(totalPage);
+          return listPage;
+      }
 
 }

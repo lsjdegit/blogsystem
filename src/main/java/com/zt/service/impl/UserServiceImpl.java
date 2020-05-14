@@ -76,4 +76,17 @@ public class UserServiceImpl implements UserService {
     public int updateUserimg(User user) {
         return userMapper.updateUserimg(user);
     }
+
+    /**
+     * 根据用户多条件查询
+     * @param uname
+     * @param isexpert
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<User> selectAll(String uname, Integer isexpert, Integer first, Integer pageSize) {
+        return userMapper.selectAll(uname,isexpert,first,pageSize);
+    }
 }

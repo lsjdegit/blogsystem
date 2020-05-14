@@ -51,4 +51,15 @@ public interface UserService {
      * @return
      */
     public int updateUserimg(User user);
+
+
+    /**
+     * 根据用户多条件查询
+     * @param uname
+     * @param isexpert
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    public List<User> selectAll(String uname,Integer isexpert,Integer first,Integer pageSize);
 }

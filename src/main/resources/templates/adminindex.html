@@ -17,6 +17,9 @@
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/public.js}"></script>
 	<script type="text/javascript" th:src="@{/js/adminindex.js}"></script>
+	<script type="text/javascript" th:inline="javascript">
+		var ctxPath = [[@{/}]];
+	</script>
 	<body style="background-color: #F5F6F7;">
 		
 		<!-- Header -->
@@ -25,7 +28,7 @@
 				<img src="img/blog.png"/>
 			</div>
 			<ul id="head-ul">
-				<li>博客管理</li><li>博主管理</li>
+				<li>博客管理</li><li id="bozhu">博主管理</li>
 			</ul>
 			<div id="head-user">
 				<div id="head-img">
@@ -87,8 +90,61 @@
 				<!--</div>-->
 
 			</div>
+		</div>
 
 
+
+		<div class="admmainzhu" style="margin-top: 10px;">
+			<div class="admmain_er">
+				<ul>
+					<li id="quan">所有博主</li><li id="shen">专家申请</li>
+				</ul>
+			</div>
+			<div class="admin_suo">
+				<div class="suo_nei">
+
+					<input name="uname" type="text" class="form-control" id="user">
+					<button type="button" class="btn btn-info" id="sousuo">搜索</button>
+
+				</div>
+			</div>
+			<div class="bolgallzhu">
+				<!--<div class="mybolgli">-->
+				<!--<div class="ybybzhu">-->
+				<!--<div class="ybnat">-->
+					<!--<img th:src="@{/img/hyxd.jpg}">-->
+					<!--<img th:src="@{/img/username.png}">-->
+					<!--<span>凛冽零</span>-->
+					<!--<span>1653533573@qq.com</span>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--</div>-->
+
+				<!--<div class="mybolgli">-->
+					<!--<div class="ybybzhu">-->
+						<!--<div class="ybnat">-->
+							<!--<img th:src="@{/img/hyxd.jpg}">-->
+							<!--<img th:src="@{/img/username.png}">-->
+							<!--<span>凛冽零</span>-->
+							<!--<span>1653533573@qq.com</span>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+
+				<!--<div class="mybolgli">-->
+					<!--<div class="ybybzhu">-->
+						<!--<div class="ybnat">-->
+							<!--<img th:src="@{/img/hyxd.jpg}">-->
+							<!--<img th:src="@{/img/username.png}">-->
+							<!--<span>凛冽零</span>-->
+							<!--<span>1653533573@qq.com</span>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+
+
+
+			</div>
 		</div>
 		<div id="centre-paging">
 			<ul class="pag">

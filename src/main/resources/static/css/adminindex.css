@@ -11,6 +11,17 @@
 			height: 500px;
 			padding-left: 2%;
 			padding-right: 2%;
+
+		}
+		.admmainzhu {
+			width: 80%;
+			background-color: white;
+			margin-top: 30px;
+			margin: 0 auto;
+			height: 500px;
+			padding-left: 2%;
+			padding-right: 2%;
+			display: none;
 		}
 		.admmain_er{
 			width: 100%;
@@ -104,7 +115,6 @@
 		}
 		.ybyb div:first-of-type{
 			float: left;
-
 			width: 30%;
 		}
 		.ybyb div:last-of-type{
@@ -137,6 +147,56 @@
 			cursor: pointer;
 			font-size: 14px;
 		}
+.ybybzhu{
+	width: 60%;
+	height: 100%;
+	margin: auto;
+}
+.ybnat{
+	width: 70%;
+	height: 100%;
+	background:#F5F6F7;
+	border-radius: 20px;
+	margin-left: 10%;
+}
+
+.ybybzhu div span{
+	font-size: 20px;
+}
+.ybybzhu div:last-of-type span{
+	color: #999999;
+
+}
+.ybybzhu div img:first-of-type{
+	 width: 40px;
+	 cursor: pointer;
+	 border-radius: 50%;
+	 float: left;
+
+
+ }
+.ybybzhu div img:last-of-type{
+	width: 20px;
+	height: 20px;
+	margin-left: 5%;
+}
+.ybybzhu div:first-of-type span{
+	color: #00BFF3;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 3%;
+	margin-top: 3%;
+}
+ybybzhu div:last-of-type span{
+	color: #00BFF3;
+	cursor: pointer;
+	font-size: 10px;
+	margin-left: 5%;
+	display: inline-block;
+}
+
+
 		#centre-paging{
 			background-color: white;
 			width: 100%;
@@ -169,4 +229,16 @@
 		.ttou{
 			border-bottom: #00BFF3 2px solid;
 			color:#00BFF3;
+		}
+		#user{
+			float: left;
+			width: 20%;
+			height: 80%;
+			margin-left: 30%;
+			padding: auto;
+		}
+		#sousuo{
+			float: left;
+			height: 80%;
+			padding: auto;
 		}
