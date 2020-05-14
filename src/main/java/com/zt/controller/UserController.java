@@ -210,6 +210,24 @@ public class UserController {
           return listPage;
       }
 
+    /**
+     * 收藏分页
+     * @param uid
+     * @param pageIndex
+     * @return
+     */
+      @RequestMapping(value = "selectcollect",method = RequestMethod.POST)
+      @ResponseBody
+      public ListPage selectCollect(@RequestParam Integer uid,Integer pageIndex){
+        User us=userService.getUserById(uid);
+        List coll=us.getCollects();
+        Integer tatal=coll.size()%pageSize==0?coll.size()/pageSize:coll.size()/pageSize+1;
+        ListPage clist=new ListPage();
+        clist.setList(coll);
+        clist.setTotalPage(tatal);
+        return clist;
+      }
+
 
 
 

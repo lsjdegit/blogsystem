@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Collect implements Serializable {
     private Integer collectid;
     private Integer uid;

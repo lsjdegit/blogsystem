@@ -189,10 +189,141 @@ $(function() {
 						"</div>");
 					$(".scboq").append($blogdan);
 
-	          }
-		}
+	            }
+		    }
         });
 	})
+
+
+	$(".ul1 li:eq(2)").click(function() {
+		$(".imghead,.p1,.xx").hide();
+		$(".rhead,.scboq").hide();
+		$.ajax({
+			type:'POST',
+			url:ctxPath+"/user/pansonalselect",
+			contentType:"application/json",
+			//data:JSON.stringify("uid",3),
+			success:function(result) {
+				var fans=result.fans;// 粉丝集合
+				var fanss = result.fans.length; //粉丝数
+				var caress = result.cares.length; //关注量
+				var collects = result.collects; //收藏的博客关系集合
+				var unm = result.collects.length;
+				//alert(bolgs);
+				alert(fanss);
+				var $collect=$("<div class=\"collect\">"+
+					"</div>");
+				$(".dright").append($collect);
+				var $collecthead=$("<div class=\"collecthead\">"+
+					"<p class=\"collr\">我的粉丝"+"</p>"+
+					"<p class=\"collf\">"+"<span>"+fanss+"</span>"+"人</p>"+
+					"</div>");
+				$(".collect").append($collecthead);
+				var $collectall=$("<div class=\"collectall\">"+
+					"</div>");
+				$(".collect").append($collectall);
+				for(var i=0;i<fans.length;i++){
+					var user=fans[i];
+					var $collectli=$("<div class=\"collectli\">"+
+						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
+						"<span>"+user.uname+"</span>"+
+						"<span class=\"quguan\">"+"关注</span>"+
+						"</div>");
+					$(".collectall").append($collectli);
+
+				}
+
+			}
+		})
+	})
+
+	$(".ul1 li:eq(3)").click(function() {
+		$(".imghead,.p1,.xx").hide();
+		$(".rhead,.scboq").hide();
+		$(".collect").hide();
+		$.ajax({
+			type:'POST',
+			url:ctxPath+"/user/pansonalselect",
+			contentType:"application/json",
+			//data:JSON.stringify("uid",3),
+			success:function(result) {
+				var fans=result.cares;//关注集合
+				var caress = result.cares.length; //关注量
+				var unm = result.collects.length;
+				//alert(bolgs);
+				alert(caress);
+				var $collect=$("<div class=\"collect\">"+
+					"</div>");
+				$(".dright").append($collect);
+				var $collecthead=$("<div class=\"collecthead\">"+
+					"<p class=\"collr\">我的关注"+"</p>"+
+					"<p class=\"collf\">"+"<span>"+caress+"</span>"+"人</p>"+
+					"</div>");
+				$(".collect").append($collecthead);
+				var $collectall=$("<div class=\"collectall\">"+
+					"</div>");
+				$(".collect").append($collectall);
+				for(var i=0;i<fans.length;i++){
+					var user=fans[i];
+					var $collectli=$("<div class=\"collectli\">"+
+						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
+						"<span>"+user.uname+"</span>"+
+						"<span class=\"quguan\">"+"取消关注</span>"+
+						"</div>");
+					$(".collectall").append($collectli);
+
+				}
+
+			}
+		})
+	})
+
+
+	$(".ul1 li:eq(5)").click(function() {
+		$(".imghead,.p1,.xx").hide();
+		$(".rhead,.scboq").hide();
+		$(".collect").hide();
+		$(".fans").hide();
+
+		$.ajax({
+			type:'POST',
+			url:ctxPath+"/user/pansonalselect",
+			contentType:"application/json",
+			//data:JSON.stringify("uid",3),
+			success:function(result){
+				var browses=result.browses.length; //浏览数
+				var browse=result.browses; //浏览集合
+				//alert(bolgs);
+				alert(browses);
+				var $browsehead=$("<div class=\"browsehead\">"+
+					"<p>共"+ "<span>"+unm+"</span>"+ "条 内 容</p>"+
+					"<p>"+"|</p>"+
+					"<p class=\"quanshan\">"+"全 选</p>"+
+					"</div>");
+				$(".dright").append($browsehead); //加头
+				var $browsescboq=$("<div class=\"browsescboq\">"+
+					"</div>");
+				$(".dright").append($browsescboq); //加装博文的盒子
+				for(var i=0;i<browse.length;i++){
+					var br=browse[i];
+					var blog = browse[i].blog;
+					var $blogdan = $("<div class=\"browseboti\">" +
+						"<p class=\"titlebo\">"+blog.btitle+"</p>" +
+						"<button class=\"browsequsc\">取消收藏"+"</button>" +
+						"<div class=\"browsezhaiyao\">" +
+						"<p>"+blog.babstract+"</p>" +
+						"</div>" +
+						"<div class=\"browseauthor\">" +
+						"<span>"+br.browsetime+"</span>" +
+						"</div>" +
+						"</div>");
+					$(".browsescboq").append($blogdan);
+
+				}
+			}
+		});
+	})
+
 
 
 

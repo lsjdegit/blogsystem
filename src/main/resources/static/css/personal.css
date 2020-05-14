@@ -181,3 +181,173 @@
 			display: inline-block;
 			margin-right: 1%;
 		}
+
+		/*我的关注*/
+		.collect{
+			width: 100%;
+			padding-left: 3%;
+			padding-right: 3%;
+		}
+		.collecthead{
+			width: 100%;
+			height: 70px;
+			border-bottom: #F2F5F7 1px solid;
+			padding-top: 30px;
+			padding-left:2%;
+		}
+		.collr{
+			color: #080808;
+			font-size: 19px;
+			font-weight: bold;
+			float: left;
+		}
+		.collf{
+			float: right;
+			font-size: 14px;
+			color: #555555;
+		}
+		.collectall{
+			width: 100%;
+		}
+		.collectli{
+			width: 100%;
+			height: 100px;
+			padding-right: 3%;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			border-bottom: #F2F5F7 1px solid;
+		}
+		.collectli img{
+			width: 50px;
+			height: 50px;
+			margin-right: 3%;
+			border-radius: 50%;
+		}
+		.collectli span:first-of-type{
+			font-size: 18px;
+			color: #000000;
+		}
+		.quguan{
+			display: inline-block;
+			float: right;
+			height: 30px;
+			width: 10%;
+			line-height: 30px;
+			color: #3C3C3C;
+			text-align: center;
+			border:1px #F2F5F7 solid;
+			border-radius: 3px;
+			margin-top: 15px;
+		}
+
+        /*我的粉丝*/
+        .fans{
+            width: 100%;
+            padding-left: 3%;
+            padding-right: 3%;
+        }
+        .fanshead{
+            width: 100%;
+            height: 70px;
+            border-bottom: #F2F5F7 1px solid;
+            padding-top: 30px;
+            padding-left:2%;
+        }
+        .fansr{
+            color: #080808;
+            font-size: 19px;
+            font-weight: bold;
+            float: left;
+        }
+        .fansf{
+            float: right;
+            font-size: 14px;
+            color: #555555;
+        }
+        .fansall{
+            width: 100%;
+        }
+        .fansli{
+            width: 100%;
+            height: 100px;
+            padding-right: 3%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: #F2F5F7 1px solid;
+        }
+        .fansli img{
+            width: 50px;
+            height: 50px;
+            margin-right: 3%;
+            border-radius: 50%;
+        }
+        .fansli span:first-of-type{
+            font-size: 18px;
+            color: #000000;
+        }
+        .dainguan{
+            display: inline-block;
+            float: right;
+            height: 30px;
+            width: 10%;
+            line-height: 30px;
+            color: #3C3C3C;
+            text-align: center;
+            border:1px #F2F5F7 solid;
+            border-radius: 3px;
+            margin-top: 15px;
+        }
+
+        /*浏览样式*/
+        .browsehead{
+            margin-top: 20px;
+            margin-left: 3%;
+            width: 100%;
+            height: 50px;
+            padding-top: 15px;
+            padding-bottom: 10px;
+            padding-left: 10%;
+            border-top: #F2F5F7 1px solid;
+            border-bottom: #F2F5F7 1px solid;
+        }
+        .browsehead p{
+            display: inline-block;
+            color: #122B40;
+            font-size: 14px;
+            margin-right: 5%;
+        }
+        .browsescboq{
+            width: 100%;
+            height: 500px;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        .browseboti{
+            height: 120px;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 1%;
+            margin-top: 10px;
+            background-color: #F5F6F7;
+        }
+        .browsetitlebo{
+            display: inline-block;
+            color: #000000;
+            font-size: 16px;
+            font-weight: bold;
+            height: 25px;
+        }
+        .browseboti button{
+            border:none;
+            width: 10%;
+            float: right;
+        }
+        .browsezhaiyao{
+            width: 100%;
+            height: 50px;
+        }
+        .browseauthor span{
+            display: inline-block;
+            margin-left: 2%;
+        }
