@@ -10,8 +10,8 @@ public interface CollectMapper {
     @Select("select * from collect where bid=#{bid}")
     @Results({
             @Result(id=true,column="collectid",property="collectid"),
-            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.CollectMapper.getUserById")),
-            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.PraiseMapper.getBlogById"))
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById"))
     })
     public List<Collect> getCollectByBlog(@Param("bid") Integer bid);
 

@@ -8,11 +8,11 @@ import com.zt.mapper.BlogMapper;
 import com.zt.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,6 +22,11 @@ public class BlogController {
     private BlogService blogService;
     private Integer pageSize = 4;
 
+    /**
+     * 主页查询博客
+     * @param blogParameter
+     * @return
+     */
     @RequestMapping(value = "select",method = RequestMethod.POST)
     @ResponseBody
     public ListPage selectBlog(@RequestBody BlogParameter blogParameter){
@@ -34,6 +39,7 @@ public class BlogController {
         listPage.setTotalPage(totalPage);
         return listPage;
     }
+
     @RequestMapping(value = "selectst",method = RequestMethod.POST)
     @ResponseBody
     public ListPage selectBlogst(@RequestBody BlogParameter blogParameter){
@@ -46,6 +52,30 @@ public class BlogController {
         listPage.setList(blogList);
         listPage.setTotalPage(totalPage);
         return listPage;
+    }
+
+    @RequestMapping("view")
+    public String blogview(Integer bid, Model m){
+        Blog blog = blogService.getBlogById(bid);
+        m.addAttribute("blog",blog);
+        return "blog";
+    }
+
+    /**
+     * 添加博客
+     * @param blog
+     * @return
+     */
+    @RequestMapping("add")
+    @ResponseBody
+    public boolean addBlog(@RequestBody Blog blog){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        blog.setBcreatetime(sdf.format(new Date()));
+        int num = blogService.addBlog(blog);
+        if(num>0){
+            return true;
+        }
+        return false;
     }
 
 }

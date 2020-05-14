@@ -14,6 +14,6 @@ public class Collect {
     private Integer collectid;
     private Integer uid;
     private Integer bid;
-    private Blog cblogs;
-
+    private Blog blog;
+    private User user;
 }

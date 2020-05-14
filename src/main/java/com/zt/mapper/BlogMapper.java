@@ -14,6 +14,13 @@ public interface BlogMapper {
      * @return
      */
     @Select("select * from blog where bid=#{bid}")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
+            @Result(column="bid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectByBlog")),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog")),
+            @Result(column="bid",property="comments",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByBlog"))
+    })
     public Blog getBlogById(@Param("bid") Integer bid);
 
     /**
@@ -59,7 +66,8 @@ public interface BlogMapper {
             @Result(id=true,column="bid",property="bid"),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
             @Result(column="bid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectByBlog")),
-            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog")),
+            @Result(column="bid",property="comments",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByBlog"))
     })
     public List<Blog> selectBlog(@Param("btid") Integer btid, @Param("userList") List<User> userList, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
 
@@ -95,8 +103,16 @@ public interface BlogMapper {
             @Result(id=true,column="bid",property="bid"),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
             @Result(column="bid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectByBlog")),
-            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog")),
+            @Result(column="bid",property="comments",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByBlog"))
     })
     public List<Blog> selectBlogst(@Param("btid") Integer btid, @Param("userList") List<User> userList, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize,@Param("bcreatetime")String bcreatetime,@Param("bstatusid")Integer bstatusid);
 
+    /**
+     * 添加博客
+     * @param blog
+     * @return
+     */
+    @Insert("insert into blog(uid,btitle,bcontent,bcreatetime,btid,babstract) values(#{uid},#{btitle},#{bcontent},#{bcreatetime},#{btid},#{babstract})")
+    public int addBlog(Blog blog);
 }

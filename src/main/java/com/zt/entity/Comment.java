@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +19,10 @@ public class Comment implements Serializable {
 	private Integer parentid;
 	private String cocontext;
 	private String comtime;
-	private Blog cblogs;
+	private Blog blog;
+	private User user;
+	private Comment parent;
+	private List<Comment> sons;
 
 
 }

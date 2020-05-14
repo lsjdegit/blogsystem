@@ -64,9 +64,9 @@ function change(obj){
             var totalPage = result.totalPage;
             for(var i=0;i<blist.length;i++){
                 var blog = blist[i];
-                var $blog = $("<div class=\"blog\">" +
+                var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\">" +
                     "<p>"+blog.btitle+"</p>" +
-                    "<span>"+blog.bcontent+"</span>" +
+                    "<span>"+blog.babstract+"</span>" +
                     "<div>" +
                     "<div class=\"blog-user\">" +
                     "<div class=\"user-img\">" +
@@ -76,7 +76,7 @@ function change(obj){
                     "</div>" +
                     "<div class=\"blog-msg\">" +
                     "<span class=\"iconfont icon-zan\"></span>" +
-                    "<span>"+blog.gnumber+"</span>\n" +
+                    "<span>"+blog.praises.size()+"</span>\n" +
                     "<span class=\"iconfont icon-liulan\"></span>" +
                     "<span>"+blog.bnumber+"</span>\n" +
                     "</div>" +
@@ -87,6 +87,11 @@ function change(obj){
             $(".blog").show().animate({height:'130px',width:'100%'});
         }
     });
+}
+
+//查看博客方法
+function blogview(bid){
+    location.href = ctxPath+"blog/view?bid="+bid;
 }
 
 
@@ -118,9 +123,9 @@ $(function(){
 			var totalPage = result.totalPage;
 			for(var i=0;i<blist.length;i++){
 			    var blog = blist[i];
-                var $blog = $("<div class=\"blog\">" +
+                var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\" >" +
                     "<p>"+blog.btitle+"</p>" +
-                    "<span>"+blog.bcontent+"</span>" +
+                    "<span>"+blog.babstract+"</span>" +
                     "<div>" +
                     "<div class=\"blog-user\">" +
                     "<div class=\"user-img\">" +
@@ -130,7 +135,7 @@ $(function(){
                     "</div>" +
                     "<div class=\"blog-msg\">" +
                     "<span class=\"iconfont icon-zan\"></span>" +
-                    "<span>"+blog.gnumber+"</span>\n" +
+                    "<span>"+blog.praises.size()+"</span>\n" +
                     "<span class=\"iconfont icon-liulan\"></span>" +
                     "<span>"+blog.bnumber+"</span>\n" +
                     "</div>" +
@@ -184,9 +189,9 @@ $(function(){
                 var totalPage = result.totalPage;
                 for(var i=0;i<blist.length;i++){
                     var blog = blist[i];
-                    var $blog = $("<div class=\"blog\">" +
+                    var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\">" +
                         "<p>"+blog.btitle+"</p>" +
-                        "<span>"+blog.bcontent+"</span>" +
+                        "<span>"+blog.babstract+"</span>" +
                         "<div>" +
                         "<div class=\"blog-user\">" +
                         "<div class=\"user-img\">" +
@@ -196,7 +201,7 @@ $(function(){
                         "</div>" +
                         "<div class=\"blog-msg\">" +
                         "<span class=\"iconfont icon-zan\"></span>" +
-                        "<span>"+blog.gnumber+"</span>\n" +
+                        "<span>"+blog.praises.size()+"</span>\n" +
                         "<span class=\"iconfont icon-liulan\"></span>" +
                         "<span>"+blog.bnumber+"</span>\n" +
                         "</div>" +
@@ -244,9 +249,9 @@ $(function(){
                 var totalPage = result.totalPage;
                 for(var i=0;i<blist.length;i++){
                     var blog = blist[i];
-                    var $blog = $("<div class=\"blog\">" +
+                    var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\" >" +
                         "<p>"+blog.btitle+"</p>" +
-                        "<span>"+blog.bcontent+"</span>" +
+                        "<span>"+blog.babstract+"</span>" +
                         "<div>" +
                         "<div class=\"blog-user\">" +
                         "<div class=\"user-img\">" +
@@ -256,7 +261,7 @@ $(function(){
                         "</div>" +
                         "<div class=\"blog-msg\">" +
                         "<span class=\"iconfont icon-zan\"></span>" +
-                        "<span>"+blog.gnumber+"</span>\n" +
+                        "<span>"+blog.praises.size()+"</span>\n" +
                         "<span class=\"iconfont icon-liulan\"></span>" +
                         "<span>"+blog.bnumber+"</span>\n" +
                         "</div>" +

@@ -72,6 +72,7 @@ $(function () {
 
     //发布博客
     $(".pb_fa button").click(function () {
+        var uid = $("input[name=loginUid]").val();
         var btitle = $(".ti input[name=\"btitle\"]").val();
         var bcontent = editor.txt.html();
         var babstract = $(".fushu>p:eq(0)>textarea").val();
@@ -93,8 +94,21 @@ $(function () {
             $("#popover19436").css("display","block");
             flag = false;
         }
+        alert(flag);
         if(flag){
-
+            $.ajax({
+                type: 'POST',
+                url: ctxPath + "/blog/add",
+                contentType: "application/json",
+                data: JSON.stringify({"uid": uid, "btitle": btitle, "bcontent": bcontent, "btid": btid, "babstract": babstract}),
+                success: function (result) {
+                    if(result){
+                        alert("发布成功，等待审核");
+                    }else{
+                        alert("发布失败！");
+                    }
+                }
+            })
         }
     });
 

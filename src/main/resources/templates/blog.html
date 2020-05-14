@@ -6,8 +6,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/public.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/blog.css}">
+    <link th:href="@{//at.alicdn.com/t/font_1803890_evr8wbrabhg.css}" type="text/css" rel="stylesheet" />
     <script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
-    <script th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery-1.12.4.js}" type="text/javascript"></script>
     <script th:src="@{/js/blog.js}" type="text/javascript"></script>
     <script th:src="@{/js/public.js}" type="text/javascript"></script>
     <script type="text/javascript">
@@ -47,194 +48,126 @@
     <div class="left">
         <div id="left-top">
             <div class="ltop">
-                <img src="img/backgrounp.png" class="tou"
+                <img src="img/backgrounp.png" th:src="@{'/upload/'+${blog.user.uimage}}" class="tou"
                      style="width: 80px; height: 80px; border-radius: 40px;float: left;">
                 <div style="float: left; margin-left: 10px;">
-                    <p class="name" style="font-size: 18px;">UncoDong</p>
-                    <p class="age" style=" font-size: 18px; margin-top: -10px;">年龄：20</p>
-                    <p class="sex" style=" font-size: 18px; margin-top: -10px;">性别：男</p>
+                    <p class="name" style="font-size: 18px;">
+                        <span th:text="${blog.user.uname}">用户名</span>
+                        <img style="width: 25px;height: 25px;margin-left: 5px" src="img/expert.png" th:src="@{/img/expert.png}" th:if="${blog.user.isexpert == 1}">
+                    </p>
                 </div>
             </div>
             <div class="lcenter">
                 <ul class="lut">
-                    <li><span>24</span>
+                    <li><span th:text="${blog.user.fans.size()}">0</span>
                         <p>粉丝</p></li>
                     <li><span>24</span>
                         <p>获赞</p></li>
                     <li><span>24</span>
                         <p>访问</p></li>
-                    <li><span>24</span>
+                    <li><span th:text="${blog.collects.size()}">0</span>
                         <p>收藏</p></li>
-                    <li><span>24</span>
-                        <p>排行</p></li>
                 </ul>
             </div>
             <div class="lbottom">
                 <button type="button" class="btn btn-default">TA的主页</button>
-                <button type="button" class="btn btn-default">点赞</button>
                 <button type="button" class="btn btn-danger">关注</button>
             </div>
         </div>
         <div class="tablog">
             <p style="font-size: 16px; font-weight: bold;margin-left: 30px">TA的博客</p>
             <ul class="tablogul">
-                <li><a href="#">Linux环境下内存溢出的解决方法</a></li>
-                <li><a href="#">你还在用自己的电脑抛python程序？大佬都这样玩。。。</a></li>
-                <li><a href="#">SpringBoot的常见注释</a></li>
-                <li><a href="#">SpringBoot热部署的配置</a></li>
-                <li><a href="#">你还在用自己的电脑抛python程序？大佬都这样玩。。。</a></li>
-                <li><a href="#">Linux环境配置tomcat,运行项目。。。</a></li>
-                <li><a href="#">主流框架整合的常见问题和解决方法。。。</a></li>
+                <li th:each="ublog,status:${blog.user.blogs}">
+                    <a th:href="@{'/blog/view?bid='+${ublog.bid}}" th:text="${ublog.btitle}">Linux环境下内存溢出的解决方法</a>
+                </li>
             </ul>
         </div>
     </div>
 
     <div class="right">
-        <div class="rtop">
-            <div class="rtitle">
-                <p class="title">tomcat本地服务器搭建+本地项目</p>
-                <div class="zhong" style="width: 100%; height: 25px;background:rgba(222,235,246,1) ; ">
-                    <p style="margin-left: 20px; float: left;">作者：UncoDong</p>
-                    <span style="float: left; margin-left: 20px;">  创作时间：2020-5-10 22:45:04</span>
-                    <span style="float: left; margin-left: 20px;">  浏览量：3</span>
+        <div id="article">
+            <div class="rtop">
+                <div class="rtitle">
+                    <p class="title" th:text="${blog.btitle}">tomcat本地服务器搭建+本地项目</p>
+                    <div class="zhong" style="width: 100%; height: 25px;background:rgba(222,235,246,1) ; ">
+                        <p style="margin-left: 20px; float: left;" >作者：<span th:text="${blog.user.uname}">UncoDong</span></p>
+                        <span style="float: left; margin-left: 20px;">  创作时间：<span th:text="${blog.bcreatetime}">2020-5-10 22:45:04</span></span>
+                        <span style="float: left; margin-left: 20px;">  浏览量：<span th:text="${blog.bnumber}">0</span></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="rcenter">
-            <p class="title">文章内容</p>
-            <p class="nei">
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                。。。
-            </p>
-            <p class="nei">
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                。。。
-            </p>
-            <p class="nei">
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                。。。
-            </p>
-            <p class="nei">
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器服务器
-                。。。
-            </p>
-        </div>
-        <div class="rbottom">
-            <ul id="ult">
-                <li><span>120</span><span>点赞</span></li>
-                <li><span>120</span><span>关注</span></li>
-                <li><span></span><span>收藏</span></li>
-                <li><span></span><span>打赏</span></li>
-            </ul>
-        </div>
+            <input type="hidden" name="bcontent" th:value="${blog.bcontent}"/>
+            <div class="rcenter">
 
-        <div class="pinglun">
-            <div>
-                <img src="img/backgrounp2.jpg"
-                     style="width:50px;height: 50px;border-radius: 25px; float: left;margin-left: 5px; margin-top: 5px;">
-                <form method="post" action="">
-                    <textarea class="form-control" rows="2"
-                              style="width: 80%; float: left; margin-top: 10px;"></textarea>
-                    <button type="button" class="btn btn-info"
-                            style="float: right;height: 45px; margin-right: 30px;margin-top: 10px;width: 10%"
-                            placeholder="请输入评论内容">发送评论
-                    </button>
-                </form>
+            </div>
+            <div class="rbottom">
+                <ul id="ult">
+                    <li><span class="iconfont icon-liulan" style="margin-right: 6px"></span><span>点赞</span><span th:text="${blog.praises.size()}">120</span></li>
+                    <li><span class="iconfont icon-liulan" style="margin-right: 6px"></span><span>评论</span><span th:text="${blog.comments.size()}">120</span></li>
+                    <li><span class="iconfont icon-liulan" style="margin-right: 6px"></span><span>收藏</span><span th:text="${blog.collects.size()}">120</span></li>
+                    <li><span class="iconfont icon-liulan" style="margin-right: 6px"></span><span>打赏</span></li>
+                </ul>
             </div>
         </div>
-        <div class="pinglunnei">
-            <ul class="plul">
-                <li>
-                    <img src="img/backgrounp.png" style="width: 20px;height: 20px; border-radius: 10px;">
-                    <span style="margin-left: 10px;">对象被抛出：</span>
-                    <p style="margin-left: 30px;">服务器服务器服务器服务器服务器服务器 &nbsp;&nbsp;&nbsp;
-                        <span style="color: burlywood;">2020/3/2</span>
-                        <span class="count" style="float: right;color:#1B9AF7;">(1)</span>
-                        <span style="color:#1B9AF7;float: right;" class="chakan">查看回复</span>
-                        <span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>
-                        <span style="color:#1B9AF7;float: right; margin-right: 10px;">举报</span>
-                        <div style="margin-left: 50px; border-left: 2px wheat solid; display: none;" class="huifu">
-                            <img src="img/backgrounp2.jpg"
-                                 style="width: 20px;height: 20px; border-radius: 10px; float:left;"/>
-                    <p style="">UncoDong <span>回复</span> 对象被抛出:</p>
-                    <p style="margin-left: 20px;">感谢大佬的点评,think！！！</p>
+
+        <div id="comment">
+            <div class="pinglun">
+                <div>
+                    <div style="width: 50px;height: 50px;display: inline-block;border: 1px #e3e3e3 solid;border-radius: 25px;float: left;overflow: hidden;margin-right: 1%">
+                        <img style="width: 100%" th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}"/>
+                        <img style="width: 100%" th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
+                    </div>
+                    <form method="post" action="">
+                        <input type="text" class="form-control"
+                                  style="width: 76%; float: left; margin-top: 10px;font-size: 16px" />
+                        <button type="button" class="btn btn-info"
+                                style="float: right;height: 35px; margin-right: 30px;margin-top: 10px;width: 10%"
+                                placeholder="请输入评论内容">发送评论
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="pinglunnei">
+                <ul class="plul">
+                    <li th:each="comment,status:${blog.comments}" th:if="${comment.parent eq null}">
+                        <img th:src="@{'/upload/'+${comment.user.uimage}}" style="width: 30px;height: 30px; border-radius: 10px;">
+                        <span style="margin-left: 10px;" th:text="${comment.user.uname}+'：'">对象被抛出：</span>
+                        <p style="margin-left: 40px;">
+                            <span th:text="${comment.cocontext}">服务器服务器服务器服务器服务器服务器 &nbsp;&nbsp;&nbsp;</span>
+                            <span style="color: burlywood;margin-left: 10px" th:text="${comment.comtime}">2020/3/2</span>
+                            <span th:if="${comment.sons.size() > 0}" class="count" style="float: right;color:#1B9AF7;" th:text="'('+${comment.sons.size()}+')'">(1)</span>
+                            <span th:if="${comment.sons.size() > 0}" style="color:#1B9AF7;float: right;" class="chakan">查看回复</span>
+                            <span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>
+                            <div style="margin-left: 50px; border-left: 2px wheat solid; display: none;" class="huifu">
+                                <div th:each="son,sonstatus:${comment.sons}" >
+                                    <img th:src="@{'/upload/'+${son.user.uimage}}"
+                                         style="width: 20px;height: 20px; border-radius: 10px; float:left;"/>
+                                    <p><span th:text="${son.user.uname}">UncoDong</span> 回复<span th:text="${comment.user.uname}"> 对象被抛出</span></span>:</p>
+                                    <p style="margin-left: 20px;" th:text="${son.cocontext}">感谢大佬的点评,think！！！</p>
+                                </li>
+                            </div>
+                        </p>
+                    </li>
+                    <!--<li>-->
+                        <!--<img src="img/backgrounp1.png" style="width: 20px;height: 20px; border-radius: 10px;">-->
+                        <!--<span style="margin-left: 10px;">坚持不会秃头：</span>-->
+                        <!--<p style="margin-left: 30px;">太简单了! &nbsp;&nbsp;&nbsp;-->
+                            <!--<span style="color: burlywood;">2020/3/2</span>-->
+                            <!--<span style="float: right;color:#1B9AF7;">(2)</span>-->
+                            <!--<span style="color:#1B9AF7;float: right;">查看回复</span>-->
+                            <!--<span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>-->
+                            <!--<span style="color:#1B9AF7;float: right; margin-right: 10px;">举报</span>-->
+                            <!--<div style="margin-left: 50px; border-left: 2px wheat solid; display: none;">-->
+                                <!--<img src="img/backgrounp2.jpg" style="width: 20px;height: 20px; border-radius: 10px; float:left;"/>-->
+                                <!--<p style="">UncoDong <span>回复</span> 对象被抛出:</p>-->
+                                <!--<p style="margin-left: 20px;">感谢大佬的点评,think！！！</p>-->
+                            <!--</div>-->
+                        <!--</p>-->
+                    <!--</li>-->
+                </ul>
+            </div>
         </div>
-        </p>
-        </li>
-        <li>
-            <img src="img/backgrounp1.png" style="width: 20px;height: 20px; border-radius: 10px;">
-            <span style="margin-left: 10px;">坚持不会秃头：</span>
-            <p style="margin-left: 30px;">太简单了! &nbsp;&nbsp;&nbsp;
-                <span style="color: burlywood;">2020/3/2</span>
-                <span style="float: right;color:#1B9AF7;">(2)</span>
-                <span style="color:#1B9AF7;float: right;">查看回复</span>
-                <span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>
-                <span style="color:#1B9AF7;float: right; margin-right: 10px;">举报</span>
-                <div style="margin-left: 50px; border-left: 2px wheat solid; display: none;">
-                    <img src="img/backgrounp2.jpg" style="width: 20px;height: 20px; border-radius: 10px; float:left;"/>
-            <p style="">UncoDong <span>回复</span> 对象被抛出:</p>
-            <p style="margin-left: 20px;">感谢大佬的点评,think！！！</p>
     </div>
-    </p>
-    </li>
-    <li>
-        <img src="img/backgrounp2.jpg" style="width: 20px;height: 20px; border-radius: 10px;">
-        <span style="margin-left: 10px;">唐僧洗头用飘柔:</span>
-        <p style="margin-left: 30px;">你是dog吧！我太难了呀 &nbsp;&nbsp;&nbsp;
-            <span style="color: burlywood;">2020/3/2</span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">查看回复<span>(1)</span></span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">举报</span>
-        </p>
-    </li>
-    <li><img src="img/backgrounp.png" style="width: 20px;height: 20px; border-radius: 10px;">
-        <span style="margin-left: 10px;">一往无前：</span>
-        <p style="margin-left: 30px;">一楼头像怎么和我一样...&nbsp;&nbsp;&nbsp;
-            <span style="color: burlywood;">2020/3/2</span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">查看回复<span>(1)</span></span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">回复</span>
-            <span style="color:#1B9AF7;float: right; margin-right: 10px;">举报</span>
-        </p>
-    </li>
-    </ul>
-</div>
-</div>
 </div>
 
 <!--------------Footer--------------->

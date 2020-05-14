@@ -35,4 +35,14 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.selectBlogst(btid, userList, search, first, pageSize,bcreatetime,bstatusid);
     }
 
+    @Override
+    public Blog getBlogById(Integer bid) {
+        return blogMapper.getBlogById(bid);
+    }
+
+    @Override
+    public int addBlog(Blog blog) {
+        return blogMapper.addBlog(blog);
+    }
+
 }
