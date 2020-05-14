@@ -172,7 +172,6 @@ $(function() {
 			    var $scboq=$("<div class=\"scboq\">"+
 					"</div>");
 				$(".dright").append($scboq); //加装博文的盒子
-
 				for(var i=0;i<collects.length;i++){
 					var blog = collects[i].blog;
 					var $blogdan = $("<div class=\"boti\">" +
