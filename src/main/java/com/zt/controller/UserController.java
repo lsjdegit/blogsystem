@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author scj
@@ -142,8 +142,9 @@ public class UserController {
         User kl= (User) sess.getAttribute("loginUser");
         User puser =userService.getUserById(kl.getUid());
         //System.out.println(puser);
-        System.out.println(puser.getFans().size());
+        System.out.println(puser.getFans());
         System.out.println(puser.getBalance());
+        //System.out.println(puser.getCollects());
         return puser;
     }
 
@@ -165,25 +166,34 @@ public class UserController {
         return true;
     }
 
-
-    @RequestMapping(value="updateUserimg",method= RequestMethod.POST)
+    // 附件上传
+    @RequestMapping(value = "/updateuserimg", method = RequestMethod.POST)
     @ResponseBody
-    public boolean uploadImg(@RequestBody HttpServletRequest request, Model m,HttpSession sess, User user){
-        User uu= (User) sess.getAttribute("loginUser");
-        user.setUid(uu.getUid());
-        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
-        MultipartFile file = req.getFile(user.getUimage());
-        String path = request.getRealPath("/upload")+"/"+uu.getUid()+"head.jpg";
-        File destFile = new File(path);
-        //m.addAttribute("image", "/upload/"+file.getOriginalFilename());
+    public boolean uploadTest(@RequestParam(required = false, value = "file") MultipartFile file,
+                             @RequestParam(required = false, value = "expoid") String expoid, HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        String path = request.getSession().getServletContext().getRealPath("fujianTemplate");
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        System.out.println(path);
+        String newFileName = expoid + "_fujian.doc";
+        System.out.println(newFileName);
+        File targetFile = new File(path, newFileName);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        // 保存
         try {
-            FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
-            return true;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+            file.transferTo(targetFile);
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateNowStr = sdf.format(d);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+
+        return true;
     }
 
       @RequestMapping(value = "selectall",method = RequestMethod.POST)
@@ -199,5 +209,10 @@ public class UserController {
           listPage.setTotalPage(totalPage);
           return listPage;
       }
+
+
+
+
+
 
 }

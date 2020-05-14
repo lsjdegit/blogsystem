@@ -1,5 +1,6 @@
 package com.zt.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,9 +26,10 @@ public class User implements Serializable {
 	private String intro;
 	private Integer isexpert;
 	private List<Blog> blogs;
-	private List<Blog> brblogs;
+	private List<Browse> browses;
 	private List<User> cares;
 	private List<User> fans;
+	private List<Collect> collects;
 
 	public User(String uname, String upassword) {
 		this.uname = uname;

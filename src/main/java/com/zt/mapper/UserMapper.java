@@ -47,7 +47,8 @@ public interface UserMapper {
             @Result(id=true,column="uid",property="uid"),
             @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser")),
             @Result(column="uid",property="cares",many=@Many(select="com.zt.mapper.UserMapper.getCareByUser")),
-            @Result(column="uid",property="fans",many=@Many(select="com.zt.mapper.UserMapper.getFansByUser"))
+            @Result(column="uid",property="fans",many=@Many(select="com.zt.mapper.UserMapper.getFansByUser")),
+            @Result(column="uid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectsByUser"))
     })
     public User getUserById(@Param("uid") Integer uid);
 

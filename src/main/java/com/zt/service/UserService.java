@@ -52,6 +52,13 @@ public interface UserService {
      */
     public int updateUserimg(User user);
 
+    /**
+     * 根据用户id修改用户余额
+     * @param user
+     * @return
+     */
+    public int updateUserbalance(User user);
+
 
     /**
      * 根据用户多条件查询

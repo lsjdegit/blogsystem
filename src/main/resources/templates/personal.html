@@ -29,18 +29,22 @@
 		<!-- Header -->
 		<div id="head">
 			<div id="head-logo">
-				<img src="img/blog.png" />
+				<img src="img/blog.png" th:src="@{/img/blog.png}" />
 			</div>
 			<ul id="head-ul">
 				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
 			</ul>
 			<div id="head-user">
+				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
 				<div id="head-img">
-					<img src="img/1.png" />
+					<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
+					<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
 				</div>
-				<span>用户名</span>
+				<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
+				<span th:if="${session.loginUser == null}">未登录</span>
 				<div id="user-login">
-					<span class="btn">注销</span>
+					<span th:if="${session.loginUser != null}" class="btn">注销</span>
+					<span th:if="${session.loginUser == null}" class="btn">登录</span>
 				</div>
 			</div>
 		</div>
@@ -61,9 +65,24 @@
 			<div class="dright">
 				<p class="p1">个人资料</p>
 				<div class="imghead">
-					<img src="img/ly.jpg" alt="头像" />
-					<input type="file" class="file" name="avatar" id="avatar" style="display: none;">
-					<p><label for="avatar">修改头像</label></p>
+					<img src="img/ly.jpg" alt="头像"  name="uimage"/>
+
+					<!--<input type="file" class="file" name="file" id="file" style="display: none;" runat="server">
+					<p><label for="file">修改头像</label></p>
+					<button type="button" class="btn btn-info" id="btnUpload"  onclick="uploadImage()" value="上传">上传</button>-->
+
+					<div>
+						<div class="file" style="float: left;">
+							<input type="file" name="file" id="file" runat="server" >
+							<input type="hidden" name='expoid' id="expoid" value="${expoid}" class="form-control">
+						</div>
+						<div>
+							<button type="button" class="btn btn-info" id="btnUpload"  onclick="uploadImage()" value="上传">上传</button>
+						</div>
+					</div>
+
+
+
 				</div>
 				<div class="xx">
 					<div class="xx1">
@@ -81,6 +100,8 @@
 					</div>
 
 				</div>
+
+
 
 
 

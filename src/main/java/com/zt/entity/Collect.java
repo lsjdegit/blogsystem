@@ -1,5 +1,7 @@
 package com.zt.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ public class Collect implements Serializable {
     private Integer collectid;
     private Integer uid;
     private Integer bid;
+    @JsonBackReference
     private User user;
     private Blog blog;
 

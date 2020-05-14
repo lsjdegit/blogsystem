@@ -78,6 +78,14 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 根据用户id修改用户余额
+     */
+    @Override
+    public int updateUserbalance(User user) {
+        return userMapper.updateUserBalance(user);
+    }
+
+    /**
      * 根据用户多条件查询
      * @param uname
      * @param isexpert

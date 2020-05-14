@@ -107,30 +107,97 @@ $(function() {
 	})
 
     //更换头像
-	$("#avatar").change(function() {
-		var choose_file = $(this)[0].files[0];
-		var ftype = choose_file.name.substring(choose_file.name.lastIndexOf(".") + 1);
-		alert(choose_file.name);
-		if (ftype == "jpg" || ftype == "png" || ftype == "jpeg" || ftype == "JPG") {
-			var size = choose_file.size / 1024 / 1024;
-			if (size > 1) {
-				alert("头像不能大于1M");
-				return false;
-			}
-			var reader = new FileReader();
-			reader.readAsDataURL(choose_file);
-			reader.onload = function() {
-				$(".imghead img").attr("src", this.result);
-			}
-		} else {
-			alert("格式不对！")
-			return false;
+	function uploadImage() {
+		var input = $("#file");
+		//判断是否有选择上传文件
+		var file = $("#file").val();
+		if (file == "") {
+			alert("请选择上传。doc文档文件！");
+			return;
 		}
+		//判断上传文件的后缀名
+		var strExtension = file.substr(file.lastIndexOf('.') + 1);
+		if (strExtension != 'doc') {
+			alert("请选择word文档文件");
+			return;
+		}
+		//上传文件
+		var formData = new FormData();
+		formData.append('expoid',$("#expoid").val());
+		formData.append('file',input[0].files[0]);
+		layer.load(1, {
+			shade: [0.1,'#fff'] //0.1透明度的白色背景
+		});
+		$.ajax({
+			type: "POST", // 上传文件要用POST
+			url: "${ctx}/expo/exhibitionpo/uploadfile",
+			dataType : "json",
+			crossDomain: true, // 如果用到跨域，需要后台开启CORS
+			processData: false,  // 注意：不要 process data
+			contentType: false,  // 注意：不设置 contentType
+			data: formData
+		}).success(function(data) {
+			$("#fileName").innerHTML=data.fileName;
+			$("#timeDate").innerHTML =data.timeDate;
+			$("#userName").innerHTML =data.userName;
+			layer.alert("文件上传成功！",{icon:1});
+			layer.closeAll('loading');
+		}).fail(function(data) {
+			layer.alert("网络错误，请刷新后重试！",{icon:2});
+		});
+	}
+
+
+	$(".ul1 li:eq(1)").click(function() {
+		$(".imghead,.p1,.xx").hide();
+
+		$.ajax({
+			type:'POST',
+			url:ctxPath+"/user/pansonalselect",
+			contentType:"application/json",
+			//data:JSON.stringify("uid",3),
+			success:function(result){
+				var fanss=result.fans.length; //粉丝数
+				var caress=result.cares.length; //关注量
+				var collects=result.collects; //收藏的博客关系集合
+				var unm=result.collects.length;
+				//alert(bolgs);
+				alert(unm);
+			    var $rhead=$("<div class=\"rhead\">"+
+			    	"<p>共"+ "<span>"+unm+"</span>"+ "条 内 容</p>"+
+					"<p>"+"|</p>"+
+					"<p class=\"quanshan\">"+"全 选</p>"+
+					"</div>");
+			    $(".dright").append($rhead); //加头
+			    var $scboq=$("<div class=\"scboq\">"+
+					"</div>");
+				$(".dright").append($scboq); //加装博文的盒子
+
+				for(var i=0;i<collects.length;i++){
+					var blog = collects[i].blog;
+					var $blogdan = $("<div class=\"boti\">" +
+						"<p class=\"titlebo\">"+blog.btitle+"</p>" +
+						"<button class=\"qusc\">取消收藏"+"</button>" +
+						"<div class=\"zhaiyao\">" +
+						"<p>"+blog.babstract+"</p>" +
+						"</div>" +
+						"<div class=\"author\">" +
+						"<span>"+blog.user.uname+"</span>" +
+						"<span>|" +
+						"</span>" +
+						"<span>"+blog.bcreatetime+"</span>" +
+						"</div>" +
+						"</div>");
+					$(".scboq").append($blogdan);
+
+	          }
+		}
+        });
 	})
 
-	$("#cun").click(function() {
-		//$(".form-horizontal").submit();
-	})
+
+
+
 
 
 })
