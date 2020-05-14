@@ -28,7 +28,7 @@ public interface BlogMapper {
      * @param uid
      * @return
      */
-    @Select("select * from blog where uid=#{uid}")
+    @Select("select * from blog where uid=#{uid} ORDER BY bid DESC")
     public List<Blog> getBlogByUser(@Param("uid") Integer uid);
 
     /**
@@ -58,6 +58,7 @@ public interface BlogMapper {
             +"<if test=\"search!=null and search!=''\" >"
             +"AND btitle LIKE '%${search}%'"
             +"</if>"
+            +" ORDER BY bid DESC "
             +"<if test=\"pageSize!=null and pageSize!=0\" >"
             +"LIMIT #{first},#{pageSize}"
             +"</if>"
@@ -95,6 +96,7 @@ public interface BlogMapper {
             +"<if test=\"search!=null and search!=''\" >"
             +"AND btitle LIKE '%${search}%'"
             +"</if>"
+            +" ORDER BY bid DESC "
             +"<if test=\"pageSize!=null and pageSize!=0\" >"
             +"LIMIT #{first},#{pageSize}"
             +"</if>"
