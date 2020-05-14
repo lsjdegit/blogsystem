@@ -24,4 +24,20 @@ public interface CollectMapper {
     })
     public List<Collect> getCollectsByUser(@Param("uid") Integer uid);
 
+    /**
+     * 收藏
+     * @param collect
+     * @return
+     */
+    @Insert("insert into collect(uid,bid) values(#{uid},#{bid})")
+    public int addCollect(Collect collect);
+
+    /**
+     * 取消收藏
+     * @param collect
+     * @return
+     */
+    @Delete("delete from collect where uid=#{uid} and bid=#{bid}")
+    public int delCollect(Collect collect);
+
 }

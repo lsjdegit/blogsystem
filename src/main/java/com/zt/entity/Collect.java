@@ -16,7 +16,7 @@ public class Collect implements Serializable {
     private Integer collectid;
     private Integer uid;
     private Integer bid;
-    @JsonBackReference
+    @JsonBackReference(value = "user")
     private User user;
     private Blog blog;
 

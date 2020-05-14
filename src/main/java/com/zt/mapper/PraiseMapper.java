@@ -14,4 +14,20 @@ public interface PraiseMapper {
     })
     public List<Praise> getPraiseByBlog(@Param("bid") Integer bid);
 
+    /**
+     * 点赞
+     * @param praise
+     * @return
+     */
+    @Insert("insert into praise(uid,bid) values(#{uid},#{bid})")
+    public int addPraise(Praise praise);
+
+    /**
+     * 取消赞
+     * @param praise
+     * @return
+     */
+    @Delete("delete from praise where uid=#{uid} and bid=#{bid}")
+    public int delPraise(Praise praise);
+
 }

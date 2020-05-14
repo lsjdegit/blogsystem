@@ -66,7 +66,7 @@ $(function(){
 		if($("#head-user>span").html() == "未登录"){
 			$("#user-login>span").unbind();
 			$("#user-login>span").bind("click",function () {
-				location.href="login";
+				location.href = ctxPath+"login";
 			});
 		}else{
 			$("#user-login>span").unbind();
@@ -74,7 +74,7 @@ $(function(){
 				if(confirm("注销当前账户？")){
 					$.ajax({
 						type: 'post',
-						url: 'user/logout',
+						url: ctxPath+'user/logout',
 						async: false,
 						success: function (result) {
 							var img = $("<img src=\""+ctxPath+"/img/userhead.png\"/>");
@@ -83,6 +83,9 @@ $(function(){
 							$("#head-user>span").replaceWith(span);
 							$("#user-login>span").html("登录");
 							$("input[name=loginUid]").val("");
+							if(window.location.href != "http://localhost:8080/blogsystem/index"){
+								location.href = ctxPath+"index";
+							}
 						}
 					})
 					return ;

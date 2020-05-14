@@ -1,5 +1,7 @@
 package com.zt.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class Comment implements Serializable {
 	private Blog blog;
 	private User user;
 	private Comment parent;
+	@JsonBackReference(value = "sons")
 	private List<Comment> sons;
 
 

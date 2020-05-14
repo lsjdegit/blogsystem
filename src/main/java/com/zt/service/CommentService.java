@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Comment;
+import org.apache.ibatis.annotations.Param;
 
 public interface CommentService {
 
@@ -9,5 +10,7 @@ public interface CommentService {
      * @param comment
      * @return
      */
-    public int addComment(Comment comment);
+    public Comment addComment(Comment comment);
+
+    public Comment getCommentById(Integer cid);
 }

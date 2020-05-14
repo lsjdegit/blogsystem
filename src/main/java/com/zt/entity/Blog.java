@@ -26,10 +26,10 @@ public class Blog implements Serializable {
 	private Integer bstatusid;
 	private String babstract;
 	private User user;
-	@JsonBackReference
+	@JsonBackReference(value = "collects")
 	private List<Collect> collects;
 	private List<Praise> praises;
-	@JsonBackReference
+	@JsonBackReference(value = "comments")
 	private List<Comment> comments;
 
 }

@@ -47,6 +47,7 @@ public interface CommentMapper {
     public List<Comment> getCommentsByParent(@Param("parentid")Integer parentid);
 
     @Insert("insert into comment(bid,uid,parentid,cocontext,comtime) values(#{bid},#{uid},#{parentid},#{cocontext},#{comtime})")
+    @Options(useGeneratedKeys = true,keyProperty = "cid",keyColumn = "cid")
     public int addComment(Comment comment);
 
 }
