@@ -76,7 +76,7 @@ function change(obj){
                     "</div>" +
                     "<div class=\"blog-msg\">" +
                     "<span class=\"iconfont icon-zan\"></span>" +
-                    "<span>"+blog.praises.size()+"</span>\n" +
+                    "<span>"+blog.praises.length+"</span>\n" +
                     "<span class=\"iconfont icon-liulan\"></span>" +
                     "<span>"+blog.bnumber+"</span>\n" +
                     "</div>" +
@@ -135,7 +135,7 @@ $(function(){
                     "</div>" +
                     "<div class=\"blog-msg\">" +
                     "<span class=\"iconfont icon-zan\"></span>" +
-                    "<span>"+blog.praises.size()+"</span>\n" +
+                    "<span>"+blog.praises.length+"</span>\n" +
                     "<span class=\"iconfont icon-liulan\"></span>" +
                     "<span>"+blog.bnumber+"</span>\n" +
                     "</div>" +
@@ -201,7 +201,7 @@ $(function(){
                         "</div>" +
                         "<div class=\"blog-msg\">" +
                         "<span class=\"iconfont icon-zan\"></span>" +
-                        "<span>"+blog.praises.size()+"</span>\n" +
+                        "<span>"+blog.praises.length+"</span>\n" +
                         "<span class=\"iconfont icon-liulan\"></span>" +
                         "<span>"+blog.bnumber+"</span>\n" +
                         "</div>" +
@@ -261,7 +261,7 @@ $(function(){
                         "</div>" +
                         "<div class=\"blog-msg\">" +
                         "<span class=\"iconfont icon-zan\"></span>" +
-                        "<span>"+blog.praises.size()+"</span>\n" +
+                        "<span>"+blog.praises.length+"</span>\n" +
                         "<span class=\"iconfont icon-liulan\"></span>" +
                         "<span>"+blog.bnumber+"</span>\n" +
                         "</div>" +

@@ -37,6 +37,16 @@ public interface CommentMapper {
     public Comment getCommentById(@Param("cid")Integer cid);
 
     @Select("select * from comment where parentid=#{parentid}")
+    @Results({
+            @Result(id=true,column="cid",property="cid"),
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentById")),
+            @Result(column="cid",property="sons",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByParent"))
+    })
     public List<Comment> getCommentsByParent(@Param("parentid")Integer parentid);
+
+    @Insert("insert into comment(bid,uid,parentid,cocontext,comtime) values(#{bid},#{uid},#{parentid},#{cocontext},#{comtime})")
+    public int addComment(Comment comment);
 
 }
