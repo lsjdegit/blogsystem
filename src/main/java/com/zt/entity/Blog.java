@@ -1,5 +1,6 @@
 package com.zt.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,10 +26,10 @@ public class Blog implements Serializable {
 	private Integer bstatusid;
 	private String babstract;
 	private User user;
-	@JsonIgnore
+	@JsonBackReference
 	private List<Collect> collects;
 	private List<Praise> praises;
-	@JsonIgnore
+	@JsonBackReference
 	private List<Comment> comments;
 
 }

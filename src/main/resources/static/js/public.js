@@ -11,11 +11,56 @@ $(function(){
 		$(this).removeClass("hoverli");
 	});
 
-	$("#head-ul li").click(function(){
+	//头部跳转
+	$("#head-ul li:eq(0)").click(function () {
+		location.href = ctxPath+"index";
+	});
+	$("#head-ul li:eq(1)").click(function () {
+		if($("#head-user input[name=loginUid]").val() == 0){
+			if(confirm("你还没登录，是否去登录？")){
+				location.href = ctxPath+"login";
+			}
+			return ;
+		}
+		location.href = ctxPath+"myblog";
+		$(this).addClass("clickli");
+		$(this).siblings().removeClass("clickli");
+	});
+	$("#head-ul li:eq(2)").click(function () {
+		if($("#head-user input[name=loginUid]").val() == 0){
+			if(confirm("你还没登录，是否去登录？")){
+				location.href = ctxPath+"login";
+			}
+			return ;
+		}
+		location.href = ctxPath+"addblog";
+		$(this).addClass("clickli");
+		$(this).siblings().removeClass("clickli");
+	});
+	$("#head-ul li:eq(3)").click(function () {
+		if($("#head-user input[name=loginUid]").val() == 0){
+			if(confirm("你还没登录，是否去登录？")){
+				location.href = ctxPath+"login";
+			}
+			return ;
+		}
+		location.href = ctxPath+"news";
+		$(this).addClass("clickli");
+		$(this).siblings().removeClass("clickli");
+	});
+	$("#head-ul li:eq(4)").click(function () {
+		if($("#head-user input[name=loginUid]").val() == 0){
+			if(confirm("你还没登录，是否去登录？")){
+				location.href = ctxPath+"login";
+			}
+			return ;
+		}
+		location.href = ctxPath+"personal";
 		$(this).addClass("clickli");
 		$(this).siblings().removeClass("clickli");
 	});
 
+	//用户登录
 	$("#head-user").hover(function(){
 		$("#user-login").show();
 		if($("#head-user>span").html() == "未登录"){
@@ -24,44 +69,31 @@ $(function(){
 				location.href="login";
 			});
 		}else{
-			$.ajax({
-				type: 'post',
-				url: 'user/logout',
-				async: false,
-				success: function (result) {
-					$("#user-login>span").unbind();
-					$("#user-login>span").bind("click",function () {
-						if(confirm("注销当前账户？")){
+			$("#user-login>span").unbind();
+			$("#user-login>span").bind("click",function () {
+				if(confirm("注销当前账户？")){
+					$.ajax({
+						type: 'post',
+						url: 'user/logout',
+						async: false,
+						success: function (result) {
 							var img = $("<img src=\""+ctxPath+"/img/userhead.png\"/>");
 							$("#head-img>img").replaceWith(img);
 							var span = $("<span>未登录</span>");
 							$("#head-user>span").replaceWith(span);
 							$("#user-login>span").html("登录");
 							$("input[name=loginUid]").val("");
-							return ;
-						}else{
-							return ;
 						}
-					});
+					})
+					return ;
+				}else{
+					return ;
 				}
-			})
+			});
         }
 	},function(){
 		$("#user-login").hide();
 	});
 
-	$("#head-ul li:eq(4)").click(function(){
-		var static=$("#head-user span:eq(0)").text();
-		if(static=="未登录"){
-			if(confirm("请先登录！")){
-				window.location.href="login";
-			}else{
-				$("#head-ul li:eq(0)").addClass("clickli");
-				$("#head-ul li:eq(4)").removeClass("clickli");
-			}
-		}else{
-			window.location.href="personal";
-		}
-	});
 
 })
