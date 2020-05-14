@@ -357,9 +357,9 @@ $(function(){
                var totalPage = result.totalPage;
                for(var a=0;a<blist.length;a++){
                    var blog=blist[a];
-                   var $blog= $("<div class=\"mybolgli\">"+
+                   var $blog= $("<div class=\"mybolgli\" onclick=\"adminver("+blog.bid+")\">"+
                        "<div class=\"ybyb\">"+
-                       "<p title=\"查看\">"+blog.btitle+"<buttno class=\"btn btn-primary\"style=\"float:right;margin-right: 8%\" id=\"tongguo\">"+"审核通过"+"</buttno>"+"</p>"+
+                       "<p title=\"查看\">"+blog.btitle+"</p>"+
                        "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
                        "<span>"+blog.user.uname+"</span>"+
                        "</div>"+
@@ -586,14 +586,22 @@ $(function(){
             }
         })
     })
-    /**
-     * 管理员将未审核的博客通过审核
-     */
-    $("#tongguo").click(function(){
-
-    })
-
 })
+            /**
+             * 管理员将未审核的博客通过审核
+             */
+            function adminver(id){
+                var uid=id;
+                $.ajax({
+                    type:'post',
+                    url:'blog/selectall',
+                    contentType:'application/json',
+                    data:JSON.stringify({"bid":uid}),
+                    success:function (result) {
+                        
+                    }
+                })
+            }
 
 
 
