@@ -32,4 +32,10 @@ public interface BlogService {
      * @return
      */
     public int addBlog(Blog blog);
+
+    /**
+     * 申请通过审核的博客
+     * @return
+     */
+    public int updatetg(Blog blog);
 }

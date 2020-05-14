@@ -78,4 +78,25 @@ public class BlogController {
         return false;
     }
 
+    @RequestMapping("selectid")
+    public String selectid(Integer bid, Model m){
+        Blog blog = blogService.getBlogById(bid);
+        m.addAttribute("blog",blog);
+        return "adminblog";
+    }
+
+
+    /**
+     * 修改是否审核通过
+     * @param blog
+     * @return
+     */
+    @RequestMapping("updatesh")
+    @ResponseBody
+    public int updatesh(@RequestBody Blog blog){
+        System.out.println(blog.getBid());
+        return blogService.updatetg(blog);
+    }
+
+
 }

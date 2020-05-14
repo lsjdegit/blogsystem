@@ -37,6 +37,10 @@ public class PageController {
     public String blog(){
         return "blog";
     }
+    @RequestMapping("adminblog")
+    public String adminblog(){
+        return "adminblog";
+    }
 
     /**
      * 进入addblag页面

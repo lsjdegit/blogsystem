@@ -591,16 +591,7 @@ $(function(){
              * 管理员将未审核的博客通过审核
              */
             function adminver(id){
-                var uid=id;
-                $.ajax({
-                    type:'post',
-                    url:'blog/selectall',
-                    contentType:'application/json',
-                    data:JSON.stringify({"bid":uid}),
-                    success:function (result) {
-
-                    }
-                })
+                window.location.href="blog/selectid?bid="+id;
             }
 
 

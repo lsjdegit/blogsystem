@@ -115,4 +115,13 @@ public interface BlogMapper {
      */
     @Insert("insert into blog(uid,btitle,bcontent,bcreatetime,btid,babstract) values(#{uid},#{btitle},#{bcontent},#{bcreatetime},#{btid},#{babstract})")
     public int addBlog(Blog blog);
+
+    /**
+     *申请通过审核的博客
+
+     * @return
+     */
+    @Update("update blog set bstatusid=#{bstatusid} where bid=#{bid}")
+    public int updatetg(Blog blog);
+
 }

@@ -45,4 +45,9 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.addBlog(blog);
     }
 
+    @Override
+    public int updatetg(Blog blog){
+        return blogMapper.updatetg(blog);
+    }
+
 }
