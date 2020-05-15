@@ -147,7 +147,7 @@ $(function () {
             async:false,
             success: function (result) {
                 var $comment = $("<li>" +
-                    "<img src=\"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 10px;\">" +
+                    "<img src=\""+ctxPath+"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 10px;\">" +
                     "<span style=\"margin-left: 10px;\" >"+result.user.uname+"：</span>" +
                     "<p style=\"margin-left: 40px;\">" +
                     "<span>"+result.cocontext+"</span>" +

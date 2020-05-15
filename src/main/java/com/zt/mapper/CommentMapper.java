@@ -11,7 +11,7 @@ public interface CommentMapper {
      * @param bid
      * @return
      */
-    @Select("select * from comment where bid=#{bid}")
+    @Select("select * from comment where bid=#{bid} ORDER BY cid DESC")
     @Results({
             @Result(id=true,column="cid",property="cid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
@@ -36,7 +36,7 @@ public interface CommentMapper {
     })
     public Comment getCommentById(@Param("cid")Integer cid);
 
-    @Select("select * from comment where parentid=#{parentid}")
+    @Select("select * from comment where parentid=#{parentid} ORDER BY cid DESC")
     @Results({
             @Result(id=true,column="cid",property="cid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
