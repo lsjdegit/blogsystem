@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import java.io.Serializable;
 import java.util.List;
 
@@ -34,4 +33,5 @@ public class User implements Serializable {
 		this.uname = uname;
 		this.upassword = upassword;
 	}
+
 }

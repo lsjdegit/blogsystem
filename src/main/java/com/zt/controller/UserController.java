@@ -97,9 +97,6 @@ public class UserController {
             }
         }while (eUserList.size()<3);
         m.addAttribute("eUserList",eUserList);
-        for (User user : eUserList) {
-            System.out.println("user = " + user);
-        }
         return "forward:guser";
     }
 
@@ -121,13 +118,7 @@ public class UserController {
             gList.add(gnumber);
         }
         m.addAttribute("guserList",guserList);
-        for (User user : guserList) {
-            System.out.println("user = " + user);
-        }
         m.addAttribute("gList",gList);
-        for (Integer integer : gList) {
-            System.out.println("integer = " + integer);
-        }
         return "index";
     }
 
@@ -141,10 +132,10 @@ public class UserController {
     public User personalselect(HttpSession sess){
         User kl= (User) sess.getAttribute("loginUser");
         User puser =userService.getUserById(kl.getUid());
-        //System.out.println(puser);
-        System.out.println(puser.getFans());
-        System.out.println(puser.getBalance());
-        //System.out.println(puser.getCollects());
+//        System.out.println(puser);
+//        System.out.println(puser.getFans());
+//        System.out.println(puser.getBalance());
+//        System.out.println(puser.getCollects());
         return puser;
     }
 
@@ -159,7 +150,7 @@ public class UserController {
         User ui= (User) sess.getAttribute("loginUser");
         user.setUid(ui.getUid());
         int num=userService.updateUser(user);
-        System.out.println(num);
+//        System.out.println(num);
         if(num==0){
             return false;
         }
@@ -175,10 +166,10 @@ public class UserController {
 
         String path = request.getSession().getServletContext().getRealPath("fujianTemplate");
         String fileName = file.getOriginalFilename();
-        System.out.println(fileName);
-        System.out.println(path);
+//        System.out.println(fileName);
+//        System.out.println(path);
         String newFileName = expoid + "_fujian.doc";
-        System.out.println(newFileName);
+//        System.out.println(newFileName);
         File targetFile = new File(path, newFileName);
         if (!targetFile.exists()) {
             targetFile.mkdirs();
@@ -199,7 +190,7 @@ public class UserController {
       @RequestMapping(value = "selectall",method = RequestMethod.POST)
       @ResponseBody
       public ListPage selectall(@RequestBody BlogParameter blogParameter){
-          System.out.println(blogParameter.getUname());
+//          System.out.println(blogParameter.getUname());
           Integer totalSize=userService.selectAll(blogParameter.getUname(),blogParameter.getIsexpert(),0,0).size();
           Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
           Integer first = pageSize*(blogParameter.getPageIndex()-1);

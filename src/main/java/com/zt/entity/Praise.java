@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Praise implements Serializable {
     private Integer praiseid;
     private Integer uid;

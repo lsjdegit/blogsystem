@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Bstatus implements Serializable {
     private Integer bstatusid;
     private String bstatus;

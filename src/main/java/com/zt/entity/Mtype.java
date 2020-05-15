@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Mtype implements Serializable {
     private Integer mtypeid;
     private String mtypename;

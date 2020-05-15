@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Browse implements Serializable {
     private Integer browseid;
     private Integer uid;
