@@ -23,6 +23,7 @@ public class Comment implements Serializable {
 	private String comtime;
 	private Blog blog;
 	private User user;
+	@JsonBackReference(value = "parent")
 	private Comment parent;
 	@JsonBackReference(value = "sons")
 	private List<Comment> sons;

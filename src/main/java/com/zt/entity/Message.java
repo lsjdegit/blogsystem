@@ -17,5 +17,8 @@ public class Message implements Serializable {
 	private Integer status;
 	private Integer yuid;
 	private Integer uid;
+	private String mtime;
+	private User yuser;
+	private Blog blog;
 
 }
