@@ -57,6 +57,32 @@ body{
 	cursor: default;
 	letter-spacing: 5px;
 }
+#head-uli{
+	width: 40%;
+	height: 60px;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 16px;
+	margin-left: 20%;
+	border: none;
+	float: left;
+}
+
+#head-uli li{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	width:20%;
+	height: 60px;
+	line-height: 60px;
+	display: inline-block;
+	font-size: 16px;
+	text-align: center;
+	cursor: default;
+	letter-spacing: 5px;
+}
 
 .hoverli{
 	background-color: rgba(0,191,243,0.1);

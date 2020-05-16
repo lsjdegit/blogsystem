@@ -97,4 +97,12 @@ public class UserServiceImpl implements UserService {
     public List<User> selectAll(String uname, Integer isexpert, Integer first, Integer pageSize) {
         return userMapper.selectAll(uname,isexpert,first,pageSize);
     }
+
+    @Override
+    /**
+     * 通过专家的验证
+     */
+    public int zhuanjia(User user) {
+        return userMapper.zhuanjia(user);
+    }
 }

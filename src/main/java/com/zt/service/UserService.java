@@ -69,4 +69,11 @@ public interface UserService {
      * @return
      */
     public List<User> selectAll(String uname,Integer isexpert,Integer first,Integer pageSize);
+
+    /**
+     * 通过专家申请
+     * @param user
+     * @return
+     */
+    public int zhuanjia(User user);
 }

@@ -137,7 +137,7 @@ function changezhu(obj){
         $(obj).attr("disabled","disabled");
     }
     $("#currentPage").val(pageIndex);
-    $(". bolgallzhu").empty();
+    $(".bolgallzhu").empty();
     $.ajax({
         type:'post',
         url:'user/selectall',
@@ -179,20 +179,20 @@ $(function(){
             /**
              * 切换博客与博主
              */
-            $("#head-ul li:eq(0)").addClass("ttou");
-            $("#head-ul li").click(function(){
-                $("#head-ul li").removeClass("ttou");
+            $("#head-uli li:eq(0)").addClass("ttou");
+            $("#head-uli li").click(function(){
+                $("#head-uli li").removeClass("ttou");
                 $(this).addClass("ttou");
             })
 
             /**
              * 切换中间页面
              */
-            $("#head-ul li:eq(0)").click(function(){
+            $("#head-uli li:eq(0)").click(function(){
                 $(".admmain").css("display","block");
                 $(".admmainzhu").css("display","none");
             })
-            $("#head-ul li:eq(1)").click(function(){
+            $("#head-uli li:eq(1)").click(function(){
                 $(".admmain").css("display","none");
                 $(".admmainzhu").css("display","block");
             })
@@ -240,6 +240,7 @@ $(function(){
 	 * 根据博客标题模糊查询相关的已审核博客信息
 	 */
 	$("#sou").click(function(){
+        $(".pag li button").attr("onclick","change(this)");
 		$(".bolgall").empty();
 		$.ajax({
 			type:'post',
@@ -291,6 +292,7 @@ $(function(){
      * 点击待审核遍历所有已审核的博客
      */
     $("#yi").click(function(){
+        $(".pag li button").attr("onclick","change(this)");
         $(".bolgall").empty();
         var sid=1;
         $("#bstatusid").val(sid);
@@ -397,6 +399,7 @@ $(function(){
      * 下拉框选择博客类型遍历对应的博客
      */
     $("select").change(function(){
+        $(".pag li button").attr("onclick","change(this)");
         $(".bolgall").empty();
         $.ajax({
             type:'post',
@@ -468,7 +471,7 @@ $(function(){
 					"<span>"+blog.bcreatetime+"</span>"+
 					"<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
 					"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-					"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+					"<span class=\"iconfont icon-liulan\">"+blog+"</span>" +
 					"</div>"+
 					"</div>"+
 					"</div>");
@@ -498,15 +501,18 @@ $(function(){
         /**
          * 点击博主管理遍历所有的博主
          */
-        $("#head-ul li:eq(1)").click(function(){
+        $("#head-uli li:eq(1)").click(function(){
+            $("#quan").addClass("uler");
+            $(".pag li button").attr("onclick","changezhu(this)");
              $(".bolgallzhu").empty();
             $.ajax({
                 type:'post',
                 url:'user/selectall',
                 contentType:'application/json',
-                data:JSON.stringify({"pageIndex":1}),
+                data:JSON.stringify({"pageIndex":1,"isexpert":$("#isexpert").val()}),
                 success:function(result){
                     var ulist= result.list;
+                    var totalPage = result.totalPage;
                     for(var i=0;i<ulist.length;i++){
                         var blog=ulist[i];
                         var $blog= $("<div class=\"mybolgli\">"+
@@ -541,18 +547,117 @@ $(function(){
             })
         })
 
+                /**
+                 * 点击专家申请遍历所有要申请的博主
+                 */
+                $("#shen").click(function(){
+                    $("#isexpert").val(0);
+                    $(".bolgallzhu").empty();
+                    $(".pag li button").attr("onclick","changezhu(this)");
+                    $.ajax({
+                        type:'post',
+                        url:'user/selectall',
+                        contentType:'application/json',
+                        data:JSON.stringify({"pageIndex":1,"isexpert": $("#isexpert").val()}),
+                        success:function(result){
+                            var ulist= result.list;
+                            var totalPage = result.totalPage;
+                            for(var i=0;i<ulist.length;i++){
+                                var blog=ulist[i];
+                                var $blog= $("<div class=\"mybolgli\">"+
+                                    "<div class=\"ybybzhu\">"+
+                                    "<div class=\"ybnat\">"+
+                                    "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
+                                    "<img src=\""+ctxPath+"/img/username.png\" />"+
+                                    "<span>"+blog.uname+"</span>"+
+                                    "<span>"+blog.email+"</span>"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "</div>");
+                                $(".bolgallzhu").prepend($blog);
+                            }
+                            $(".blog").show().animate({height:'80px',width:'100%'});
+                            //页码
+                            $("#totalPage").val(totalPage);
+                            if(totalPage<2){
+                                $("#centre-paging").fadeOut(1000);
+                            }else{
+                                $("#centre-paging").fadeIn(1000);
+                                $(".pIndex").remove();
+                                for(var i=0;i<totalPage;i++){
+                                    var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
+                                    if(i==0){
+                                        li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\" style=\"border: none;\">"+(i+1)+"</button></li>");
+                                    }
+                                    $("#next").before(li);
+                                }
+                            }
+                        }
+                    })
+                })
+
+                /**
+                 * 点击所有博主遍历所有博主
+                 */
+                $("#quan").click(function(){
+                    $("#isexpert").val("null");
+                    $(".bolgallzhu").empty();
+                    $(".pag li button").attr("onclick","changezhu(this)");
+                    $.ajax({
+                        type:'post',
+                        url:'user/selectall',
+                        contentType:'application/json',
+                        data:JSON.stringify({"pageIndex":1,"isexpert":$("#isexpert").val()}),
+                        success:function(result){
+                            var ulist= result.list;
+                            var totalPage = result.totalPage;
+                            for(var i=0;i<ulist.length;i++){
+                                var blog=ulist[i];
+                                var $blog= $("<div class=\"mybolgli\">"+
+                                    "<div class=\"ybybzhu\">"+
+                                    "<div class=\"ybnat\">"+
+                                    "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
+                                    "<img src=\""+ctxPath+"/img/username.png\" />"+
+                                    "<span>"+blog.uname+"</span>"+
+                                    "<span>"+blog.email+"</span>"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "</div>");
+                                $(".bolgallzhu").prepend($blog);
+                            }
+                            $(".blog").show().animate({height:'80px',width:'100%'});
+                            //页码
+                            $("#totalPage").val(totalPage);
+                            if(totalPage<2){
+                                $("#centre-paging").fadeOut(1000);
+                            }else{
+                                $("#centre-paging").fadeIn(1000);
+                                $(".pIndex").remove();
+                                for(var i=0;i<totalPage;i++){
+                                    var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
+                                    if(i==0){
+                                        li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\" style=\"border: none;\">"+(i+1)+"</button></li>");
+                                    }
+                                    $("#next").before(li);
+                                }
+                            }
+                        }
+                    })
+                })
     /**
      * 点击搜索模糊查询对应的博主
      */
     $("#sousuo").click(function(){
+        $(".pag li button").attr("onclick","changezhu(this)");
         $(".bolgallzhu").empty();
         $.ajax({
             type:'post',
             url:'user/selectall',
             contentType:'application/json',
-            data:JSON.stringify({"pageIndex":1,"uname":$("#user").val()}),
+            data:JSON.stringify({"pageIndex":1,"uname":$("#user").val(),"isexpert":$("#isexpert").val()}),
             success:function(result){
                 var ulist= result.list;
+                var totalPage = result.totalPage;
                 for(var i=0;i<ulist.length;i++){
                     var blog=ulist[i];
                     var $blog= $("<div class=\"mybolgli\">"+
@@ -586,7 +691,14 @@ $(function(){
             }
         })
     })
+    /**
+     * 点击博客管理将按钮变成change
+     */
+    $("#boke").click(function(){
+        $(".pag li button").attr("onclick","change(this)");
+    })
 })
+
             /**
              * 管理员将未审核的博客通过审核
              */

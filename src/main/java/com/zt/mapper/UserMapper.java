@@ -105,7 +105,7 @@ public interface UserMapper {
            +"<if test=\"uname!=null and uname!=''\" >"
            +"AND uname LIKE '%${uname}%'"
            +"</if>"
-           +"<if test=\"isexpert!=null and isexpert!=''\" >"
+           +"<if test=\"isexpert!=null\" >"
            +"AND isexpert=#{isexpert}"
            +"</if>"
            +"<if test=\"pageSize!=null and pageSize!=0\" >"
@@ -113,4 +113,12 @@ public interface UserMapper {
            +"</if>"
            +"</script>")
     public List<User> selectAll(@Param("uname")String uname,@Param("isexpert")Integer isexpert,@Param("first")Integer first, @Param("pageSize")Integer pageSize);
+
+    /**
+     * 专家申请
+     * @param user
+     * @return
+     */
+   @Update("update user set isexpert=#{isexpert} where uid=#{uid}")
+    public int zhuanjia(User user);
 }
