@@ -150,16 +150,19 @@
                 <ul class="plul">
                     <li th:each="comment,status:${blog.comments}" th:if="${comment.parent eq null}">
                         <img th:src="@{'/upload/'+${comment.user.uimage}}" style="width: 30px;height: 30px; border-radius: 10px;">
-                        <span style="margin-left: 10px;" th:text="${comment.user.uname}+'：'">对象被抛出：</span>
+                        <span style="margin-left: 10px;" th:text="${comment.user.uname}">对象被抛出</span>：
                         <p style="margin-left: 40px;">
                             <span th:text="${comment.cocontext}">服务器服务器服务器服务器服务器服务器 &nbsp;&nbsp;&nbsp;</span>
                             <span style="color: burlywood;margin-left: 10px" th:text="${comment.comtime}">2020/3/2</span>
-                            <span th:if="${comment.sons.size() > 0}" class="count" style="float: right;color:#1B9AF7;cursor: pointer" th:text="'('+${comment.sons.size()}+')'">(1)</span>
+                            <span th:if="${comment.sons.size() == 0}" class="count" style="float: right;color:#1B9AF7;cursor: pointer;display: none;" th:text="'('+${comment.sons.size()}+')'">(1)</span>
+                            <span th:if="${comment.sons.size() == 0}" style="color:#1B9AF7;float: right;cursor: pointer;display: none;" class="chakan">查看回复</span>
+                            <span th:if="${comment.sons.size() > 0}" class="count" style="float: right;color:#1B9AF7;cursor: pointer;" th:text="'('+${comment.sons.size()}+')'">(1)</span>
                             <span th:if="${comment.sons.size() > 0}" style="color:#1B9AF7;float: right;cursor: pointer" class="chakan">查看回复</span>
-                            <span style="color:#1B9AF7;float: right; margin-right: 10px;cursor: pointer">回复</span>
+                            <span style="color:#1B9AF7;float: right; margin-right: 10px;cursor: pointer" class="getparent">回复</span>
                             <input type="hidden" name="cuid" th:value="${comment.user.uid}" />
+                            <input type="hidden" name="cid" th:value="${comment.cid}" />
                             <div style="margin-left: 50px; display: none;padding:5px ;box-sizing: border-box" class="huifu">
-                                <div th:each="son,sonstatus:${comment.sons}" >
+                                <div th:each="son,sonstatus:${comment.sons}" style="height: 30px;margin-top: 5px;" >
                                     <img th:src="@{'/upload/'+${son.user.uimage}}" style="width: 30px;height: 30px; border-radius: 10px; float:left;"/>
                                     <p style="margin-left: 10px;float: left">
                                         <span th:text="${son.user.uname}" style="margin-left: 5px">UncoDong</span>
