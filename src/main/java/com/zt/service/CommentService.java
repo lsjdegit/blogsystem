@@ -13,4 +13,11 @@ public interface CommentService {
     public Comment addComment(Comment comment);
 
     public Comment getCommentById(Integer cid);
+
+    /**
+     * 删除评论
+     * @param cid
+     * @return
+     */
+    public int delComment(Integer cid);
 }

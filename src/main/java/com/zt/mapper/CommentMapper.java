@@ -50,4 +50,20 @@ public interface CommentMapper {
     @Options(useGeneratedKeys = true,keyProperty = "cid",keyColumn = "cid")
     public int addComment(Comment comment);
 
+    /**
+     * 删除评论
+     * @param cid
+     * @return
+     */
+    @Delete("delete from comment where cid=#{cid}")
+    public int delComment(@Param("cid") Integer cid);
+
+    /**
+     * 删除评论相关回复
+     * @param cid
+     * @return
+     */
+    @Delete("delete from comment where parentid=#{cid}")
+    public int delReComment(@Param("cid") Integer cid);
+
 }

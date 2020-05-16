@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +26,16 @@ public class CommentController {
         comment.setComtime(comtime);
         Comment comm = commentService.addComment(comment);
         return comm;
+    }
+
+    @RequestMapping("del")
+    @ResponseBody
+    public boolean delComment(@RequestParam Integer cid){
+        int num = commentService.delComment(cid);
+        if(num>0){
+            return true;
+        }
+        return false;
     }
 
 

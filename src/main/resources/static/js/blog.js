@@ -1,3 +1,68 @@
+//回复
+function huifu(obj) {
+    var parentid = $(obj).next().next().val();
+    $("input[name=parentid]").val(parentid);
+    $(".pinglun form input[type=text]").attr("placeholder","回复"+$(obj).parent().prev().text());
+}
+
+//评论回复
+function chakan(obj) {
+    if ($(obj).parent().next().css("display") == "none") {
+        $(obj).parent().next().slideDown(200);
+        $(obj).html("收起回复");
+        $(obj).prev().css("display", "none");
+    } else if ($(obj).parent().next().css("display") != "none") {
+        $(obj).parent().next().slideUp(200);
+        $(obj).html("查看回复");
+        $(obj).prev().css("display", "block");
+    }
+}
+
+//删除评论
+function delComm(obj){
+    if(!confirm("删除此评论？")){
+        return ;
+    }
+    var cid = $(obj).next().val();
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "/comment/del",
+        data: "cid="+cid,
+        success: function (result) {
+            if(result){
+                $(obj).parents("li").remove();
+            }
+        }
+    })
+}
+
+//删回复
+function delSonComm(obj){
+    if(!confirm("删除此评论？")){
+        return ;
+    }
+    var cid = $(obj).next().val();
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "/comment/del",
+        data: "cid="+cid,
+        success: function (result) {
+            alert(result);
+            if(result){
+                var sons = parseInt($(obj).parents("li").children("p").eq(0).children("span").eq(3).html().substr(1,1));
+                $(obj).parents("li").children("p").eq(0).children("span").eq(3).html("("+(sons-1)+")");
+                if(sons == 1){
+                    $(obj).parents("li").children("p").eq(0).children("span").eq(3).hide();
+                    $(obj).parents("li").children("p").eq(0).children("span").eq(4).hide();
+                    $(obj).parents(".huifu").hide();
+                }
+                $(obj).parent().parent().remove();
+            }
+        }
+    })
+}
+
+
 $(function () {
 
     //博客内容
@@ -5,19 +70,6 @@ $(function () {
     var $bcontent = $(bcontent);
     $(".rcenter").append($bcontent);
     $(".rcenter").fadeIn(1000);
-
-    //评论回复
-    $(".chakan").click(function () {
-        if ($(this).parent().next().css("display") == "none") {
-            $(this).parent().next().slideDown(200);
-            $(this).html("收起回复");
-            $(this).prev().css("display", "none");
-        } else if ($(this).parent().next().css("display") != "none") {
-            $(this).parent().next().slideUp(200);
-            $(this).html("查看回复");
-            $(this).prev().css("display", "block");
-        }
-    })
 
     //是否点赞是否收藏
     if($(".rbottom input[name=ispraise]").val() == 1){
@@ -123,13 +175,6 @@ $(function () {
         }
     });
 
-    //回复
-    $(".getparent").click(function () {
-        var parentid = $(this).next().next().val();
-        $("input[name=parentid]").val(parentid);
-        $(".pinglun form input[type=text]").attr("placeholder","回复"+$(this).parent().prev().text());
-    });
-
     //发布评论
     $(".pinglun form button").click(function () {
         var uid = $("input[name=loginUid]").val();
@@ -153,20 +198,22 @@ $(function () {
             data:JSON.stringify({"bid":bid,"uid":uid,"parentid":parentid,"cocontext":cocontext}),
             async:false,
             success: function (result) {
-                var cnumber = parseInt($("#ult li:eq(1) span:eq(2)").html());
-                $("#ult li:eq(1) span:eq(2)").html(cnumber+1);
+                var cnumber = parseInt($("#ult li:eq(1) span:eq(3)").html());
+                $("#ult li:eq(1) span:eq(3)").html(cnumber+1);
                 $(".pinglun form input[type=text]").val("");
                 if(parentid == 0){
                     var $comment = $("<li>" +
-                        "<img src=\""+ctxPath+"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 10px;\">" +
+                        "<img src=\""+ctxPath+"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 15px;\">" +
                         "<span style=\"margin-left: 10px;\" >"+result.user.uname+"：</span>" +
                         "<p style=\"margin-left: 40px;\">" +
                         "<span>"+result.cocontext+"</span>" +
                         "<span style=\"color: burlywood;margin-left: 10px\">"+result.comtime+"</span>" +
+                        "<span style=\"float: right;margin-left: 10px;color:#1B9AF7;cursor: pointer;\" onclick=\"delComm(this)\">删除</span>"+
                         "<span class=\"count\" style=\"float: right;color:#1B9AF7;cursor: pointer;display: none;\" >(0)</span>" +
-                        "<span style=\"color:#1B9AF7;float: right;cursor: pointer;display: none;\" class=\"chakan\">查看回复</span>"+
-                        "<span style=\"color:#1B9AF7;float: right; margin-right: 10px;cursor: pointer\" class=\"getparent\">回复</span>" +
+                        "<span style=\"color:#1B9AF7;float: right;cursor: pointer;display: none;\" class=\"chakan\" onclick=\"chakan(this)\">查看回复</span>"+
+                        "<span style=\"color:#1B9AF7;float: right; margin-right: 10px;cursor: pointer;\" class=\"getparent\" onclick=\"huifu(this)\">回复</span>" +
                         "<input type=\"hidden\" name=\"cuid\" value=\""+result.user.uid+"\" />" +
+                        "<input type=\"hidden\" name=\"cid\" value=\""+result.cid+"\" />" +
                         "<div style=\"margin-left: 50px; display: none;padding:5px ;box-sizing: border-box\" class=\"huifu\">" +
                         "</div>" +
                         "</p>" +
@@ -174,7 +221,7 @@ $(function () {
                     $(".plul").prepend($comment);
                 }else{
                     var $comment = $("<div style=\"height: 30px;margin-top: 5px;\">" +
-                        "<img src=\""+ctxPath+"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 10px; float:left;\"/>" +
+                        "<img src=\""+ctxPath+"/upload/"+result.user.uimage+"\" style=\"width: 30px;height: 30px; border-radius: 15px; float:left;\"/>" +
                         "<p style=\"margin-left: 10px;float: left\">" +
                         "<span style=\"margin-left: 5px\">"+result.user.uname+"</span>" +
                         "<span>回复</span>" +
@@ -184,14 +231,16 @@ $(function () {
                         "<p style=\"margin-left: 30px;\">" +
                         "<span>"+result.cocontext+"</span>" +
                         "<span style=\"color: burlywood;margin-left: 10px\" >"+result.comtime+"</span>" +
+                        "<span style=\"float: right;margin-left: 10px;color:#1B9AF7;cursor: pointer;\" onclick=\"delSonComm(this)\">删除</span>" +
+                        "<input type=\"hidden\" value=\""+result.cid+"\" />" +
                         "</p>" +
                         "</div>");
                     $("input[name=cid][value="+parentid+"]").parent().next().prepend($comment);
-                    $("input[name=cid][value="+parentid+"]").parent().children("span:eq(3)").css("display","inline-block");
-                    var sons = parseInt($("input[name=cid][value="+parentid+"]").parent().children("span:eq(2)").html().substr(1,1));
-                    $("input[name=cid][value="+parentid+"]").parent().children("span:eq(2)").html("("+(sons+1)+")");
+                    $("input[name=cid][value="+parentid+"]").parent().children("span:eq(4)").css("display","inline-block");
+                    var sons = parseInt($("input[name=cid][value="+parentid+"]").parent().children("span:eq(3)").html().substr(1,1));
+                    $("input[name=cid][value="+parentid+"]").parent().children("span:eq(3)").html("("+(sons+1)+")");
                     if($("input[name=cid][value="+parentid+"]").parent().next().css("display") == "none"){
-                        $("input[name=cid][value="+parentid+"]").parent().children("span:eq(3)").click();
+                        $("input[name=cid][value="+parentid+"]").parent().children("span:eq(4)").click();
                     }
                     $("input[name=parentid]").val("0");
                     $(".pinglun form input[type=text]").attr("placeholder","");
