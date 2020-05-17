@@ -2,8 +2,7 @@
     width:400px;
     height:520px;
     border: 1px antiquewhite solid;
-    margin-left: 600px;
-    margin-top: 100px;
+    margin: 100px auto;
     background: white;
 }
 .title{

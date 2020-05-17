@@ -91,7 +91,7 @@ public interface BlogMapper {
             +"AND btid=#{btid}"
             +"</if>"
             +"<if test=\"bcreatetime!=null and bcreatetime!=''\" >"
-            +"AND bcreatetime=#{bcreatetime}"
+            +"AND bcreatetime LIKE '%${bcreatetime}%'"
             +"</if>"
             +"<if test=\"search!=null and search!=''\" >"
             +"AND btitle LIKE '%${search}%'"

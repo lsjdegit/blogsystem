@@ -19,11 +19,20 @@ $(function () {
         }
     })
     $("#dai").click(function(){
-        window.location.href="../adminindex";
+        $.ajax({
+            type:'post',
+            url:ctxPath+'blog/updatesh',
+            contentType:'application/json',
+            data:JSON.stringify({"bstatusid":2,"bid":$("#bid").val()}),
+            success:function(result){
+                if(result>0){
+                    window.location.href="../adminindex";
+                }
+            }
+        })
     })
     $("#sheng").click(function(){
          var id=$("#bid").val();
-         alert(id);
         $.ajax({
             type:'post',
             url:ctxPath+'blog/updatesh',

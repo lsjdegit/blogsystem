@@ -77,12 +77,30 @@ public class BlogController {
         }
         return false;
     }
-
+    /**
+     * 管理员点击未审核博客进入对应的个人页面
+     * @param bid
+     * @param m
+     * @return
+     */
     @RequestMapping("selectid")
     public String selectid(Integer bid, Model m){
         Blog blog = blogService.getBlogById(bid);
         m.addAttribute("blog",blog);
         return "adminblog";
+    }
+
+    /**
+     * 管理员点击审核进入对应的个人页面
+     * @param bid
+     * @param m
+     * @return
+     */
+    @RequestMapping("selectidzhu")
+    public String selectidzhu(Integer bid, Model m){
+        Blog blog = blogService.getBlogById(bid);
+        m.addAttribute("blog",blog);
+        return "blog";
     }
 
 

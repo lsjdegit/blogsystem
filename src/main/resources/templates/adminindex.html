@@ -17,6 +17,7 @@
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/public.js}"></script>
 	<script type="text/javascript" th:src="@{/js/adminindex.js}"></script>
+	<script type="text/javascript" th:src="@{/calendar/WdatePicker.js}"></script>
 	<script type="text/javascript" th:inline="javascript">
 		var ctxPath = [[@{/}]];
 	</script>
@@ -46,7 +47,7 @@
 			</div>
 			<div class="admin_suo">
 				<div class="suo_nei">
-					<span>时间</span> <input type="date" name="date">
+					<span>时间</span> <input type="text" class="Wdate" name="date" readonly="readonly" onclick="WdatePicker();" required >
 						<span>类型</span>
 
 						<select>
@@ -60,7 +61,7 @@
 
 
 
-						<input type="text" name="btitle" style="margin-left: 10px" /><button id="sou">搜索</button>
+						<input   type="text" name="btitle" style="margin-left: 10px" /><button id="sou">搜索</button>
 				</div>
 			</div>
 			<div class="bolgall">

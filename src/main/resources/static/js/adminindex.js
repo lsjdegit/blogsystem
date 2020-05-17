@@ -206,7 +206,7 @@ $(function(){
 	    url: 'blogtype/alla',
 		success:function (result) {
 			var sel=$("select");
-			sel.append("<option>请选择</option>");
+			sel.append("<option value='0'>请选择</option>");
 			for(var i=0;i<result.length;i++){
                var p= result[i];
 			    sel.append("<option value=\""+p.btid+"\">" + p.tname + "</option>");
@@ -273,9 +273,9 @@ $(function(){
 				//页码
                 $("#totalPage").val(totalPage);
                 if(totalPage<2){
-                    $("#centre-paging").fadeOut(1000);
+                    $("#centre-paging").hide();
                 }else{
-                    $("#centre-paging").fadeIn(1000);
+                    $("#centre-paging").show();
                     $(".pIndex").remove();
                     for(var a=0;a<totalPage;a++){
                         var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
@@ -326,9 +326,9 @@ $(function(){
                 //页码
                 $("#totalPage").val(totalPage);
                 if(totalPage<2){
-                    $("#centre-paging").fadeOut(1000);
+                    $("#centre-paging").hide();
                 }else{
-                    $("#centre-paging").fadeIn(1000);
+                    $("#centre-paging").show();
                     $(".pIndex").remove();
                     for(var i=0;i<totalPage;i++){
                         var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
@@ -379,9 +379,9 @@ $(function(){
                    //页码
                    $("#totalPage").val(totalPage);
                    if(totalPage<2){
-                       $("#centre-paging").fadeOut(1000);
+                       $("#centre-paging").hide();
                    }else{
-                       $("#centre-paging").fadeIn(1000);
+                       $("#centre-paging").show();
                        $(".pIndex").remove();
                        for(var i=0;i<totalPage;i++){
                            var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
@@ -431,9 +431,9 @@ $(function(){
                 //页码
                 $("#totalPage").val(totalPage);
                 if(totalPage<2){
-                    $("#centre-paging").fadeOut(1000);
+                    $("#centre-paging").hide();
                 }else{
-                    $("#centre-paging").fadeIn(1000);
+                    $("#centre-paging").show();
                     $(".pIndex").remove();
                     for(var i=0;i<totalPage;i++){
                         var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
@@ -461,7 +461,7 @@ $(function(){
 			var totalPage = result.totalPage;
 			for(var a=0;a<blist.length;a++){
 				var blog=blist[a];
-				var $blog= $("<div class=\"mybolgli\">"+
+				var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
 					"<div class=\"ybyb\">"+
 					"<p title=\"查看\">"+blog.btitle+"</p>"+
 					"<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
@@ -471,7 +471,7 @@ $(function(){
 					"<span>"+blog.bcreatetime+"</span>"+
 					"<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
 					"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-					"<span class=\"iconfont icon-liulan\">"+blog+"</span>" +
+					"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
 					"</div>"+
 					"</div>"+
 					"</div>");
@@ -481,9 +481,9 @@ $(function(){
                     //页码
                     $("#totalPage").val(totalPage);
                     if(totalPage<2){
-                        $("#centre-paging").fadeOut(1000);
+                        $("#centre-paging").hide();
                     }else{
-                        $("#centre-paging").fadeIn(1000);
+                        $("#centre-paging").show();
                         $(".pIndex").remove();
                         for(var i=0;i<totalPage;i++){
                             var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
@@ -531,9 +531,9 @@ $(function(){
                     //页码
                     $("#totalPage").val(totalPage);
                     if(totalPage<2){
-                        $("#centre-paging").fadeOut(1000);
+                        $("#centre-paging").hide();
                     }else{
-                        $("#centre-paging").fadeIn(1000);
+                        $("#centre-paging").show();
                         $(".pIndex").remove();
                         for(var i=0;i<totalPage;i++){
                             var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
@@ -580,9 +580,9 @@ $(function(){
                             //页码
                             $("#totalPage").val(totalPage);
                             if(totalPage<2){
-                                $("#centre-paging").fadeOut(1000);
+                                $("#centre-paging").hide();
                             }else{
-                                $("#centre-paging").fadeIn(1000);
+                                $("#centre-paging").show();
                                 $(".pIndex").remove();
                                 for(var i=0;i<totalPage;i++){
                                     var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
@@ -629,9 +629,9 @@ $(function(){
                             //页码
                             $("#totalPage").val(totalPage);
                             if(totalPage<2){
-                                $("#centre-paging").fadeOut(1000);
+                                $("#centre-paging").hide();
                             }else{
-                                $("#centre-paging").fadeIn(1000);
+                                $("#centre-paging").show();
                                 $(".pIndex").remove();
                                 for(var i=0;i<totalPage;i++){
                                     var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
@@ -676,9 +676,9 @@ $(function(){
                 //页码
                 $("#totalPage").val(totalPage);
                 if(totalPage<2){
-                    $("#centre-paging").fadeOut(1000);
+                    $("#centre-paging").hide();
                 }else{
-                    $("#centre-paging").fadeIn(1000);
+                    $("#centre-paging").show();
                     $(".pIndex").remove();
                     for(var i=0;i<totalPage;i++){
                         var li = $("<li class=\"pIndex\"><button onclick=\"changezhu(this)\">"+(i+1)+"</button></li>");
@@ -705,6 +705,16 @@ $(function(){
             function adminver(id){
                 window.location.href="blog/selectid?bid="+id;
             }
+
+            /**
+             * 管理员点击已审核的可以看博客的详细信息
+             * @param id
+             */
+            function adminshen(id){
+                            window.location.href="blog/selectidzhu?bid="+id;
+                        }
+
+
 
 
 

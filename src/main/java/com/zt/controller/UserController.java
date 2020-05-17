@@ -6,6 +6,8 @@ import com.zt.entity.ListPage;
 import com.zt.entity.User;
 import com.zt.service.UserService;
 
+import com.zt.util.JavaMailUtil;
+import com.zt.util.RandomUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -60,7 +66,7 @@ public class UserController {
     public String registerUser(User user){
        int reg= userService.Register(user);
        if(reg>0){
-           return "success";
+           return "login";
        }else{
            return "register";
        }
@@ -219,9 +225,71 @@ public class UserController {
         return clist;
       }
 
+    /**
+     * 给用户输入的邮箱发送邮件
+     * @param email
+     * @param sess
+     * @return
+     * @throws IOException
+     * @throws MessagingException
+     */
+      @RequestMapping("sendEmail")
+      @ResponseBody
+        public String getyanzhen( String email,HttpSession sess) throws IOException, MessagingException {
+          System.out.println(email);
+          JavaMailUtil.receiveMailAccount = email; // 给用户输入的邮箱发送邮件
 
+          // 1、创建参数配置，用于连接邮箱服务器的参数配置
+          Properties props = new Properties();
+          // 开启debug调试
+          //props.setProperty("mail.debug", "true");
+          // 发送服务器需要身份验证
+          props.setProperty("mail.smtp.auth", "true");
+          // 设置右键服务器的主机名
+          props.setProperty("mail.host", JavaMailUtil.emailSMTPHost);
+          // 发送邮件协议名称
+          props.setProperty("mail.transport.protocol", "smtp");
 
+          // 2、根据配置创建会话对象，用于和邮件服务器交互
+          Session session = Session.getInstance(props);
+          // 设置debug，可以查看详细的发送log
+          session.setDebug(true);
+          // 3、创建一封邮件
+          String code = RandomUtil.getRandom();
+          System.out.println("邮箱验证码：" + code);
+          String html = RandomUtil.html(code);
+          //发送邮件
+          MimeMessage message = JavaMailUtil.creatMimeMessage(session, JavaMailUtil.emailAccount,JavaMailUtil.receiveMailAccount, html);
+          // 4、根据session获取邮件传输对象
+          Transport transport = session.getTransport();
+          // 5、使用邮箱账号和密码连接邮箱服务器emailAccount必须与message中的发件人邮箱一致，否则报错
+          transport.connect(JavaMailUtil.emailAccount, JavaMailUtil.emailPassword);
+          // 6、发送邮件,发送所有收件人地址
+          transport.sendMessage(message, message.getAllRecipients());
+          // 7、关闭连接
+          transport.close();
+          sess.setAttribute("code",code);
+          return"code";
+        }
 
+    /**
+     * 验证用户输入的验证码是否与发送的验证码是否一致
+     * @param code
+     * @param session
+     * @return
+     */
+    @RequestMapping("panduan")
+           @ResponseBody
+           public boolean panduan(String code,HttpSession session){
+             String sessioncode=(String)session.getAttribute("code");
+               System.out.println("sessioncode:"+sessioncode);
+               System.out.println("code:"+code);
+               if (sessioncode.toLowerCase().equals(code.toLowerCase())) {
+                  return true;
+               }else {
+                  return false;
+               }
+           }
 
 
 }

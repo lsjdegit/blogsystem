@@ -1,0 +1,92 @@
+.center{
+    width:450px;
+    height:850px;
+    border: 1px antiquewhite solid;
+    margin: 50px auto;
+    background: white;
+}
+.title{
+    font-size: 22px;
+    font-weight: bold;
+    margin-left:190px;
+    margin-top: 20px;
+}
+.divuname{
+    margin-left: 70px;
+    margin-top: 30px;
+}
+#register{
+    width:220px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: 120px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.mo{
+    margin-left: 120px;
+    margin-top: 20px;
+}
+#yanzhen{
+    display: inline-block;
+}
+#password{
+    background: url(../img/userpassword.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+#repassword{
+    background: url(../img/userpassword.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+#user{
+    background: url(../img/username.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+.mo{
+    margin-left:280px;
+    margin-top: 50px;
+}
+#woman{
+    margin-left: 50px;
+}
+#man{
+    margin-left: 50px;
+}
+#email{
+    background: url(../img/email.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+#code{
+    background: url(../img/code.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+#scode{
+    margin-left: 70px;
+    margin-top: 30px;
+}
+.sp1{
+    background: url(../img/error.png);
+    background-size: 25px;
+    background-position: 1% 50%;
+    background-repeat: no-repeat;
+    text-indent: 2em;
+}
+body{
+    background: url(../img/backgrounp.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
