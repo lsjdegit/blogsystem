@@ -17,11 +17,14 @@ import java.util.List;
 public class MessageController {
     @Autowired
     private MessageService messageService;
-    private Integer pageSize = 4;
+    private Integer pageSize = 5;
 
     @RequestMapping("select")
     @ResponseBody
     public ListPage selectMessage(@RequestBody MessageParameter messageParameter){
+        if(messageParameter.getUid() == null){
+            messageParameter.setMtypeid(0);
+        }
         Integer totalSize = messageService.selectMessage(messageParameter.getUid(),messageParameter.getMtypeid(),0,0).size();
         Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
         Integer first = pageSize*(messageParameter.getPageIndex()-1);

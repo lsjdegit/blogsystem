@@ -30,7 +30,8 @@
     float: left;
     background-color: white;
     width: 20%;
-    height: 600px;
+    height: 622px;
+    border: 1px #e3e3e3 solid;
 }
 
 .dleft ul {
@@ -74,13 +75,14 @@
 
 .dtdiv {
     width: 100%;
+    background-color: #f5f6f7;
 }
 
 .dtdiv>ul {
     margin: 0px;
     padding: 0px;
+    height: 501px;
     border: 0.5px #F5F6F7 solid;
-    margin-top: 10px;
     background-color: #f5f6f7;
 }
 
