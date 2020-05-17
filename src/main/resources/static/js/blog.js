@@ -47,7 +47,6 @@ function delSonComm(obj){
         url: ctxPath + "/comment/del",
         data: "cid="+cid,
         success: function (result) {
-            alert(result);
             if(result){
                 var sons = parseInt($(obj).parents("li").children("p").eq(0).children("span").eq(3).html().substr(1,1));
                 $(obj).parents("li").children("p").eq(0).children("span").eq(3).html("("+(sons-1)+")");

@@ -30,4 +30,12 @@ public interface PraiseMapper {
     @Delete("delete from praise where uid=#{uid} and bid=#{bid}")
     public int delPraise(Praise praise);
 
+    /**
+     * 删除博客下的赞
+     * @param bid
+     * @return
+     */
+    @Delete("delete from praise where bid=#{bid}")
+    public int delPraiseByBlog(@Param("bid") Integer bid);
+
 }

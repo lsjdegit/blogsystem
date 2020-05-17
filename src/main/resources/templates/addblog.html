@@ -43,17 +43,18 @@
 		
 		<div class="addb">
 			<div class="ti">
-				<input class="form-control" type="text" name="btitle" placeholder="请输入文章标题" maxlength="100">
+				<input class="form-control" type="text" name="btitle" placeholder="请输入文章标题" maxlength="100" th:value="${blog?.btitle}">
 				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请填写博客标题"></button>-->
 				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="请多写点内容"></button>-->
 			</div>
-		    <div id="dome01" ></div>
+		    <div id="demo01"></div>
+			<input type="hidden" th:value="${blog?.bcontent}"/>
 			<div class="fushu" >
 				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请选择博客类型"></button>-->
 				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请填写博客摘要"></button>-->
 				<p>
 					<span>摘要：</span>
-					<textarea class="form-control" rows="3"></textarea>
+					<textarea class="form-control" rows="3" th:text="${blog?.babstract}"></textarea>
 				</p>
 				<span>
 					文章类型:
@@ -61,6 +62,8 @@
 				<select class="form-control">
 					<option value="0">请选择</option>
 				</select>
+				<input th:if="${blog eq null}" type="hidden" value="0"/>
+				<input th:if="${blog != null}" type="hidden" th:value="${blog?.btid}"/>
 				<p class="pb_fa"><button class="form-control">发布博客</button> </p>
 			</div>
 		</div>

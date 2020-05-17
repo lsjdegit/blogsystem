@@ -66,4 +66,12 @@ public interface CommentMapper {
     @Delete("delete from comment where parentid=#{cid}")
     public int delReComment(@Param("cid") Integer cid);
 
+    /**
+     * 删除博客下的评论
+     * @param bid
+     * @return
+     */
+    @Delete("delete from comment where bid=#{bid}")
+    public int delCommByBlog(@Param("bid") Integer bid);
+
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BlogParameter {
+    private Integer bid;
     private Integer btid;
     private Integer uid;
     private Integer pageIndex;

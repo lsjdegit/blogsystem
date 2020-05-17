@@ -116,5 +116,55 @@ public class BlogController {
         return blogService.updatetg(blog);
     }
 
+    /**
+     * 查询我的博客
+     * @param blogParameter
+     * @return
+     */
+    @RequestMapping(value = "selectmy",method = RequestMethod.POST)
+    @ResponseBody
+    public ListPage selectMyBlog(@RequestBody BlogParameter blogParameter){
+        Integer pageSize = 5;
+        Integer totalSize = blogService.selectMyBlog(blogParameter.getUid(),blogParameter.getBstatusid(),blogParameter.getSearchBlog(),0,0).size();
+        Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+        Integer first = pageSize*(blogParameter.getPageIndex()-1);
+        List<Blog> blogList = blogService.selectMyBlog(blogParameter.getUid(),blogParameter.getBstatusid(),blogParameter.getSearchBlog(),first,pageSize);
+        ListPage listPage = new ListPage();
+        listPage.setList(blogList);
+        listPage.setTotalPage(totalPage);
+        return listPage;
+    }
+
+    /**
+     * 删除我的博客
+     * @param blogParameter
+     * @return
+     */
+    @RequestMapping(value = "delmyblog",method = RequestMethod.POST)
+    @ResponseBody
+    public ListPage delMyBlog(@RequestBody BlogParameter blogParameter){
+        blogService.delBlog(blogParameter.getBid());
+        Integer pageSize = 5;
+        Integer pageIndex = blogParameter.getPageIndex();
+        Integer totalSize = blogService.selectMyBlog(blogParameter.getUid(),blogParameter.getBstatusid(),blogParameter.getSearchBlog(),0,0).size();
+        Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+        if(totalPage<pageIndex && totalPage!=0){
+            pageIndex = totalPage;
+        }
+        Integer first = pageSize*(pageIndex-1);
+        List<Blog> blogList = blogService.selectMyBlog(blogParameter.getUid(),blogParameter.getBstatusid(),blogParameter.getSearchBlog(),first,pageSize);
+        ListPage listPage = new ListPage();
+        listPage.setList(blogList);
+        listPage.setTotalPage(totalPage);
+        return listPage;
+    }
+
+    @RequestMapping("update")
+    public String updateBlog(Integer bid,Model model){
+        Blog blog = blogService.getBlogById(bid);
+        model.addAttribute("blog",blog);
+        return "addblog";
+    }
+
 
 }

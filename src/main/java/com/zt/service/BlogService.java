@@ -2,6 +2,7 @@ package com.zt.service;
 
 import com.zt.entity.Blog;
 import com.zt.entity.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -38,4 +39,23 @@ public interface BlogService {
      * @return
      */
     public int updatetg(Blog blog);
+
+    /**
+     * 查询用户自己的博客
+     * @param uid
+     * @param bstatusid
+     * @param search
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    public List<Blog> selectMyBlog( Integer uid,Integer bstatusid, String search,Integer first, Integer pageSize);
+
+    /**
+     * 删除博客
+     * @param bid
+     * @return
+     */
+    public int delBlog( Integer bid);
+
 }

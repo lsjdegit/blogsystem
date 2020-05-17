@@ -8,7 +8,7 @@ $(function () {
 
     //富文本编辑器
     var E = window.wangEditor;
-    var editor = new E('#dome01');
+    var editor = new E('#demo01');
     // 使用 base64 保存图片
     editor.customConfig.uploadImgShowBase64 = true;
     // 将图片大小限制为 3M
@@ -27,14 +27,24 @@ $(function () {
     ];
     editor.create();
 
+    //文章内容
+    var bcon = $("#demo01").next().val();
+    if(bcon != ""){
+        editor.txt.html(bcon);
+    }
+    
     //文章类型下拉列表框
     $.ajax({
         type:'POST',
         url:ctxPath+"/blogtype/alla",
         success:function(result){
+            var btid = $(".fushu>select").next().val();
             for(var i=0;i<result.length;i++){
                 var bt=result[i];
                 var $option = $("<option value=\""+bt.btid+"\">"+bt.tname+"</option>");
+                if(btid != 0 && btid == bt.btid){
+                    var $option = $("<option selected value=\""+bt.btid+"\">"+bt.tname+"</option>");
+                }
                 $(".fushu>select").append($option);
             }
         }
@@ -94,7 +104,6 @@ $(function () {
             $("#popover19436").css("display","block");
             flag = false;
         }
-        alert(flag);
         if(flag){
             $.ajax({
                 type: 'POST',
@@ -103,6 +112,7 @@ $(function () {
                 data: JSON.stringify({"uid": uid, "btitle": btitle, "bcontent": bcontent, "btid": btid, "babstract": babstract}),
                 success: function (result) {
                     if(result){
+                        $("#head-ul li:eq(1)").click();
                         alert("发布成功，等待审核");
                     }else{
                         alert("发布失败！");

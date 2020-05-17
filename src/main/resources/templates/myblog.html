@@ -8,8 +8,8 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/css/public.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/myblog.css}">
-	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/public.js}"></script>
 	<script type="text/javascript" th:src="@{/js/myblog.js}"></script>
 	<link th:href="@{//at.alicdn.com/t/font_1803890_evr8wbrabhg.css}" type="text/css" rel="stylesheet" />
@@ -48,15 +48,15 @@
 				</div>
 				<ul>
 					<li>博客管理</li>
-					<li>评论管理</li>
 					<li>博客打赏</li>
 				</ul>
 			</div>
 			<div class="bolgr">
+				<input type="hidden" name="bstatusid" value="1"/>
 				<ul class="ulsh">
-					<li>全部<span>(1)</span></li>
-					<li>待审核<span>(0)</span></li>
-					<li>未通过<span>(0)</span></li>
+					<li value="1">已审核(<span>1</span>)</li>
+					<li value="0">待审核(<span>0</span>)</li>
+					<li value="2">未通过(<span>0</span>)</li>
 				</ul>
 				
 				<div class="bolgrs">
@@ -65,31 +65,28 @@
 					</div>
 				</div>
 				<div class="mybolgall">
-					<!-- 遍历我的文章 -->
+					<!-- 遍历我的文章
 					<div class="mybolgli">
 						<div class="ybyb">
 							<p title="编辑">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
 							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">8</span><span class="iconfont icon-liulan">6</span><span class="iconfont icon-liulan">4</span></div>
 							<div><span>查看</span> <span>删除</span></div>
 						</div>
-					</div>
-					
-					<div class="mybolgli">
-						<div class="ybyb">
-							<p>菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
-							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">4</span><span class="iconfont icon-liulan">6</span><span class="iconfont icon-liulan">3</span></div>
-							<div><span>查看</span> <span>删除</span></div>
-						</div>
-					</div>
-					<div class="mybolgli">
-						<div class="ybyb">
-							<p>菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
-							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">5</span><span class="iconfont icon-liulan">5</span><span class="iconfont icon-liulan">5</span></div>
-							<div><span>查看</span> <span>删除</span></div>
-						</div>
-					</div>
-					
+					</div> -->
 				</div>
+				<div id="centre-paging">
+					<ul class="pag">
+						<li id="one"><button onclick="change(this)" style="width: 50px;height: 35px;" disabled="disabled">首页</button></li>
+						<li id="prev"><button onclick="change(this)" disabled="disabled">上</button></li>
+						<li id="next"><button onclick="change(this)">下</button></li>
+						<li id="end"><button onclick="change(this)" style="width: 50px;height: 35px;">尾页</button></li>
+					</ul>
+					<input type="hidden" id="totalPage" value="1"/>
+					<input type="hidden" id="currentPage" value="1"/>
+				</div>
+			</div>
+			<div class="bolgr2">
+
 			</div>
 		</div>
 		

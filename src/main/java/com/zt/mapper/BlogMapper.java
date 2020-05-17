@@ -126,4 +126,33 @@ public interface BlogMapper {
     @Update("update blog set bstatusid=#{bstatusid} where bid=#{bid}")
     public int updatetg(Blog blog);
 
+    /**
+     * 查询自己的博客
+     * @param uid
+     * @param bstatusid
+     * @param search
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    @Select("<script>"
+            +"SELECT * FROM blog "
+            +" WHERE uid=#{uid}"
+            +" AND bstatusid=#{bstatusid}"
+            +"<if test=\"search!=null and search!=''\" >"
+            +" AND btitle LIKE '%${search}%'"
+            +"</if>"
+            +" ORDER BY bid DESC "
+            +"<if test=\"pageSize!=null and pageSize!=0\" >"
+            +" LIMIT #{first},#{pageSize}"
+            +"</if>"
+            +"</script>")
+    public List<Blog> selectMyBlog(@Param("uid") Integer uid,@Param("bstatusid") Integer bstatusid, @Param("search")String search, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
+
+    /**
+     * 删除博客
+     * @return
+     */
+    @Delete("delete from blog where bid=#{bid}")
+    public int delBlog(@Param("bid") Integer bid);
 }

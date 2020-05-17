@@ -40,4 +40,12 @@ public interface CollectMapper {
     @Delete("delete from collect where uid=#{uid} and bid=#{bid}")
     public int delCollect(Collect collect);
 
+    /**
+     * 删除博客对应的收藏
+     * @param bid
+     * @return
+     */
+    @Delete("delete from collect where bid=#{bid}")
+    public int delCollectByBlog(@Param("bid") Integer bid);
+
 }

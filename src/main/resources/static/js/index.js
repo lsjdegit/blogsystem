@@ -113,20 +113,20 @@ $(function(){
     });
 
 	//第一次进入所显示的内容
-	$.ajax({
-		type:'POST',
-		url:ctxPath+"/blog/select",
-		contentType:"application/json",
-		data:JSON.stringify({"btid":0,"uid":0,"pageIndex":1,"searchBlog":""}),
-		success:function(result){
-			var blist = result.list;
-			var totalPage = result.totalPage;
-			for(var i=0;i<blist.length;i++){
-			    var blog = blist[i];
-                var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\" >" +
-                    "<p>"+blog.btitle+"</p>" +
-                    "<span>"+blog.babstract+"</span>" +
-                    "<div>" +
+                    $.ajax({
+                        type:'POST',
+                        url:ctxPath+"/blog/select",
+                        contentType:"application/json",
+                        data:JSON.stringify({"btid":0,"uid":0,"pageIndex":1,"searchBlog":""}),
+                        success:function(result){
+                            var blist = result.list;
+                            var totalPage = result.totalPage;
+                            for(var i=0;i<blist.length;i++){
+                                var blog = blist[i];
+                                var $blog = $("<div class=\"blog\" onclick=\"blogview("+blog.bid+")\" >" +
+                                    "<p>"+blog.btitle+"</p>" +
+                                    "<span>"+blog.babstract+"</span>" +
+                                    "<div>" +
                     "<div class=\"blog-user\">" +
                     "<div class=\"user-img\">" +
                     "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
