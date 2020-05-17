@@ -26,7 +26,7 @@
 			<p class="title">
 				欢迎注册
 			</p>
-			<form class="form-horizontal" id="bodyfrom" method="post" action="user/register">
+			<form class="form-horizontal" id="bodyfrom" method="post" th:action="@{/user/register}" enctype="multipart/form-data">
 				<div class="divuname">
 					<p>用户名</p>
 					<input name="uname" type="text" class="form-control" id="user" validType="minLength[2]"
@@ -52,12 +52,12 @@
 					<p>验证码</p>
 					<input name="yanzhen" type="text" class="form-control" id="code" onblur="yanzheng()"
 									style="width: 220px; margin-top: 10px;display: inline-block;" placeholder="请输入验证码" >
-				     <button class="btn btn-info" type="button" onclick="getemail()">发送验证码</button>
+				     <button class="btn btn-info" type="button" onclick="getemail()" id="cfaode">发送验证码</button>
 				</div>
 				
 				 <div class="form-group" id="scode">
 						    <p for="exampleInputFile">上传图片</p>
-						    <input type="file" id="exampleInputFile" style="width: 320px; margin-top: 10px; height: 30px;" name="uimage" class="shangimg">
+						    <input type="file" id="exampleInputFile" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg">
     
   					</div>
   					

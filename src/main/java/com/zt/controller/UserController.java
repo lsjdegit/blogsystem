@@ -1,5 +1,6 @@
 package com.zt.controller;
 
+import ch.qos.logback.core.util.FileUtil;
 import com.zt.entity.Blog;
 import com.zt.entity.BlogParameter;
 import com.zt.entity.ListPage;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -63,9 +65,21 @@ public class UserController {
      * 用户注册
      */
     @RequestMapping("register")
-    public String registerUser(User user){
-       int reg= userService.Register(user);
-       if(reg>0){
+    public String registerUser(User user,HttpServletRequest request) throws IOException {
+        System.out.println("aaa");
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile file = req.getFile("uimages");
+        String path = request.getRealPath("/upload")+"/"+user.getUname()+".jpg";
+        File destFile = new File(path);
+        try {
+            FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        user.setUimage(user.getUname()+".jpg");
+        int reg= userService.Register(user);
+        if(reg>0){
            return "login";
        }else{
            return "register";

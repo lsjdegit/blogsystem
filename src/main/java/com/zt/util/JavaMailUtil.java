@@ -36,7 +36,7 @@ public class JavaMailUtil {
 		// 1、创建一封邮件对象
 		MimeMessage message = new MimeMessage(session);
 		// 2、From：发件人
-		message.setFrom(new InternetAddress(sendMail, "全世界项目组", "UTF-8"));
+		message.setFrom(new InternetAddress(sendMail, "博客官网", "UTF-8"));
 		// 3、To:收件人（可以增加多个收件人：抄送或者密送）
 		message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "用户", "UTF-8"));
 		// 4、Subject:邮件主题

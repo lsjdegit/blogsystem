@@ -121,7 +121,7 @@ function getemail(){
         data:'email='+email,
         success:function(result){
             alert(result);
-            $("#code").prop("readonly",false);
+            $("#cfaode").prop("readonly",false);
             alert("邮箱验证码发送成功，请注意查收。");
         }
     })
