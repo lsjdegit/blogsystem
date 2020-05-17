@@ -20,28 +20,27 @@ public interface MessageService {
     /**
      * 查询未读条数
      * @param uid
-     * @param mtypeid
      * @return
      */
-    public int unreadCount(@Param("uid") Integer uid,@Param("mtypeid") Integer mtypeid);
+    public int unreadCount(Integer uid);
 
     /**
      * 用户一键已读
      * @param uid
      * @return
      */
-    public int readAllMessage(@Param("uid") Integer uid);
+    public int readAllMessage(Integer uid);
 
     /**
      * 用户读信息
      * @param mid
      * @return
      */
-    public int readMessage(@Param("mid") Integer mid);
+    public int readMessage(Integer mid);
 
     /**
      * 清除消息
      * @return
      */
-    public int delMessage(@Param("uid") Integer uid);
+    public int delMessage(Integer uid);
 }

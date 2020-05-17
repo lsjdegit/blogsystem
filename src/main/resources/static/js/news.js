@@ -60,23 +60,38 @@ function change(obj){
             for(var i=0;i<mlist.length;i++){
                 var message = mlist[i];
                 var msgGo = "blog";
-                var id = message.blog.bid;
-                var mtype = "评论了你的博客";
-                if(message.mtypeid == 2){
+                var id = 0;
+                var mtype = "";
+                var msgGo = "blog";
+                var mtitle = "";
+                var unread = "";
+                if(message.status == 0){
+                    unread = "<img src=\""+ctxPath+"upload/unread.png\" style='width: 40px;height: 40px;position: absolute;left: 0px;top: 0px;' />";
+                }
+                if(message.mtypeid == 1){
+                    mtype = "评论了你的博客";
+                    id = message.blog.bid;
+                    mtitle = message.blog.btitle;
+                }else if(message.mtypeid == 2){
                     mtype = "赞了你的博客";
+                    id = message.blog.bid;
+                    mtitle = message.blog.btitle;
                 }else if(message.mtypeid == 3){
                     mtype = "关注了你";
                     msgGo = "user";
                     id = message.yuser.uid;
                 }else if(message.mtypeid == 4){
                     mtype = "回复了你的评论";
+                    id = message.blog.bid;
+                    mtitle = message.blog.btitle;
                 }
-                var $message = $("<li onclick='message(\""+msgGo+"\","+id+")'>" +
+                var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
                     "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
                     "<span style='display: inline-block;margin-left: 20px;height: 80px;padding: 0px;font-size: 20px;text-decoration: underline;width: 35%;float: left;'>"+message.blog.btitle+"</span>" +
                     "<span style='display: inline-block;float: right;color: #888;font-size: 18px;margin-right: 3%;'>"+message.mtime+"</span>" +
+                    unread+
                     "</li>");
                 $(".dul").append($message);
             }
@@ -86,12 +101,57 @@ function change(obj){
 }
 
 //消息跳转方法
-function message(type,id){
+function message(type,id,mid){
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "/message/read",
+        data: "mid="+mid,
+        async:false,
+        success: function (result) {
+        }
+    })
     if(type == "blog"){
         location.href = ctxPath+"blog/view?bid="+id;
     }else if(type == "user"){
 
     }
+}
+
+//设为已读
+function read(){
+    var uid = $("input[name=loginUid]").val();
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "/message/readall",
+        data: "uid="+uid,
+        success: function (result) {
+            if(result){
+                $(".dul li img:nth-of-type(2)").remove();
+            }
+        }
+    })
+}
+
+//清除消息
+function delMsg(){
+    var uid = $("input[name=loginUid]").val();
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "/message/del",
+        data: "uid="+uid,
+        success: function (result) {
+            if(result){
+                $("#centre-paging").fadeOut(1000);
+                for(var i=0;i<5;i++){
+                    $(".dul li:eq("+i+")").animate({left:'1300px'});
+                    $(".dul li:eq("+i+")").fadeOut(200);
+                }
+                var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
+                $(".dul").append($null);
+                $(".dul li").show().animate({height:'80px',width:'100%'});
+            }
+        }
+    })
 }
 
 
@@ -135,14 +195,16 @@ $(function () {
             for(var i=0;i<mlist.length;i++){
                 var message = mlist[i];
                 var mtype = "评论了你的博客";
-                var unread = "";
+                var msgGo = "blog";
+                var id = message.blog.bid;
                 if(message.mtypeid == 4){
                     mtype = "回复了你的评论";
                 }
+                var unread = "";
                 if(message.status == 0){
-                    unread = "<img src=\""+ctxPath+"img/unread.png\" style='width: 30px;height: 30px;position: absolute;left: 0px;top: 0px;' />";
+                    unread = "<img src=\""+ctxPath+"upload/unread.png\" style='width: 40px;height: 40px;position: absolute;left: 0px;top: 0px;' />";
                 }
-                var $message = $("<li style='position: relative;'>" +
+                var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
                     "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
@@ -196,6 +258,10 @@ $(function () {
                     var id = 0;
                     var mtype = "";
                     var mtitle = "";
+                    var unread = "";
+                    if(message.status == 0){
+                        unread = "<img src=\""+ctxPath+"upload/unread.png\" style='width: 40px;height: 40px;position: absolute;left: 0px;top: 0px;' />";
+                    }
                     if(message.mtypeid == 1){
                         mtype = "评论了你的博客";
                         id = message.blog.bid;
@@ -213,12 +279,13 @@ $(function () {
                         id = message.blog.bid;
                         mtitle = message.blog.btitle;
                     }
-                    var $message = $("<li onclick='message(\""+msgGo+"\","+id+")'>" +
+                    var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
                         "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                         "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                         "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
                         "<span style='display: inline-block;margin-left: 20px;height: 80px;padding: 0px;font-size: 20px;text-decoration: underline;width: 35%;float: left;'>"+mtitle+"</span>" +
                         "<span style='display: inline-block;float: right;color: #888;font-size: 18px;margin-right: 3%;'>"+message.mtime+"</span>" +
+                        unread+
                         "</li>");
                     $(".dul").append($message);
                 }

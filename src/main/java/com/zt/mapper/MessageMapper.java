@@ -33,15 +33,10 @@ public interface MessageMapper {
     /**
      * 查询未读条数
      * @param uid
-     * @param mtypeid
      * @return
      */
-    @Select("<script>select count(1) from message where uid=#{uid} and status=0 " +
-            "<if  test=\"mtypeid!=null and mtypeid!=0\" >" +
-            "and mtypeid=#{mtypeid}" +
-            "</if>" +
-            "</script>")
-    public int unreadCount(@Param("uid") Integer uid,@Param("mtypeid") Integer mtypeid);
+    @Select("select count(1) from message where uid=#{uid} and status=0")
+    public int unreadCount(@Param("uid") Integer uid);
 
     /**
      * 用户一键已读

@@ -19,8 +19,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int unreadCount(Integer uid, Integer mtypeid) {
-        return messageMapper.unreadCount(uid,mtypeid);
+    public int unreadCount(Integer uid) {
+        return messageMapper.unreadCount(uid);
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -33,6 +34,43 @@ public class MessageController {
         listPage.setList(messageList);
         listPage.setTotalPage(totalPage);
         return listPage;
+    }
+
+    @RequestMapping("read")
+    @ResponseBody
+    public boolean readMessage(@RequestParam Integer mid){
+        int num = messageService.readMessage(mid);
+        if(num > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping("readall")
+    @ResponseBody
+    public boolean readAllMessage(@RequestParam Integer uid){
+        int num = messageService.readAllMessage(uid);
+        if(num > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping("del")
+    @ResponseBody
+    public boolean delMessage(@RequestParam Integer uid){
+        int num = messageService.delMessage(uid);
+        if(num > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping("unreadCount")
+    @ResponseBody
+    public Integer unreadCount(@RequestParam Integer uid){
+        Integer num = messageService.unreadCount(uid);
+        return num;
     }
 
 }
