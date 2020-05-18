@@ -24,7 +24,7 @@
 			<img src="img/blog.png" th:src="@{/img/blog.png}" />
 		</div>
 		<ul id="head-ul">
-			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
+			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
 		</ul>
 		<div id="head-user">
 			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">

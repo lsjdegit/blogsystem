@@ -21,25 +21,29 @@
 		
 	</script>
 	<body style="background-color: #F5F6F7;">
-		
-		<!-- Header -->
-		<div id="head">
-			<div id="head-logo">
-				<img src="img/blog.png" />
+
+	<!-- Header -->
+	<div id="head">
+		<div id="head-logo">
+			<img src="img/blog.png" th:src="@{/img/blog.png}" />
+		</div>
+		<ul id="head-ul">
+			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
+		</ul>
+		<div id="head-user">
+			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
+			<div id="head-img">
+				<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
+				<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
 			</div>
-			<ul id="head-ul">
-				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
-			</ul>
-			<div id="head-user">
-				<div id="head-img">
-					<img src="img/1.png" />
-				</div>
-				<span>用户名</span>
-				<div id="user-login">
-					<span class="btn">注销</span>
-				</div>
+			<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
+			<span th:if="${session.loginUser == null}">未登录</span>
+			<div id="user-login">
+				<span th:if="${session.loginUser != null}" class="btn">注销</span>
+				<span th:if="${session.loginUser == null}" class="btn">登录</span>
 			</div>
 		</div>
+	</div>
 
 		<div class="homemain">
 			<div class="homehead">

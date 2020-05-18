@@ -23,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private MessageMapper messageMapper;
 
+    @Transactional
     @Override
     public Comment addComment(Comment comment) {
         commentMapper.addComment(comment);

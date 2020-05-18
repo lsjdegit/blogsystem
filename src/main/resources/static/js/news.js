@@ -134,6 +134,7 @@ function read(){
         success: function (result) {
             if(result){
                 $(".dul li img:nth-of-type(2)").remove();
+                $(".msgcount").fadeOut(500);
             }
         }
     })
@@ -156,6 +157,7 @@ function delMsg(){
                 var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
                 $(".dul").append($null);
                 $(".dul li").show().animate({height:'80px',width:'100%'});
+                $(".msgcount").fadeOut(500);
             }
         }
     })
@@ -243,6 +245,7 @@ $(function () {
     //消息分类
     $(".ul1 li").click(function () {
         var mtypeid = $(this).prev().val();
+        $(".center>input[name=mtypeid]").val(mtypeid);
         $.ajax({
             type:'POST',
             url:ctxPath+"/message/select",
