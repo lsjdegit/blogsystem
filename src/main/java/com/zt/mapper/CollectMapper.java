@@ -25,6 +25,21 @@ public interface CollectMapper {
     public List<Collect> getCollectsByUser(@Param("uid") Integer uid);
 
     /**
+     * 收藏分页
+     * @param uid
+     * @param first
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from collect where uid=#{uid} LIMIT #{first},#{pageSize}")
+    @Results({
+            @Result(id=true,column="collectid",property="collectid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById"))
+    })
+    public List<Collect> getCollectsByUserfen(@Param("uid") Integer uid, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
+
+    /**
      * 收藏
      * @param collect
      * @return

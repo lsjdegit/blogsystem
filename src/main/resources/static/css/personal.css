@@ -26,7 +26,7 @@
 			float: left;
 			background-color: white;
 			width: 79.5%;
-
+			margin-bottom: 20px;
 			border:0.5px #F5F6F7 solid;
 		}
 		.dleft ul{
@@ -183,33 +183,33 @@
 		}
 
 		/*我的关注*/
-		.collect{
+		.care{
 			width: 100%;
 			padding-left: 3%;
 			padding-right: 3%;
 		}
-		.collecthead{
+		.carehead{
 			width: 100%;
 			height: 70px;
 			border-bottom: #F2F5F7 1px solid;
 			padding-top: 30px;
 			padding-left:2%;
 		}
-		.collr{
+		.carer{
 			color: #080808;
 			font-size: 19px;
 			font-weight: bold;
 			float: left;
 		}
-		.collf{
+		.caref{
 			float: right;
 			font-size: 14px;
 			color: #555555;
 		}
-		.collectall{
+		.careall{
 			width: 100%;
 		}
-		.collectli{
+		.careli{
 			width: 100%;
 			height: 100px;
 			padding-right: 3%;
@@ -217,13 +217,13 @@
 			padding-bottom: 20px;
 			border-bottom: #F2F5F7 1px solid;
 		}
-		.collectli img{
+		.careli img{
 			width: 50px;
 			height: 50px;
 			margin-right: 3%;
 			border-radius: 50%;
 		}
-		.collectli span:first-of-type{
+		.careli span:first-of-type{
 			font-size: 18px;
 			color: #000000;
 		}
@@ -351,3 +351,114 @@
             display: inline-block;
             margin-left: 2%;
         }
+		/*收藏fen*/
+		.liufen{
+			width: 100%;
+			height: 60px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-top: 20px;
+		}
+		.liupage{
+			width: 30%;
+			height: 100%;
+			margin: 0 auto;
+
+		}
+		.liupage li{
+			display: inline-block;
+			width: 20%;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			border:1px #F2F5F7 solid;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		.liupage li:hover{
+			border: #00BFF3 1px solid;
+		}
+		/*粉丝fen*/
+		.fansfen{
+			width: 100%;
+			height: 60px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-top: 20px;
+		}
+		.fanspage{
+			width: 30%;
+			height: 100%;
+			margin: 0 auto;
+
+		}
+		.fanspage li{
+			display: inline-block;
+			width: 20%;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			border:1px #F2F5F7 solid;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		.fanspage li:hover{
+			border: #00BFF3 1px solid;
+		}
+		/*carefen*/
+		.carefen{
+			width: 100%;
+			height: 60px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-top: 20px;
+		}
+		.carepage{
+			width: 30%;
+			height: 100%;
+			margin: 0 auto;
+
+		}
+		.carepage li{
+			display: inline-block;
+			width: 20%;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			border:1px #F2F5F7 solid;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		.carepage li:hover{
+			border: #00BFF3 1px solid;
+		}
+
+		/*浏览fen*/
+		.browsefen{
+			width: 100%;
+			height: 60px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding-top: 20px;
+		}
+		.browsepage{
+			width: 30%;
+			height: 100%;
+			margin: 0 auto;
+
+		}
+		.browsepage li{
+			display: inline-block;
+			width: 20%;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			border:1px #F2F5F7 solid;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		.browsepage li:hover{
+			border: #00BFF3 1px solid;
+		}
+
+

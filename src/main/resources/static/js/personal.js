@@ -1,3 +1,86 @@
+
+function change(coll){
+	var totalPage = $("#colltotalPage").val();
+	var pageIndex = $("#collcurrentPage").val();
+	var uid=$("input[name=loginUid]").val();
+	var msg=$(coll).text();
+	if(msg=="首页"){
+		pageIndex = 1;
+		alert(pageIndex);
+	}
+	if(msg=="上"){
+		if(pageIndex==1){
+			pageIndex==1;
+		}else{
+			pageIndex-- ;
+		}
+
+		alert(pageIndex);
+	}
+	if(msg=="下"){
+		if(pageIndex==totalPage){
+			pageIndex=totalPage;
+		}else{
+			pageIndex++;
+		}
+		alert(pageIndex);
+	}
+	if(msg=="尾页"){
+		pageIndex=totalPage;
+		alert(pageIndex);
+	}
+	$.ajax({
+		type:'POST',
+		url:ctxPath+"/collect/selectcollects",
+		contentType:"application/json",
+		data:JSON.stringify({"uid":uid,"pageIndex":pageIndex}),
+		success:function(result){
+			var collects=result.list; //收藏的博客关系集合
+			var unm=result.list.length;
+			$(".boti").remove();
+			for(var i=0;i<collects.length;i++){
+				var blog = collects[i].blog;
+				var $blogdan = $("<div class=\"boti\">" +
+					"<p class=\"titlebo\">"+blog.btitle+"</p>" +
+					"<input type=\"hidden\" id=\"collbid\" value="+blog.bid+">"+
+					"<button class=\"qusc\" onclick=\"qusou(this)\">取消收藏"+"</button>" +
+					"<div class=\"zhaiyao\">" +
+					"<p>"+blog.babstract+"</p>" +
+					"</div>" +
+					"<div class=\"author\">" +
+					"<span>"+blog.user.uname+"</span>" +
+					"<span>|" +
+					"</span>" +
+					"<span>"+blog.bcreatetime+"</span>" +
+					"</div>" +
+					"</div>");
+				$(".scboq").append($blogdan);
+
+			}
+			$("#collcurrentPage").val(pageIndex);
+			alert($("#collcurrentPage").val());
+		}
+	});
+
+}
+
+function qusou(obj){
+	var bid=$(obj).prev().val();
+	var uid=$("input[name=loginUid]").val();
+	alert(bid+" "+uid);
+	$.ajax({
+		type:'POST',
+		url:ctxPath+"/collect/delcollect",
+		contentType:"application/json",
+		data:JSON.stringify({"uid":uid,"bid":bid}),
+		success:function(result){
+
+			$(obj).parent().remove();
+		}
+	})
+}
+
+
 $(function() {
 	//第一次进入所显示的内容
 	$.ajax({
@@ -147,26 +230,39 @@ $(function() {
 		});
 	}
 
-
+   //我的收藏 $(".rhead,.scboq").hide();
 	$(".ul1 li:eq(1)").click(function() {
 		$(".imghead,.p1,.xx").hide();
+		$(".care").hide();
+		$(".fans").hide();
+
+		var uid=$("input[name=loginUid]").val();
+		var pageIndex = 1;
 
 		$.ajax({
 			type:'POST',
-			url:ctxPath+"/user/pansonalselect",
+			url:ctxPath+"/collect/selectcollects",
 			contentType:"application/json",
-			//data:JSON.stringify("uid",3),
+			data:JSON.stringify({"uid":uid,"pageIndex":pageIndex}),
 			success:function(result){
-				var fanss=result.fans.length; //粉丝数
-				var caress=result.cares.length; //关注量
-				var collects=result.collects; //收藏的博客关系集合
-				var unm=result.collects.length;
-				//alert(bolgs);
+				var collects=result.list; //收藏的博客关系集合
+				var unm=result.list.length;
+				var tatalpage =result.totalPage;
 				alert(unm);
+				var $liufen=$("<div class=\"liufen\">"+
+                    "<ul class=\"liupage\">"+
+                    "<li class=\"one\" onclick=\"change(this)\">"+"首页</li>"+
+                    " <li class=\"prev\" onclick=\"change(this)\">上"+"</li>"+
+                    "<li class=\"next\" onclick=\"change(this)\">下"+"</li>"+
+                    "<li class=\"next\" onclick=\"change(this)\">尾页"+"</li>"+
+                    "</ul>"+
+                    "<input type=\"hidden\" id=\"colltotalPage\" value="+tatalpage+">"+
+                    "<input type=\"hidden\" id=\"collcurrentPage\" value=\"1\"/>"+
+                    "</div>");
+
+
 			    var $rhead=$("<div class=\"rhead\">"+
-			    	"<p>共"+ "<span>"+unm+"</span>"+ "条 内 容</p>"+
-					"<p>"+"|</p>"+
-					"<p class=\"quanshan\">"+"全 选</p>"+
+			    	"<p>共"+ "<span>"+tatalpage+"</span>"+ "页</p>"+
 					"</div>");
 			    $(".dright").append($rhead); //加头
 			    var $scboq=$("<div class=\"scboq\">"+
@@ -176,7 +272,8 @@ $(function() {
 					var blog = collects[i].blog;
 					var $blogdan = $("<div class=\"boti\">" +
 						"<p class=\"titlebo\">"+blog.btitle+"</p>" +
-						"<button class=\"qusc\">取消收藏"+"</button>" +
+						"<input type=\"hidden\" id=\"collbid\" value="+blog.bid+">"+
+						"<button class=\"qusc\" onclick=\"qusou(this)\">取消收藏"+"</button>" +
 						"<div class=\"zhaiyao\">" +
 						"<p>"+blog.babstract+"</p>" +
 						"</div>" +
@@ -190,14 +287,22 @@ $(function() {
 					$(".scboq").append($blogdan);
 
 	            }
+				if(tatalpage>1){
+					$(".dright").append($liufen); //加头
+				}
+
 		    }
         });
+
 	})
 
 
+
+    //我的粉丝
 	$(".ul1 li:eq(2)").click(function() {
 		$(".imghead,.p1,.xx").hide();
 		$(".rhead,.scboq").hide();
+		$(".core").hide();
 		$.ajax({
 			type:'POST',
 			url:ctxPath+"/user/pansonalselect",
@@ -206,73 +311,92 @@ $(function() {
 			success:function(result) {
 				var fans=result.fans;// 粉丝集合
 				var fanss = result.fans.length; //粉丝数
-				var caress = result.cares.length; //关注量
-				var collects = result.collects; //收藏的博客关系集合
-				var unm = result.collects.length;
 				//alert(bolgs);
 				alert(fanss);
-				var $collect=$("<div class=\"collect\">"+
+				var $fans=$("<div class=\"fans\">"+
 					"</div>");
-				$(".dright").append($collect);
-				var $collecthead=$("<div class=\"collecthead\">"+
-					"<p class=\"collr\">我的粉丝"+"</p>"+
-					"<p class=\"collf\">"+"<span>"+fanss+"</span>"+"人</p>"+
+				$(".dright").append($fans);
+				var $fanshead=$("<div class=\"collecthead\">"+
+					"<p class=\"fansr\">我的粉丝"+"</p>"+
+					"<p class=\"fansf\">"+"<span>"+fanss+"</span>"+"人</p>"+
 					"</div>");
-				$(".collect").append($collecthead);
-				var $collectall=$("<div class=\"collectall\">"+
+				$(".fans").append($fanshead);
+				var $fansall=$("<div class=\"fansall\">"+
 					"</div>");
-				$(".collect").append($collectall);
+				$(".collect").append($fansall);
 				for(var i=0;i<fans.length;i++){
 					var user=fans[i];
-					var $collectli=$("<div class=\"collectli\">"+
+					var $fansli=$("<div class=\"fansli\">"+
 						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
 						"<span>"+user.uname+"</span>"+
 						"<span class=\"quguan\">"+"关注</span>"+
 						"</div>");
-					$(".collectall").append($collectli);
+					$(".fansall").append($fansli);
 
 				}
+				/*var $fansfen=$("<div class=\"fansfen\">"+
+					"<ul class=\"fanspage\">"+
+					"<li class=\"one\">"+"首页</li>"+
+					" <li class=\"prev\">上"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"</ul>"+
+					"<input type=\"hidden\" id=\"totalPage\" value=\"1\"/>"+
+					"<input type=\"hidden\" id=\"currentPage\" value=\"0\"/>"+
+					"</div>");
+				$(".fans").append($fanshead);*/
 
 			}
 		})
 	})
-
+    //我的关注
 	$(".ul1 li:eq(3)").click(function() {
 		$(".imghead,.p1,.xx").hide();
 		$(".rhead,.scboq").hide();
-		$(".collect").hide();
+		$(".fans").hide();
 		$.ajax({
 			type:'POST',
 			url:ctxPath+"/user/pansonalselect",
 			contentType:"application/json",
 			//data:JSON.stringify("uid",3),
 			success:function(result) {
-				var fans=result.cares;//关注集合
+				var cares=result.cares;//关注集合
 				var caress = result.cares.length; //关注量
 				var unm = result.collects.length;
 				//alert(bolgs);
 				alert(caress);
-				var $collect=$("<div class=\"collect\">"+
+				var $care=$("<div class=\"care\">"+
 					"</div>");
-				$(".dright").append($collect);
-				var $collecthead=$("<div class=\"collecthead\">"+
-					"<p class=\"collr\">我的关注"+"</p>"+
-					"<p class=\"collf\">"+"<span>"+caress+"</span>"+"人</p>"+
+				$(".dright").append($care);
+				var $carehead=$("<div class=\"carehead\">"+
+					"<p class=\"carer\">我的关注"+"</p>"+
+					"<p class=\"caref\">"+"<span>"+caress+"</span>"+"人</p>"+
 					"</div>");
-				$(".collect").append($collecthead);
-				var $collectall=$("<div class=\"collectall\">"+
+				$(".care").append($carehead);
+				var $careall=$("<div class=\"careall\">"+
 					"</div>");
-				$(".collect").append($collectall);
-				for(var i=0;i<fans.length;i++){
-					var user=fans[i];
-					var $collectli=$("<div class=\"collectli\">"+
+				$(".care").append($careall);
+				for(var i=0;i<cares.length;i++){
+					var user=cares[i];
+					var $careli=$("<div class=\"careli\">"+
 						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
 						"<span>"+user.uname+"</span>"+
 						"<span class=\"quguan\">"+"取消关注</span>"+
 						"</div>");
-					$(".collectall").append($collectli);
+					$(".careall").append($careli);
 
 				}
+				/*var $carefen=$("<div class=\"carefen\">"+
+					"<ul class=\"carepage\">"+
+					"<li class=\"one\">"+"首页</li>"+
+					" <li class=\"prev\">上"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"</ul>"+
+					"<input type=\"hidden\" id=\"caretotalPage\" value=\"1\"/>"+
+					"<input type=\"hidden\" id=\"carecurrentPage\" value=\"0\"/>"+
+					"</div>");
+				$(".care").append($fanshead);*/
 
 			}
 		})
@@ -285,18 +409,23 @@ $(function() {
 		$(".collect").hide();
 		$(".fans").hide();
 
+		alert("lll");
+
+		var uid=$("input[name=loginUid]").val();
+		var pageIndex = 1;
 		$.ajax({
 			type:'POST',
-			url:ctxPath+"/user/pansonalselect",
+			url:ctxPath+"/browse/selectbrowse",
 			contentType:"application/json",
-			//data:JSON.stringify("uid",3),
+			data:JSON.stringify({"uid":uid,"pageIndex":pageIndex}),
 			success:function(result){
-				var browses=result.browses.length; //浏览数
-				var browse=result.browses; //浏览集合
+				var browses=result.list.length; //浏览数
+				var browse=result.list; //浏览集合
+				var tatalpage =result.totalPage; // 总页数
 				//alert(bolgs);
 				alert(browses);
 				var $browsehead=$("<div class=\"browsehead\">"+
-					"<p>共"+ "<span>"+unm+"</span>"+ "条 内 容</p>"+
+					"<p>共"+ "<span>"+browses+"</span>"+ "条 内 容</p>"+
 					"<p>"+"|</p>"+
 					"<p class=\"quanshan\">"+"全 选</p>"+
 					"</div>");
@@ -309,7 +438,7 @@ $(function() {
 					var blog = browse[i].blog;
 					var $blogdan = $("<div class=\"browseboti\">" +
 						"<p class=\"titlebo\">"+blog.btitle+"</p>" +
-						"<button class=\"browsequsc\">取消收藏"+"</button>" +
+						"<button class=\"browsequsc\">删除记录"+"</button>" +
 						"<div class=\"browsezhaiyao\">" +
 						"<p>"+blog.babstract+"</p>" +
 						"</div>" +
@@ -318,8 +447,18 @@ $(function() {
 						"</div>" +
 						"</div>");
 					$(".browsescboq").append($blogdan);
-
 				}
+				var $browsefen=$("<div class=\"browsefen\">"+
+					"<ul class=\"browsepage\">"+
+					"<li class=\"one\">"+"首页</li>"+
+					" <li class=\"prev\">上"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"<li class=\"next\">下"+"</li>"+
+					"</ul>"+
+					"<input type=\"hidden\" id=\"browsecaretotalPage\" value=\"1\"/>"+
+					"<input type=\"hidden\" id=\"browsecarecurrentPage\" value=\"0\"/>"+
+					"</div>");
+				$(".care").append($browsefen);
 			}
 		});
 	})

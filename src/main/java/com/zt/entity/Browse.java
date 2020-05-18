@@ -23,4 +23,6 @@ public class Browse implements Serializable {
     private String browsetime;
     @JsonBackReference(value = "blog")
     private Blog blog;
+    @JsonBackReference(value = "user")
+    private User user;
 }
