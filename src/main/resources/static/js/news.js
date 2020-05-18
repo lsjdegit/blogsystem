@@ -150,13 +150,12 @@ function delMsg(){
         success: function (result) {
             if(result){
                 $("#centre-paging").fadeOut(1000);
-                for(var i=0;i<5;i++){
-                    $(".dul li:eq("+i+")").animate({left:'1300px'});
-                    $(".dul li:eq("+i+")").fadeOut(200);
-                }
-                var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
-                $(".dul").append($null);
-                $(".dul li").show().animate({height:'80px',width:'100%'});
+                $(".dul li").animate({left:'1300px',},function () {
+                    $(".dul li").remove();
+                    var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
+                    $(".dul").append($null);
+                    $(".dul li").show().animate({height:'80px',width:'100%'});
+                });
                 $(".msgcount").fadeOut(500);
             }
         }

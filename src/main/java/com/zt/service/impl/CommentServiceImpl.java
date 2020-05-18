@@ -40,7 +40,9 @@ public class CommentServiceImpl implements CommentService {
             Comment comm = commentMapper.getCommentById(comment.getParentid());
             message.setUid(comm.getUser().getUid());
         }
-        messageMapper.addMessage(message);
+        if(message.getYuid() != message.getUid()){
+            messageMapper.addMessage(message);
+        }
         return commentMapper.getCommentById(comment.getCid());
     }
 

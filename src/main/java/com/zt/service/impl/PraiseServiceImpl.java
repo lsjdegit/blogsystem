@@ -31,7 +31,7 @@ public class PraiseServiceImpl implements PraiseService {
         message.setYuid(praise.getUid());
         message.setUid(uid);
         int isre = messageMapper.reMessage(message);
-        if(isre == 0){
+        if(isre == 0 && message.getYuid() != message.getUid()){
             messageMapper.addMessage(message);
         }
         return num;
