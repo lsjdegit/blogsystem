@@ -57,6 +57,13 @@ function change(obj){
             $(".dul li").remove();
             var mlist = result.list;
             var totalPage = result.totalPage;
+            if(mlist.length == 0){
+                var $null = $("<li><h3 style='color: #888;text-align: center'>暂无信息！</h3></li>");
+                $(".dul").append($null);
+                $(".dul li").show().animate({height:'80px',width:'100%'});
+                $("#centre-paging").fadeOut(1000);
+                return ;
+            }
             for(var i=0;i<mlist.length;i++){
                 var message = mlist[i];
                 var msgGo = "blog";

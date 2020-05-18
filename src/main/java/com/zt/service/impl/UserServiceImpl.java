@@ -105,4 +105,9 @@ public class UserServiceImpl implements UserService {
     public int zhuanjia(User user) {
         return userMapper.zhuanjia(user);
     }
+
+    @Override
+    public Integer getBalance(Integer uid) {
+        return userMapper.getBalance(uid);
+    }
 }

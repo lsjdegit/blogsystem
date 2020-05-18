@@ -127,6 +127,23 @@ $(function () {
         }
     });
 
+    //评论获取焦点
+    $("#ult li:eq(1)").click(function () {
+        $(".pinglun form input[type=text]").focus();
+    })
+
+    //打赏验证
+    $("#ult li:eq(3)").click(function () {
+        var uid = $("input[name=loginUid]").val();
+        if(uid == 0){
+            $("#myModal").remove();
+            if(confirm("你还没登录，是否去登录？")){
+                location.href = ctxPath+"login";
+            }
+            return ;
+        }
+    })
+
     //收藏取消收藏
     $("#ult li:eq(2)").click(function () {
         var uid = $("input[name=loginUid]").val();
@@ -246,6 +263,56 @@ $(function () {
                 }
             }
         })
+    });
+    
+    //打赏选择金额
+    $(".moneyul li span").click(function () {
+        $(".moneyul li span").css({"color": "#333","border-color": "#ccc"});
+        $(this).css({"color": "#00BFF3","border-color": "#00BFF3"});
+        $("input[name=money]").val($(this).html().substring(0,$(this).html().length-1));
+        $(".msg").hide();
+        $(".modal-footer button:eq(1)").prop("disabled",false);
+        var uid = $("input[name=loginUid]").val();
+        $.ajax({
+            type: 'POST',
+            url: ctxPath + "/user/getblance",
+            data: "uid=" + uid,
+            async: false,
+            success: function (result) {
+                if($("input[name=money]").val()>result){
+                    $(".msg").show();
+                    $(".modal-footer button:eq(1)").prop("disabled",true);
+                }
+            }
+        })
+    });
+    $(".moneyul li:eq(0) span").click();
+
+    //充值
+    $(".modal-footer button:eq(0)").click(function () {
+        location.href = ctxPath+"personal";
+    });
+
+    //打赏
+    $(".modal-footer button:eq(1)").click(function () {
+        if(confirm("打赏此博客"+$("input[name=money]").val()+"元?")){
+            var uid = $("input[name=loginUid]").val();
+            var bid = $("input[name=bid]").val();
+            var money = $("input[name=money]").val();
+            $.ajax({
+                type: 'POST',
+                url: ctxPath + "/excep/add",
+                contentType: "application/json",
+                data: JSON.stringify({"bid": bid, "uid": uid, "money": money}),
+                async: false,
+                success: function (result) {
+                    if(result){
+                        alert("打赏成功！");
+                        $(".modal-footer button:eq(2)").click();
+                    }
+                }
+            })
+        }
     });
 
 })

@@ -22,6 +22,8 @@ public class BlogServiceImpl implements BlogService {
     private CollectMapper collectMapper;
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private BrowseMapper browseMapper;
 
     @Override
     public List<Blog> selectBlog(Integer btid, Integer uid, String search, Integer first, Integer pageSize) {
@@ -65,6 +67,11 @@ public class BlogServiceImpl implements BlogService {
         collectMapper.delCollectByBlog(bid);
         commentMapper.delCommByBlog(bid);
         return blogMapper.delBlog(bid);
+    }
+
+    @Override
+    public int addBnumber(Integer bid) {
+        return blogMapper.addBnumber(bid);
     }
 
 }

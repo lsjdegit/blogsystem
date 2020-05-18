@@ -42,21 +42,12 @@
 		
 		
 		<div class="bolg1" style="margin-top: 20px;">
-			<div class="bolgf">
-				<div class="bolgf1">
-					<img src="img/mybolg.png" th:src="@{/img/mybolg.png}"/>
-				</div>
-				<ul>
-					<li>博客管理</li>
-					<li>博客打赏</li>
-				</ul>
-			</div>
 			<div class="bolgr">
 				<input type="hidden" name="bstatusid" value="1"/>
 				<ul class="ulsh">
-					<li value="1">已审核(<span>1</span>)</li>
-					<li value="0">待审核(<span>0</span>)</li>
-					<li value="2">未通过(<span>0</span>)</li>
+					<li value="1">已审核</li>
+					<li value="0">待审核</li>
+					<li value="2">未通过</li>
 				</ul>
 				
 				<div class="bolgrs">
@@ -85,9 +76,6 @@
 					<input type="hidden" id="currentPage" value="1"/>
 				</div>
 			</div>
-			<div class="bolgr2">
-
-			</div>
 		</div>
 		
 		<div id="foot" style="margin-top: 20px;">
@@ -96,7 +84,36 @@
 				<span><i class="iconfont icon-weixin"></i>Wechat:<a href="#">17687974843</a></span>
 				<span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
 			</p>
-		</div> 
+		</div>
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<p id="myModalLabel" style="text-align: center;font-size: 16px;">打赏详情</p>
+					</div>
+					<div class="modal-body">
+						<ul class="excepul">
+							<li>
+								<h3>暂无打赏</h3>
+							</li>
+							<!--<li>-->
+								<!--<img th:src="@{/upload/zshead.jpg}">-->
+								<!--<span>zs</span>-->
+								<!--<span>打赏了</span>-->
+								<!--<span>5</span>-->
+								<!--<span>元</span>-->
+								<!--<span>2020-05-02 12:30:00</span>-->
+							<!--</li>-->
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<span style="display: inline-block;margin-right: 5%;font-size: 18px;font-weight: bold;">总计：<span class="totalMoney" style="color: red;font-size: 25px;margin-right: 5px">0</span>元</span>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 	<style type="text/css">
 		.iconfont{

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,8 +55,30 @@ public class BlogController {
         return listPage;
     }
 
+    /**
+     * 查看博客
+     * @param bid
+     * @param m
+     * @return
+     */
     @RequestMapping("view")
-    public String blogview(Integer bid, Model m){
+    public String blogview(Integer bid, Model m, HttpSession session){
+        List<Integer> bids = (List<Integer>) session.getAttribute("bids");
+        if(bids == null){
+            return "login";
+        }
+        boolean flag = true;
+        for (int i=0;i<bids.size();i++) {
+            if(bids.get(i) == bid){
+                flag = false;
+                break;
+            }
+        }
+        if(flag){
+            blogService.addBnumber(bid);
+            bids.add(bid);
+            session.setAttribute("bids",bids);
+        }
         Blog blog = blogService.getBlogById(bid);
         m.addAttribute("blog",blog);
         return "blog";

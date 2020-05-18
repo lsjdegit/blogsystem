@@ -1,7 +1,6 @@
 package com.zt.service;
 
 import com.zt.entity.User;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -76,4 +75,11 @@ public interface UserService {
      * @return
      */
     public int zhuanjia(User user);
+
+    /**
+     * 查询用户余额
+     * @param uid
+     * @return
+     */
+    public Integer getBalance(Integer uid);
 }

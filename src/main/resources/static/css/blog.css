@@ -184,3 +184,40 @@ a{
     margin-top: 20px;
     margin-left: 30px;
 }
+
+.moneyul,.moneyul li{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.moneyul{
+    width: 100%;
+    height: 200px;
+}
+
+.moneyul li{
+    display: inline-block;
+    width: 32%;
+    height: 100px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+}
+
+.moneyul li span{
+    color: #333;
+    line-height: 60px;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: 1px #ccc solid;
+    border-radius: 5px;
+    letter-spacing: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.moneyul li span:hover{
+    color: #00BFF3;
+    border-color: #00BFF3;
+}

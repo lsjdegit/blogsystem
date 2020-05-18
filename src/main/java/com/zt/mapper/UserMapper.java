@@ -121,4 +121,22 @@ public interface UserMapper {
      */
    @Update("update user set isexpert=#{isexpert} where uid=#{uid}")
     public int zhuanjia(User user);
+
+
+    /**
+     * 根据id获得用户 打赏调用
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid=#{uid}")
+    public User getUserByExcep(@Param("uid") Integer uid);
+
+    /**
+     * 查询用户余额
+     * @param uid
+     * @return
+     */
+    @Select("select balance from user where uid=#{uid}")
+    public Integer getBalance(@Param("uid") Integer uid);
+
 }

@@ -28,7 +28,11 @@ public interface BlogMapper {
      * @param uid
      * @return
      */
-    @Select("select * from blog where uid=#{uid} ORDER BY bid DESC")
+    @Select("select * from blog where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
+    })
     public List<Blog> getBlogByUser(@Param("uid") Integer uid);
 
     /**
@@ -155,4 +159,12 @@ public interface BlogMapper {
      */
     @Delete("delete from blog where bid=#{bid}")
     public int delBlog(@Param("bid") Integer bid);
+
+    /**
+     * 增加访问量
+     * @param bid
+     * @return
+     */
+    @Update("update blog set bnumber=bnumber+1 where bid=#{bid}")
+    public int addBnumber(@Param("bid") Integer bid);
 }

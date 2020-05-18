@@ -70,27 +70,14 @@
 
 .bolgr {
     float: left;
-    width: 77%;
+    width: 90%;
     height: 617px;
-    margin-left: 2%;
+    margin: 0px 5%;
     background-color: white;
     padding-top: 20px;
     padding-left: 5%;
     padding-right: 5%;
     border: 1px #e3e3e3 solid;
-}
-
-.bolgr2 {
-    float: left;
-    width: 77%;
-    margin-left: 2%;
-    height: 650px;
-    background-color: white;
-    padding-top: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-    border: 1px #e3e3e3 solid;
-    display: none;
 }
 
 .ulsh {
@@ -110,11 +97,12 @@
     height: 50px;
     line-height: 50px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
     margin-right: 30px;
     color: #8C8C8C;
+    width: 15%;
 }
 
 .bolgrs {
@@ -210,7 +198,7 @@
     color: #999999;
 }
 
-.ybyb div:last-of-type span:nth-of-type(1),.ybyb div:last-of-type span:nth-of-type(2) {
+.ybyb div:last-of-type span {
     color: #00BFF3;
     cursor: pointer;
 }
@@ -248,4 +236,70 @@
     height: 35px;
     border: 1px solid #949494;
     background-color: white;
+}
+
+.excepul,.excepul li{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.excepul{
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.excepul li{
+    height: 60px;
+    border-bottom: 2px #ccc solid;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.excepul li image{
+    height: 40px;
+    width: 40px;
+    border: 1px #e3e3e3 solid;
+    border-radius: 20px;
+    float: left;
+}
+
+.excepul li span{
+    display: inline-block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.excepul li span{
+    display: inline-block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.excepul li span:last-of-type{
+    display: inline-block;
+    float: right;
+    color: #999;
+}
+
+.excepul li h3{
+    width: 100%;
+    height: 40px;
+    color: #888;
+    text-align: center;
+}
+
+.excepul li:last-of-type{
+    height: 50px;
+    border-bottom: none;
 }
