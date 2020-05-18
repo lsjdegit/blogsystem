@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-//@ServletComponentScan("com.zt.service")
 @MapperScan(basePackages = "com.zt.mapper")
 public class BlogsystemApplication {
 

@@ -46,10 +46,25 @@ public class UserController {
      */
     @RequestMapping("login")
     @ResponseBody
-    public User loginUser(User user, HttpSession session){
+    public String loginUser(User user, HttpSession session,String yanzhen){
+       String code=(String)session.getAttribute("VerifyCode");
+        System.out.println("随机验证码:"+code);
+        System.out.println("用户输入验证码:"+yanzhen);
         user=userService.Login(user);
         session.setAttribute("loginUser",user);
-        return user;
+        if(user!=null) {//用户名和密码正觉
+            if (code.toLowerCase().equals(yanzhen.toLowerCase())) {//验证码输入咸亨却
+                if("admin".equals(user.getUname())) {
+                    return "admin";
+                }else{
+                    return "index";
+                }
+            }else{//验证码输入正确
+                    return "error";
+            }
+        }else{//用户名或密码错误
+            return "cuo";
+        }
     }
 
     /**

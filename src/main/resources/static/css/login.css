@@ -60,4 +60,9 @@
     background-position: 1% 50%;
     background-repeat: no-repeat;
     text-indent: 2em;
+    float:left;
+}
+#verifyimg{
+    float:left;
+    margin: 3% 5%;
 }

@@ -11,6 +11,9 @@
 			<script type="text/javascript" th:src="@{/js/jquery-easyui-1.2.6/jquery-1.7.2.min.js}"></script>
 			<script type="text/javascript" th:src="@{/js/jquery-easyui-1.2.6/jquery.easyui.min.js}"></script>
 			<script type="text/javascript" th:src="@{/js/login.js}"></script>
+		<script type="text/javascript" th:inline="javascript">
+			var ctxPath = [[@{/}]];
+		</script>
 		<title></title>
 	</head>
 	<body>
@@ -29,9 +32,9 @@
 				   </div>
 				   <div class="divyz">
 						<p style="font-size: 18px;">验证码</p>
-						<input type="text" class="form-control" id="yanzheng" placeholder="请输入验证码" required="required"style="width: 160px; margin-top: 10px;">
+						<input type="text" class="form-control" id="yanzheng" placeholder="请输入验证码" required="required"style="width: 200px; margin-top: 10px;">
+					   <img onclick="getvCode()" id="verifyimg" th:src="@{/verifyCode}">
 
-					   <img src="validateCodeServlet">
 				   </div>
 				    <button type="button" class="btn btn-info" id="login" title="点击此按钮登录账号">登录</button>
 				   <div class="mo">
