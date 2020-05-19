@@ -98,4 +98,11 @@ public interface UserService {
      * @return
      */
     public int getbnumber(Integer uid);
+
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
+    public int updatepass(User user);
 }

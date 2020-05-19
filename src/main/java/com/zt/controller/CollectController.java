@@ -60,13 +60,32 @@ public class CollectController {
 
     @RequestMapping("delcollect")
     @ResponseBody
-    public boolean delcollect(@RequestBody Collect collect){
-        System.out.println(collect.getBid()+" "+collect.getUid());
-        int unm=collectService.delCollect(collect);
-        if(unm>0){
-            return true;
+    public ListPage delcollect(@RequestBody BlogParameter blogParameter){
+        System.out.println("要取消的收藏博客"+blogParameter.getBid()+"用户id "+blogParameter.getUid());
+        Collect ct = new Collect();
+        ct.setBid(blogParameter.getBid());
+        ct.setUid(blogParameter.getUid());
+        int unm=collectService.delCollect(ct);
+        ListPage coll=new ListPage();
+        System.out.println(blogParameter.getPageIndex());
+        Integer first = pageSize*(blogParameter.getPageIndex()-1);
+        System.out.println(first);
+        List co=collectService.getCollectsByUserfen(blogParameter.getUid(),first,pageSize);
+        if(blogParameter.getPageIndex()==1){
+            co=collectService.getCollectsByUserfen(blogParameter.getUid(),first,pageSize);
+        }else{
+            if(co.size()==0){
+                first = pageSize*(blogParameter.getPageIndex()-2);
+                co=collectService.getCollectsByUserfen(blogParameter.getUid(),first,pageSize);
+            }
         }
-        return false;
+        System.out.println(co.size());
+        coll.setList(co);
+        int tatal=collectService.getCollectsByUser(blogParameter.getUid()).size();
+        int tatalpage=tatal%pageSize==0?tatal/pageSize:tatal/pageSize+1;
+        coll.setTotalPage(tatalpage);
+        return coll;
+
     }
 
 }

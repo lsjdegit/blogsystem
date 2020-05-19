@@ -108,6 +108,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updatepass(User user) {
+        return userMapper.updatepass(user);
+    }
+
+    @Override
     public Integer getBalance(Integer uid) {
         return userMapper.getBalance(uid);
     }

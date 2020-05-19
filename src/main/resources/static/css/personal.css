@@ -148,7 +148,7 @@
 		}
 		.scboq{
 			width: 100%;
-			height: 500px;
+			height: 550px;
 			padding-left: 5%;
 			padding-right: 5%;
 		}
@@ -238,7 +238,12 @@
 			border:1px #F2F5F7 solid;
 			border-radius: 3px;
 			margin-top: 15px;
+            cursor: pointer;
 		}
+        .quguan:hover{
+            color: white;
+            background-color:#1B9AF7;
+        }
 
         /*我的粉丝*/
         .fans{
@@ -316,11 +321,14 @@
             font-size: 14px;
             margin-right: 5%;
         }
+		.quanshan{
+			cursor: pointer;
+		}
         .browsescboq{
             width: 100%;
-            height: 500px;
             padding-left: 5%;
             padding-right: 5%;
+			padding-bottom: 30px;
         }
         .browseboti{
             height: 120px;
@@ -459,6 +467,48 @@
 		}
 		.browsepage li:hover{
 			border: #00BFF3 1px solid;
+		}
+
+        h3{
+            width: 100%;
+            height: 100px;
+            text-align: center;
+            color: #888;
+            margin-top: 10px;
+
+        }
+
+
+		/*密码*/
+		.mima{
+			width: 100%;
+			padding-left: 5%;
+			padding-right: 3%;
+			height: 500px;
+			margin-top:20px;
+		}
+		.mima input{
+			display:inline-block;
+			height:40px;
+			width: 50%;
+			border:1px solid #00BFF3;
+			border-radius: 3px;
+			margin-top: 10px;
+		}
+		.mima input:last-of-type{
+			display:inline-block;
+			height:40px;
+			width: 10%;
+			border:1px solid #00BFF3;
+			border-radius: 3px;
+			margin-top: 20px;
+			margin-left: 50%;
+		}
+		.mima span{
+			display: inline-block;
+			font-size: 14px;
+			color: red;
+			margin-left: 1%;
 		}
 
 

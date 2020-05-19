@@ -10,4 +10,6 @@ public interface BrowseService {
     public List<Browse> getBrowseByUser(Integer uid,Integer first,Integer pageSize);
 
     public List<Browse> getBrowseByUserAll(Integer uid);
+
+    public int delall(Integer uid);
 }

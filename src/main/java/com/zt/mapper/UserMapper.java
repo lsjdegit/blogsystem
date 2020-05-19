@@ -138,6 +138,12 @@ public interface UserMapper {
      */
     @Select("select balance from user where uid=#{uid}")
     public Integer getBalance(@Param("uid") Integer uid);
-
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
+    @Update("update user set upassword=#{upassword} where uid=#{uid}")
+    public int updatepass(User user);
 
 }

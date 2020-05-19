@@ -8,7 +8,7 @@ import com.zt.entity.ListPage;
 import com.zt.entity.User;
 import com.zt.entity.*;
 import com.zt.service.UserService;
-
+import com.zt.service.UurelevanceService;
 import com.zt.util.JavaMailUtil;
 import com.zt.util.RandomUtil;
 import org.apache.commons.io.FileUtils;
@@ -41,6 +41,8 @@ import java.util.*;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UurelevanceService uurelevanceService;
     private Integer pageSize = 4;
 
     /**
@@ -74,7 +76,7 @@ public class UserController {
      */
     @RequestMapping("logout")
     @ResponseBody
-    public void logoutUser(HttpSession session) {
+    public void logoutUser(HttpSession session){
         session.removeAttribute("loginUser");
     }
 
@@ -82,11 +84,11 @@ public class UserController {
      * 用户注册
      */
     @RequestMapping("register")
-    public String registerUser(User user, HttpServletRequest request) throws IOException {
+    public String registerUser(User user,HttpServletRequest request) throws IOException {
         System.out.println("aaa");
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
         MultipartFile file = req.getFile("uimages");
-        String path = request.getRealPath("/upload") + "/" + user.getUname() + ".jpg";
+        String path = request.getRealPath("/upload")+"/"+user.getUname()+".jpg";
         File destFile = new File(path);
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
@@ -94,13 +96,13 @@ public class UserController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        user.setUimage(user.getUname() + ".jpg");
-        int reg = userService.Register(user);
-        if (reg > 0) {
-            return "login";
-        } else {
-            return "register";
-        }
+        user.setUimage(user.getUname()+".jpg");
+        int reg= userService.Register(user);
+        if(reg>0){
+           return "login";
+       }else{
+           return "register";
+       }
     }
 
     /**
@@ -109,31 +111,31 @@ public class UserController {
      * @return
      */
     @RequestMapping("expert")
-    public String expertUser(Model m) {
+    public String expertUser(Model m){
         List<User> userList = userService.expertUser();
         List<User> eUserList = new ArrayList<>();
-        do {
+        do{
             for (User user : userList) {
-                int i = Math.random() > 0.5 ? 1 : 0;
-                if (eUserList.size() < 3) {
-                    if (i == 1) {
+                int i = Math.random()>0.5?1:0;
+                if(eUserList.size()<3 ){
+                    if(i == 1){
                         boolean flag = true;
                         for (User u : eUserList) {
-                            if (u.getUid().equals(user.getUid())) {
+                            if(u.getUid().equals(user.getUid())){
                                 flag = false;
                                 break;
                             }
                         }
-                        if (flag) {
+                        if(flag){
                             eUserList.add(user);
                         }
                     }
-                } else {
+                }else {
                     break;
                 }
             }
-        } while (eUserList.size() < 3);
-        m.addAttribute("eUserList", eUserList);
+        }while (eUserList.size()<3);
+        m.addAttribute("eUserList",eUserList);
         return "forward:guser";
     }
 
@@ -270,7 +272,7 @@ public class UserController {
         clist.setList(coll);
         clist.setTotalPage(tatal);
         return clist;
-    }
+      }
 
     /**
      * 给用户输入的邮箱发送邮件
@@ -337,6 +339,51 @@ public class UserController {
             return false;
         }
     }
+    /**
+     * 对粉丝关注或取关
+     * @param uurelevance
+     * @return
+     */
+       @RequestMapping("updateuu")
+       @ResponseBody
+    public int updateuu(@RequestBody Uurelevance uurelevance){
+        List cares = userService.getUserById(uurelevance.getUid()).getCares();
+        Uurelevance uu=new Uurelevance();
+        uu.setUid(uurelevance.getFansid());
+        uu.setFansid(uurelevance.getUid());
+        for(int i=0; i <cares.size(); i++){
+            User user = (User) cares.get(i);
+                if(user.getUid()==uurelevance.getFansid()){
+                    uurelevanceService.delcare(uu);
+                    return 0;
+                }
+        }
+        uurelevanceService.addcare(uu);
+        return 1;
+    }
+
+    /**
+     * 取消关注
+     * @param uurelevance
+     * @return
+     */
+    @RequestMapping("deluu")
+    @ResponseBody
+    public boolean delcare(@RequestBody Uurelevance uurelevance){
+        int num =uurelevanceService.delcare(uurelevance);
+        if(num>0){
+            return true;
+        }
+        return false;
+    }
+    @RequestMapping("updatepass")
+    public String updatepass(User user){
+        int num = userService.updatepass(user);
+        if(num>0){
+            return "login";
+        }
+        return "personal";
+    }
 
     @RequestMapping("getblance")
     @ResponseBody
@@ -381,6 +428,22 @@ public class UserController {
         return na;
     }
 
+    @RequestMapping("updateimg")
+    public String updateimg(String name,HttpServletRequest request) throws IOException {
+        System.out.println("aaa");
+        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        MultipartFile file = req.getFile("uimages");
+        String path = request.getRealPath("/upload")+"/"+name+".jpg";
+        File destFile = new File(path);
+        try {
+            FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "personal";
+
+    }
 
 
 

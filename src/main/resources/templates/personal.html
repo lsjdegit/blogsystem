@@ -26,28 +26,29 @@
 	</script>
 	<body style="background-color: #f5f6f7;">
 
-	<!-- Header -->
-	<div id="head">
-		<div id="head-logo">
-			<img src="img/blog.png" th:src="@{/img/blog.png}" />
-		</div>
-		<ul id="head-ul">
-			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
-		</ul>
-		<div id="head-user">
-			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
-			<div id="head-img">
-				<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
-				<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
+		<!-- Header -->
+		<div id="head">
+			<div id="head-logo">
+				<img src="img/blog.png" th:src="@{/img/blog.png}" />
 			</div>
-			<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
-			<span th:if="${session.loginUser == null}">未登录</span>
-			<div id="user-login">
-				<span th:if="${session.loginUser != null}" class="btn">注销</span>
-				<span th:if="${session.loginUser == null}" class="btn">登录</span>
+			<ul id="head-ul">
+				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
+			</ul>
+			<div id="head-user">
+				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
+				<input type="hidden" name="loginpass" th:value="${session.loginUser?.upassword}">
+				<div id="head-img">
+					<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
+					<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
+				</div>
+				<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
+				<span th:if="${session.loginUser == null}">未登录</span>
+				<div id="user-login">
+					<span th:if="${session.loginUser != null}" class="btn">注销</span>
+					<span th:if="${session.loginUser == null}" class="btn">登录</span>
+				</div>
 			</div>
 		</div>
-	</div>
 		
 		
 		<div class="div1" style="margin-top: 20px;">
@@ -66,10 +67,10 @@
 				<p class="p1">个人资料</p>
 				<div class="imghead">
 					<img src="img/ly.jpg" alt="头像"  name="uimage"/>
-					<!--<input type="file" class="file" name="file" id="file" style="display: none;" runat="server">
-					<p><label for="file">修改头像</label></p>
-					<button type="button" class="btn btn-info" id="btnUpload"  onclick="uploadImage()" value="上传">上传</button>-->
-					<div>
+					<!--<input type="file" class="file" name="file" id="file" style="display: none;" runat="server">-->
+					<p><a href="#myimg" role="button" class="btn" data-toggle="modal">修改头像</a></p>
+
+					<!--<div>
 						<div class="file" style="float: left;">
 							<input type="file" name="file" id="file" runat="server" >
 							<input type="hidden" name='expoid' id="expoid" value="${expoid}" class="form-control">
@@ -77,15 +78,13 @@
 						<div>
 							<button type="button" class="btn btn-info" id="btnUpload"  onclick="uploadImage()" value="上传">上传</button>
 						</div>
-					</div>
-
-
+					</div>-->
 
 				</div>
 				<div class="xx">
 					<div class="xx1">
 						<span>用户名：凛冽零</span><br>
-						<span>关注 0</span><span>粉丝 1</span><span>|</span><span>余额 0</span><span>充值</span>
+						<span>关注 0</span><span>粉丝 1</span><span>|</span><span>余额 0</span><span><a href="#mymoney" role="button" class="btn" data-toggle="modal">充值</a></span>
 					</div>
 					<div class="xx2">
 						<p>姓名：</p>
@@ -100,6 +99,48 @@
 				</div>
 
 
+				<!--modle money-->
+				<div id="mymoney" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<p id="mymoneyLabel" style="text-align: center;font-size: 16px;">充值中心</p>
+							</div>
+							<div class="modal-body">
+
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+								<button class="btn btn-primary" id="baocun" data-dismiss="modal" aria-hidden="true">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--modle img-->
+				<div id="myimg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<p id="myimgLabel" style="text-align: center;font-size: 16px;">更换头像</p>
+							</div>
+							<div class="modal-body">
+								<form th:action="@{/user/updateimg}" method="post" id="myimgfile" enctype="multipart/form-data">
+									<input type="hidden" name="name" th:value="${session.loginUser?.uname}">
+								<img src="img/ly.jpg" name="myuimage"/>
+								<p for="file">上传图片</p>
+								<input type="file" id="file" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg">
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+								<button class="btn btn-primary" id="baoimg" data-dismiss="modal" aria-hidden="true">上传</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
 
 
 
@@ -109,7 +150,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<p id="myModalLabel" style="text-align: center;font-size: 16px;">修改信息</p>
-								
+
 							</div>
 							<div class="modal-body">
 								<form class="form-horizontal">
@@ -120,6 +161,7 @@
 											<input type="text" class="form-control" id="inputname" name="uname">
 										</div>
 									</div>
+
 
 									<div class="form-group">
 										<label for="inputage" class="col-sm-2 control-label">年龄</label>
@@ -161,16 +203,6 @@
 					</div>
 				</div>
 			</div>
-			<!--<div class="liufen">
-				<ul class="liupage">
-					<li class="one">首页</li>
-					<li class="prev">上</li>
-					<li class="next">下</li>
-					<li class="end">尾页</li>
-				</ul>
-				<input type="hidden" id="totalPage" value="1"/>
-				<input type="hidden" id="currentPage" value="0"/>
-			</div>-->
 		</div>
 		
 		<!-- foot -->
