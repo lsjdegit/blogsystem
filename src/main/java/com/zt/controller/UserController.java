@@ -432,16 +432,21 @@ public class UserController {
     public String updateimg(String name,HttpServletRequest request) throws IOException {
         System.out.println("aaa");
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+        System.out.println("bbb");
         MultipartFile file = req.getFile("uimages");
-        String path = request.getRealPath("/upload")+"/"+name+".jpg";
+        System.out.println(file);
+        String path = request.getRealPath("/upload")+"\\"+name+"head.jpg";
+        System.out.println("这是path:"+path);
         File destFile = new File(path);
+        System.out.println("ccc");
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
+            System.out.println("ddd");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "index";
+        return "personal";
 
     }
 

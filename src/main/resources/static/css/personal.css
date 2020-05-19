@@ -21,6 +21,7 @@
 			float: left;
 			background-color: white;
 			width: 20%;
+			height: 600px;
 		}
 		.dright{
 			float: left;
@@ -84,7 +85,7 @@
 			margin-right: 5%;
 			width: 79%;
 			float: left;
-			height: 300px;
+			height: 400px;
 		}
 		.xx1{
 			padding-bottom: 20px;
@@ -509,6 +510,42 @@
 			font-size: 14px;
 			color: red;
 			margin-left: 1%;
+		}
+		/*充钱*/
+		.moneyul,.moneyul li{
+			list-style: none;
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.moneyul{
+			width: 100%;
+			height: 200px;
+		}
+		.moneyul li{
+			display: inline-block;
+			width: 32%;
+			height: 100px;
+			padding: 20px 30px;
+			box-sizing: border-box;
+		}
+
+		.moneyul li p{
+			color: #333;
+			line-height: 60px;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			border: 1px #ccc solid;
+			border-radius: 5px;
+			letter-spacing: 5px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.moneyul li p:hover{
+			color: #00BFF3;
+			border-color: #00BFF3;
 		}
 
 

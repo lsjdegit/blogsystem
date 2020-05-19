@@ -6,7 +6,6 @@ function change(coll){
 	var msg=$(coll).text();
 	if(msg=="首页"){
 		pageIndex = 1;
-		alert(pageIndex);
 	}
 	if(msg=="上"){
 		if(pageIndex==1){
@@ -24,7 +23,6 @@ function change(coll){
 	}
 	if(msg=="尾页"){
 		pageIndex=totalPage;
-		alert(pageIndex);
 	}
 	$.ajax({
 		type:'POST',
@@ -69,19 +67,15 @@ function vie(obj){
 }
 //取消收藏
 function qusou(obj){
-
 	var pageIndex=$("#collcurrentPage").val();
 	var bid=$(obj).prev().val();
 	var uid=$("input[name=loginUid]").val();
-
-	alert(bid+" "+uid);
 	$.ajax({
 		type:'POST',
 		url:ctxPath+"/collect/delcollect",
 		contentType:"application/json",
 		data:JSON.stringify({"uid":uid,"bid":bid,"pageIndex":pageIndex}),
 		success:function(result){
-
 			var collects=result.list; //收藏的博客关系集合
 			var tatalpage=result.totalPage;
 			$(".rhead p span").text(tatalpage);
@@ -109,7 +103,7 @@ function qusou(obj){
 				$(".liufen").hide();
 			}
 			$("#collcurrentPage").val(pageIndex);
-			alert($("#collcurrentPage").val());
+			//alert($("#collcurrentPage").val());
 		}
 	})
 }
@@ -200,7 +194,6 @@ $(function() {
 			$(".xx2 p:eq(4)").html("邮箱："+email);
 			$(".xx2 p:eq(5)").html("简介："+dc);
 
-
 		}
 
 	});
@@ -225,7 +218,6 @@ $(function() {
     })
 	//修改用户
     $("#cun").click(function(){
-
         var name=$("#inputname").val();
         var age=$("#inputage").val();
         var email=$("#inputemail").val();
@@ -380,7 +372,7 @@ $(function() {
 				var collects=result.list; //收藏的博客关系集合
 				var unm=result.list.length;
 				var tatalpage =result.totalPage;
-				alert(unm);
+				//alert(unm);
 				var $liufen=$("<div class=\"liufen\">"+
                     "<ul class=\"liupage\">"+
                     "<li class=\"one\" onclick=\"change(this)\">"+"首页</li>"+
@@ -448,7 +440,7 @@ $(function() {
 				var fanss = result.fans.length; //粉丝数
 				var cares=result.cares;//关注集合
 				//alert(bolgs);
-				alert(fanss);
+				//alert(fanss);
 				var $fans=$("<div class=\"fans\">"+
 					"</div>");
 				$(".dright").append($fans);
@@ -461,7 +453,7 @@ $(function() {
 					"</div>");
 				$(".fans").append($fansall);
 
-				alert(fans.length);
+				//alert(fans.length);
 				if(fans.length==0){
 					var $kong = $("<h3> 暂无关注！"+
 						"</h3>");
@@ -507,7 +499,7 @@ $(function() {
 				var caress = result.cares.length; //关注量
 				var unm = result.collects.length;
 				//alert(bolgs);
-				alert(caress);
+				//alert(caress);
 				var $care=$("<div class=\"care\">"+
 					"</div>");
 				$(".dright").append($care);
@@ -541,6 +533,7 @@ $(function() {
 		})
 	})
 
+	//浏览
     $(".ul1 li:eq(4)").click(function() {
 		$(".imghead,.p1,.xx").hide(); //个人资料
 		$(".rhead,.scboq,.liufen").hide(); //我的收藏
@@ -561,7 +554,7 @@ $(function() {
 				var browse=result.browselist; //浏览集合
                 var blogs = result.bloglist; //博客集合
 				var tatalpage =result.totalPage; // 总页数
-				alert(browses);
+				//alert(browses);
 				var $browsehead=$("<div class=\"browsehead\">"+
 					"<p>共"+ " <span>"+browses+" </span>"+ "条 内 容</p>"+
 					"<p>"+"|</p>"+
