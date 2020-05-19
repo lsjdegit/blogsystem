@@ -2,13 +2,14 @@
     width: 80%;
     margin-left: 10%;
     margin-top: 20px;
-    background-color: #f5f6f7;
+    background-color: rgba(0,0,0,0);
 }
 
 .center:after{
     content: "";
     display: block;
     clear: both;
+    background-color: rgba(0,0,0,0);
 }
 
 .title span{
@@ -67,23 +68,23 @@
 
 .dright {
     float: left;
-    background-color: white;
+    background-color: rgba(0,0,0,0);
     width: 77%;
-    border: 0.5px #F5F6F7 solid;
+    border: 0.5px rgba(0,0,0,0) solid;
     margin-left: 2%;
 }
 
 .dtdiv {
     width: 100%;
-    background-color: #f5f6f7;
+    background-color: rgba(0,0,0,0);
 }
 
 .dtdiv>ul {
     margin: 0px;
     padding: 0px;
     height: 501px;
-    border: 0.5px #F5F6F7 solid;
-    background-color: #f5f6f7;
+    border: 0.5px rgba(0,0,0,0) solid;
+    background-color: rgba(0,0,0,0);
 }
 
 .dtdiv>ul li {

@@ -1,7 +1,7 @@
 package com.zt.controller;
 
 import com.zt.entity.*;
-import com.zt.service.BlogService;
+import com.zt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,8 @@ import java.util.List;
 public class BlogController {
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private BrowseService browseService;
     private Integer pageSize = 4;
 
     /**
@@ -63,6 +65,7 @@ public class BlogController {
         if(bids == null){
             return "redirect:../index";
         }
+        //增加浏览数
         boolean flag = true;
         for (int i=0;i<bids.size();i++) {
             if(bids.get(i) == bid){
@@ -75,6 +78,16 @@ public class BlogController {
             bids.add(bid);
             session.setAttribute("bids",bids);
         }
+
+        //添加浏览记录
+        User user = (User) session.getAttribute("loginUser");
+        if(user != null){
+            Browse browse = new Browse();
+            browse.setBid(bid);
+            browse.setUid(user.getUid());
+            browseService.addBrowse(browse);
+        }
+
         Blog blog = blogService.getBlogById(bid);
         Integer broSize = 0;
         Integer praSize = 0;
@@ -88,7 +101,6 @@ public class BlogController {
         }
         //是否关注
         boolean isFans = false;
-        User user = (User) session.getAttribute("loginUser");
         if(user != null){
             Integer fansid = user.getUid();
             for (User u : blog.getUser().getFans()) {

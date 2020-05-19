@@ -62,6 +62,13 @@ public interface MessageMapper {
     public int delMessage(@Param("uid") Integer uid);
 
     /**
+     * 根据bid清除消息
+     * @return
+     */
+    @Delete("delete from message where bid=#{bid}")
+    public int delMessageByBlog(@Param("bid") Integer bid);
+
+    /**
      * 查询未读重复
      * @param message
      * @return
