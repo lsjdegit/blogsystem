@@ -193,6 +193,7 @@ $(function() {
 			$(".xx2 p:eq(3)").html("年龄："+age);
 			$(".xx2 p:eq(4)").html("邮箱："+email);
 			$(".xx2 p:eq(5)").html("简介："+dc);
+			$(".yue").text("￥"+bl);
 
 		}
 
@@ -314,7 +315,7 @@ $(function() {
 
 	//个人资料
 	$(".ul1 li:eq(0)").click(function(){
-		alert("第一");
+		//alert("第一");
 		$(".imghead,.p1,.xx").show(); //个人资料
 		$(".rhead,.scboq,.liufen").hide(); //我的收藏
 		$(".browsehead,.browsescboq,.browsefen").hide();
@@ -347,6 +348,7 @@ $(function() {
 				$(".xx2 p:eq(3)").html("年龄："+age);
 				$(".xx2 p:eq(4)").html("邮箱："+email);
 				$(".xx2 p:eq(5)").html("简介："+dc);
+				$(".yue").text("￥"+bl);
 			}
 
 		});
@@ -640,10 +642,16 @@ $(function() {
         }
     })
 
-    /*$("#baoimg").click(function(){
-        $("#myimgfile").submit();
-    })
-*/
+    $("#myimgfile").submit(function(){
+    	var skong = $("#file").val();
+    	//alert(skong);
+    	if(skong==""){
+    		alert("请选图！")
+    		return false;
+		}else{
+    		return true;
+		}
+	})
 
 
 

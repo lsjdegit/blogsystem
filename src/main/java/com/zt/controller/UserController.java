@@ -468,4 +468,12 @@ public class UserController {
         return 1;
     }
 
+    @RequestMapping("addbalance")
+    public String addUserBalance(User user){
+        int zong = user.getBalance() + userService.getBalance(user.getUid());
+        user.setBalance(zong);
+        int j = userService.updateUserbalance(user);
+        return "personal";
+    }
+
 }

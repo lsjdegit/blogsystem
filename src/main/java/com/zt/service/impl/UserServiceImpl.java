@@ -107,10 +107,16 @@ public class UserServiceImpl implements UserService {
         return userMapper.zhuanjia(user);
     }
 
+    /**
+     * 更新密码
+     * @param user
+     * @return
+     */
     @Override
     public int updatepass(User user) {
         return userMapper.updatepass(user);
     }
+
 
     @Override
     public Integer getBalance(Integer uid) {
