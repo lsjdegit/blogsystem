@@ -152,12 +152,13 @@
 								<p id="myimgLabel" style="text-align: center;font-size: 16px;">更换头像</p>
 							</div>
 							<div class="modal-body">
-								<form th:action="@{/user/updateimg}" method="post" id="myimgfile" enctype="multipart/form-data">
+								<form class="form-horizontal" id="myimgfile" method="post"  th:action="@{/user/updateimg}" enctype="multipart/form-data">
 								<input type="hidden" name="name" th:value="${session.loginUser?.uname}">
 								<img src="img/ly.jpg" name="myuimage"/>
 								<p for="file">上传图片</p>
 								<input type="file" id="file" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg"><br>
 								<input type="submit" class="btn btn-primary"  value="上传">
+									<!--<button type="button"class="btn btn-info" id="register">上传</button>-->
 								</form>
 							</div>
 							<div class="modal-footer">

@@ -88,7 +88,7 @@ public class UserController {
         System.out.println("aaa");
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
         MultipartFile file = req.getFile("uimages");
-        String path = request.getRealPath("/upload")+"/"+user.getUname()+".jpg";
+        String path = request.getRealPath("/upload")+"/"+user.getUname()+"head.jpg";
         File destFile = new File(path);
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
@@ -430,18 +430,12 @@ public class UserController {
 
     @RequestMapping("updateimg")
     public String updateimg(String name,HttpServletRequest request) throws IOException {
-        System.out.println("aaa");
         MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
-        System.out.println("bbb");
         MultipartFile file = req.getFile("uimages");
-        System.out.println(file);
         String path = request.getRealPath("/upload")+"\\"+name+"head.jpg";
-        System.out.println("这是path:"+path);
         File destFile = new File(path);
-        System.out.println("ccc");
         try {
             FileUtils.copyInputStreamToFile(file.getInputStream(), destFile);
-            System.out.println("ddd");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
