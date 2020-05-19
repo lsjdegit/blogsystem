@@ -74,7 +74,7 @@
 
 				<p class="p1">个人资料</p>
 				<div class="imghead">
-					<img src="img/ly.jpg" alt="头像"  name="uimage"/>
+					<img th:src="@{/img/userhead.jpg}" alt="头像"  name="uimage"/>
 					<!--<input type="file" class="file" name="file" id="file" style="display: none;" runat="server">-->
 					<p><a href="#myimg" role="button" class="btn" data-toggle="modal">修改头像</a></p>
 
@@ -154,7 +154,7 @@
 							<div class="modal-body">
 								<form class="form-horizontal" id="myimgfile" method="post"  th:action="@{/user/updateimg}" enctype="multipart/form-data">
 								<input type="hidden" name="name" th:value="${session.loginUser?.uname}">
-								<img src="img/ly.jpg" name="myuimage"/>
+								<img th:src="@{'/upload/'+${session.loginUser?.uimage}}" name="myuimage" width="70%"/>
 								<p for="file">上传图片</p>
 								<input type="file" id="file" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg"><br>
 								<input type="submit" class="btn btn-primary"  value="上传">
