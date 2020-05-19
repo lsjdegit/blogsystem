@@ -1,5 +1,6 @@
 package com.zt.service;
 
+import com.zt.entity.User;
 import com.zt.entity.Uurelevance;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface UurelevanceService {
      * @return
      */
     public List<Uurelevance> uucarelist(Integer fansid);
+
+    public List<User> selectAllUser();
 }

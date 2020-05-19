@@ -146,6 +146,6 @@ public interface UserMapper {
     @Update("update user set upassword=#{upassword} where uid=#{uid}")
     public int updatepass(User user);
 
-
-
+    @Select("select * from user")
+    public List<User> selectAllUser();
 }
