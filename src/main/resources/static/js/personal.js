@@ -640,10 +640,10 @@ $(function() {
         }
     })
 
-    $("#baoimg").click(function(){
+    /*$("#baoimg").click(function(){
         $("#myimgfile").submit();
     })
-
+*/
 
 
 

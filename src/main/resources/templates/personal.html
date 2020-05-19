@@ -153,15 +153,15 @@
 							</div>
 							<div class="modal-body">
 								<form th:action="@{/user/updateimg}" method="post" id="myimgfile" enctype="multipart/form-data">
-									<input type="hidden" name="name" th:value="${session.loginUser?.uname}">
+								<input type="hidden" name="name" th:value="${session.loginUser?.uname}">
 								<img src="img/ly.jpg" name="myuimage"/>
 								<p for="file">上传图片</p>
-								<input type="file" id="file" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg">
+								<input type="file" id="file" style="width: 320px; margin-top: 10px; height: 30px;" name="uimages" class="shangimg"><br>
+								<input type="submit" class="btn btn-primary"  value="上传">
 								</form>
 							</div>
 							<div class="modal-footer">
 								<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-								<button type="submit" class="btn btn-primary" id="baoimg" data-dismiss="modal" aria-hidden="true">上传</button>
 							</div>
 						</div>
 					</div>
