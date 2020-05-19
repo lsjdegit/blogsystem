@@ -94,8 +94,8 @@
 		}
 		
 		.homeguan button {
-			width: 5%;
-			height: 15%;
+			width: 8%;
+			height: 20%;
 			border: #23527C 0.5px solid;
 			border-radius: 3px;
 			font-size: 11px;
@@ -150,6 +150,27 @@
 			padding-bottom: 15px;
 			border-bottom: #F2F5F7 1.5px solid;
 		}
+.mybolgli1{
+	width: 100%;
+	height: 80px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: #F2F5F7 1.5px solid;
+}
+.mybolgli2{
+	width: 100%;
+	height: 80px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: #F2F5F7 1.5px solid;
+}
+.mybolgli3{
+	width: 100%;
+	height: 80px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: #F2F5F7 1.5px solid;
+}
 		.ybyb{
 			width: 100%;
 			height: 100%;

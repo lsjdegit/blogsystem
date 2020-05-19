@@ -45,18 +45,21 @@ $(function(){
     })
 
     $("#bodyfrom").submit(function () {
-        if(!(user()&&pwd() && repwd() && email() && yanzheng())){
+        if(!(user()&&pwd() && repwd() && email() && yanzheng() && shifou())){
             // alert(user());
             // alert(pwd());
             // alert(repwd());
             // alert(email());
             // alert(yanzheng());
-            alert("注册成功");
+            // alert("注册成功");
+            alert(shifou());
             return false;
         }else{
             return true;
         }
     });
+    
+
 
 })
 /**
@@ -114,18 +117,33 @@ function email() {
  */
 function getemail(){
     var email = $("#email").val();
-    alert(email);
     $.ajax({
         type:"post",
         url :"user/sendEmail",
         data:'email='+email,
         success:function(result){
-            alert(result);
             $("#cfaode").prop("readonly",false);
             alert("邮箱验证码发送成功，请注意查收。");
         }
     })
 }
+
+            function shifou() {
+              var user=  $("#user").val();
+              $.ajax({
+                  type:"post",
+                  url :"user/shifou",
+                  data:'us='+user,
+                  success:function (result) {
+                      if(result==0){
+                          alert("用户名已存在!");
+                          return false;
+                      }else{
+                          return true;
+                      }
+                  }
+              })
+            }
 
 /**
  * 获取用户的验证码比较与发送的验证码是否一致

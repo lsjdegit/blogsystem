@@ -72,20 +72,42 @@
 						<li>关注 <span th:text="${user.cares.size()}">6</span></li>
 					</ul>
 				</div>
-				<div class="homeli" th:each="ublog,status:${user.blogs}">
-					<div class="mybolgli">
-						<div class="ybyb">
+				<div class="homeli">
+					<!--我的博客-->
+					<div class="mybolgli" th:each="ublog,status:${user.blogs}" style="display:none">
+						<div class="ybyb" >
 							<p class="ybybp1" th:text="${ublog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
 							<div><p class="ybybp2" th:text="${ublog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
 							<div><span th:text="${ublog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ublog.bnumber}">65</span></div>
 						</div>
 					</div>
-					<!--<div class="mybolgli">-->
-						<!--<div class="ybyb">-->
-							<!--<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>-->
-							<!--<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>-->
-							<!--<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>-->
-						<!--</div>-->
+
+					<!--收藏的博客-->
+					<div class="mybolgli1" th:each="ucoll,status:${user.collects}"  style="display: none">
+						<div class="ybyb">
+							<p class="ybybp1" th:text="${ucoll.blog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
+							<div><p class="ybybp2" th:text="${ucoll.blog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
+							<div><span th:text="${ucoll.blog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ucoll.blog.bnumber}">65</span></div>
+						</div>
+					</div>
+
+					<!--粉丝-->
+					<div class="mybolgli2" th:each="ufans,status:${user.fans}" style="display: none">
+						<div class="ybyb">
+							<img th:src="@{/img/background.jpg}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+							<span class="ybybp1" th:text="${ufans.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
+							<!--<span class="ybybp2" th:text="${ufans.sex}" style="display: inline-block;font-size: 12px;float: left"></span>-->
+						</div>
+					</div>
+
+					<!--我的关注-->
+					<div class="mybolgli3" th:each="ucares,status:${user.cares}" style="display: none">
+						<div class="ybyb">
+							<!--th:src="@{'/upload/'+${blog.user.uimage}}"-->
+							<img th:src="@{/img/background.jpg}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+							<span class="ybybp1" th:text="${ucares.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
+						</div>
+					</div>
 					<!--</div>-->
 					<!--<div class="mybolgli">-->
 						<!--<div class="ybyb">-->
@@ -94,7 +116,15 @@
 							<!--<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>-->
 						<!--</div>-->
 					<!--</div>-->
-					
+					<!--<div class="mybolgli">-->
+						<!--<div class="ybyb">-->
+							<!--<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>-->
+							<!--<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>-->
+							<!--<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<input type="hidden" th:value="${user.uid}" id="uid">
+
 				</div>
 			</div>
 		</div>

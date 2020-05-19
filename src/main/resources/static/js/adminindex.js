@@ -73,7 +73,7 @@
                     "<span>"+blog.bcreatetime+"</span>"+
                     "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
                     "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                    "<span class=\"iconfont icon-liulan\">"+blog.comments.length+"</span>" +
+                    "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
                     "</div>"+
                     "</div>"+
                     "</div>");
@@ -145,18 +145,34 @@ function changezhu(obj){
         data:JSON.stringify({"pageIndex":pageIndex,"uname":$("#user").val()}),
         success:function(result){
             var ulist= result.list;
+            var fei= "<img src=\""+ctxPath+"/img/username.png\" />";
+            var bozhu= "<img src=\""+ctxPath+"/img/expert.png\" />";
             for(var i=0;i<ulist.length;i++){
                 var blog=ulist[i];
-                var $blog= $("<div class=\"mybolgli\">"+
-                    "<div class=\"ybybzhu\">"+
-                    "<div class=\"ybnat\">"+
-                    "<img src=\""+ctxPath+""+ctxPath+"/upload/"+blog.uimage+"\" />" +
-                    "<img src=\""+ctxPath+"/img/username.png\" />"+
-                    "<span>"+blog.uname+"</span>"+
-                    "<span>"+blog.email+"</span>"+
-                    "</div>"+
-                    "</div>"+
-                    "</div>");
+                if(blog.isexpert==0) {
+                    var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                        "<div class=\"ybybzhu\">" +
+                        "<div class=\"ybnat\">" +
+                        "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                        fei +
+                        "<span>" + blog.uname + "</span>" +
+                        "<span>" + blog.email + "</span>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>");
+
+                }else if(blog.isexpert==1){
+                    var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                        "<div class=\"ybybzhu\">" +
+                        "<div class=\"ybnat\">" +
+                        "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                        bozhu +
+                        "<span>" + blog.uname + "</span>" +
+                        "<span>" + blog.email + "</span>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>");
+                }
                 $(".bolgallzhu").prepend($blog);
             }
             $(".mybolgli").show().animate({height:'80px',width:'100%'});
@@ -564,7 +580,7 @@ $(function(){
                  * 点击专家申请遍历所有要申请的博主
                  */
                 $("#shen").click(function(){
-                    $("#isexpert").val(0);
+                    $("#isexpert").val(2);
                     $(".bolgallzhu").empty();
                     $(".pag li button").attr("onclick","changezhu(this)");
                     $.ajax({
@@ -687,34 +703,18 @@ $(function(){
             success:function(result){
                 var ulist= result.list;
                 var totalPage = result.totalPage;
-                var fei= "<img src=\""+ctxPath+"/img/username.png\" />";
-                var bozhu= "<img src=\""+ctxPath+"/img/expert.png\" />";
                 for(var i=0;i<ulist.length;i++){
                     var blog=ulist[i];
-                    if(blog.isexpert==0) {
-                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
-                            "<div class=\"ybybzhu\">" +
-                            "<div class=\"ybnat\">" +
-                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
-                            fei +
-                            "<span>" + blog.uname + "</span>" +
-                            "<span>" + blog.email + "</span>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>");
-
-                    }else if(blog.isexpert==1){
-                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
-                            "<div class=\"ybybzhu\">" +
-                            "<div class=\"ybnat\">" +
-                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
-                            bozhu +
-                            "<span>" + blog.uname + "</span>" +
-                            "<span>" + blog.email + "</span>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>");
-                    }
+                    var $blog= $("<div class=\"mybolgli\" onclick=\"bozhu("+blog.uid+")\">"+
+                        "<div class=\"ybybzhu\">"+
+                        "<div class=\"ybnat\">"+
+                        "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
+                        "<img src=\""+ctxPath+"/img/expert.png\" />"+
+                        "<span>"+blog.uname+"</span>"+
+                        "<span>"+blog.email+"</span>"+
+                        "</div>"+
+                        "</div>"+
+                        "</div>");
                     $(".bolgallzhu").prepend($blog);
                 }
                 $(".blog").show().animate({height:'80px',width:'100%'});
@@ -795,9 +795,12 @@ $(function(){
                     url:'user/getzhuanjia',
                     data:"uid="+id,
                     success:function (result) {
+                        alert(result.user.uname);
                        var gid= result.zpnumber;
                        var bid=result.zbnumber;
                         var blog=result.user;
+                        alert(gid);
+                        alert(bid);
                         var  $blog=$("<div class=\"left-top\">"+
                           "<div class=\"ltop\">"+
                           "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +

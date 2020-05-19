@@ -1,9 +1,13 @@
 .center{
     width:450px;
     height:850px;
-    border: 1px antiquewhite solid;
+    border: 1px #ccc solid;
     margin: 50px auto;
-    background: white;
+    color: rgba(0,0,0,0.9);
+    font-family: "Times New Roman", Times, serif;
+    background: rgba(256,256,256,0.7);
+    border-radius: 5px;
+    font-family: "Times New Roman", Times, serif;
 }
 .title{
     font-size: 22px;

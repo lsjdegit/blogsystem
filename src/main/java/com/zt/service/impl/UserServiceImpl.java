@@ -119,6 +119,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    public List<User> selectAllUser() {
+        return userMapper.selectAllUser();
+    }
+
+    @Override
     public Integer getBalance(Integer uid) {
         return userMapper.getBalance(uid);
     }
@@ -130,7 +135,7 @@ public class UserServiceImpl implements UserService {
      int gnumber=0;
      if(bloglist!=null){
             for (int i = 0; i < bloglist.size(); i++) {
-                gnumber+=bloglist.get(i).getGnumber();
+                gnumber+=bloglist.get(i).getPraises().size();
             }
         }
         return gnumber;

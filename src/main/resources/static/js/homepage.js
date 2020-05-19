@@ -26,4 +26,65 @@ $(function(){
 				$(".homezhufen ul li").removeClass("homezhufenh");
 				$(this).addClass("homezhufenh");
 			})
+
+			/**
+			 * 默认为我的博客
+			 */
+			$(".homeli .mybolgli").show();
+
+			$(".homezhufen ul li:eq(0)").click(function(){
+				$(".homeli .mybolgli").show();
+				$(".homeli .mybolgli1").hide();
+				$(".homeli .mybolgli2").hide();
+				$(".homeli .mybolgli3").hide();
+			})
+			$(".homezhufen ul li:eq(1)").click(function(){
+				$(".homeli .mybolgli").hide();
+				$(".homeli .mybolgli1").show();
+				$(".homeli .mybolgli2").hide();
+				$(".homeli .mybolgli3").hide();
+			})
+			$(".homezhufen ul li:eq(2)").click(function(){
+				$(".homeli .mybolgli").hide();
+				$(".homeli .mybolgli1").hide();
+				$(".homeli .mybolgli2").show();
+				$(".homeli .mybolgli3").hide();
+			})
+			$(".homezhufen ul li:eq(3)").click(function(){
+				$(".homeli .mybolgli").hide();
+				$(".homeli .mybolgli1").hide();
+				$(".homeli .mybolgli2").hide();
+				$(".homeli .mybolgli3").show();
+			})
+
+			$(".homeguan button").click(function(){
+				var uid = $("input[name=loginUid]").val();
+				if(uid == 0 || uid == ""){
+					if(confirm("你还没登录，是否去登录？")){
+						location.href = ctxPath+"login";
+					}
+					return ;
+				}
+				var buid=$("#uid").val();
+				var ad= $(this).html();
+				if(ad == "关注"){
+					url = "addcare";
+				}else{
+					url = "delcare";
+				}
+				$.ajax({
+					type:'POST',
+					url:ctxPath+"/user/"+url,
+					contentType:"application/json",
+					data:JSON.stringify({"uid":buid,"fansid":uid}),
+					success:function(result){
+						if(result==0){
+							$(".homeguan button").html("关注");
+						}
+						if(result==1){
+							$(".homeguan button").html("取消关注");
+						}
+					}
+				})
+			})
 		})
