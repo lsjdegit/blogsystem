@@ -1,6 +1,7 @@
 package com.zt.service.impl;
 
 import com.zt.entity.Message;
+import com.zt.entity.User;
 import com.zt.entity.Uurelevance;
 import com.zt.mapper.MessageMapper;
 import com.zt.mapper.UurelevanceMapper;
@@ -48,4 +49,6 @@ public class UurelevanceServiceImpl implements UurelevanceService {
     public List<Uurelevance> uucarelist(Integer fansid) {
         return uurelevanceMapper.uucarelist(fansid);
     }
+
+
 }

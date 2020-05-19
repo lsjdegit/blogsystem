@@ -106,5 +106,5 @@ public interface UserService {
      */
     public int updatepass(User user);
 
-
+    public List<User> selectAllUser();
 }

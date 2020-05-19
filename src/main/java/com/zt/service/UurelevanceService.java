@@ -26,5 +26,5 @@ public interface UurelevanceService {
      */
     public List<Uurelevance> uucarelist(Integer fansid);
 
-    public List<User> selectAllUser();
+
 }
