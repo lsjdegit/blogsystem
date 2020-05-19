@@ -169,3 +169,23 @@ body{
 	display: inline-block;
 	margin-left: 10%;
 }
+
+.msgcount{
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border: 1px red solid;
+	border-radius: 13px;
+	position: absolute;
+	background-color: red;
+	line-height: 26px;
+	text-align: center;
+	color: white;
+	box-sizing: border-box;
+	font-weight: bold;
+	letter-spacing: normal;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: none;
+}

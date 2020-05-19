@@ -60,11 +60,15 @@ function change(obj){
             var totalPage = result.totalPage;
             for(var i=0;i<blist.length;i++){
                 var blog = blist[i];
+                var dashang = "";
+                if(blog.bstatusid == 1 ){
+                    dashang = "<span onclick='exceptional("+blog.bid+")' href='#myModal' data-toggle=\"modal\">打赏详情</span>"
+                }
                 var $blog = $("<div class=\"mybolgli\">" +
                     "<div class=\"ybyb\">" +
                     "<p>"+blog.btitle+"</p>" +
                     "<div><span>"+blog.bcreatetime+"</span></div>" +
-                    "<div><span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
+                    "<div>"+dashang+"<span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
                     "</div>" +
                     "</div>");
                 $(".mybolgall").append($blog);
@@ -72,6 +76,39 @@ function change(obj){
             $(".mybolgli").show().animate({height:'80px',width:'100%'});
         }
     });
+}
+
+//打赏详情
+function exceptional(bid){
+    $.ajax({
+        type: 'POST',
+        url: ctxPath + "excep/bybid",
+        data: "bid="+bid,
+        success: function (result) {
+            $(".excepul li").remove();
+            var totalMoney = 0;
+            if(result.length == 0){
+                var $li = $("<li><h3>暂无打赏</h3></li>");
+                $(".excepul").append($li);
+                $(".totalMoney").html("0");
+                return ;
+            }
+            for(var i=0;i<result.length;i++){
+                var excep = result[i];
+                totalMoney += excep.money;
+                var $li = $("<li>" +
+                    "<img src=\""+ctxPath+"upload/"+excep.user.uimage+"\">" +
+                    "<span>"+excep.user.uname+"</span>" +
+                    "<span>打赏了</span>" +
+                    "<span>"+excep.money+"</span>" +
+                    "<span>元</span>" +
+                    "<span>"+excep.etime+"</span>" +
+                    "</li>");
+                $(".excepul").append($li);
+            }
+            $(".totalMoney").html(totalMoney);
+        }
+    })
 }
 
 //查看博客
@@ -116,11 +153,15 @@ function delblog(bid){
             var blist = result.list;
             for(var i=0;i<blist.length;i++){
                 var blog = blist[i];
+                var dashang = "";
+                if(blog.bstatusid == 1 ){
+                    dashang = "<span onclick='exceptional("+blog.bid+")' href='#myModal' data-toggle=\"modal\">打赏详情</span>"
+                }
                 var $blog = $("<div class=\"mybolgli\">" +
                     "<div class=\"ybyb\">" +
                     "<p>"+blog.btitle+"</p>" +
                     "<div><span>"+blog.bcreatetime+"</span></div>" +
-                    "<div><span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
+                    "<div>"+dashang+"<span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
                     "</div>" +
                     "</div>");
                 $(".mybolgall").append($blog);
@@ -186,11 +227,15 @@ $(function () {
             var totalPage = result.totalPage;
             for(var i=0;i<blist.length;i++){
                 var blog = blist[i];
+                var dashang = "";
+                if(blog.bstatusid == 1 ){
+                    dashang = "<span onclick='exceptional("+blog.bid+")' href='#myModal' data-toggle=\"modal\">打赏详情</span>"
+                }
                 var $blog = $("<div class=\"mybolgli\">" +
                     "<div class=\"ybyb\">" +
                     "<p>"+blog.btitle+"</p>" +
                     "<div><span>"+blog.bcreatetime+"</span></div>" +
-                    "<div><span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
+                    "<div>"+dashang+"<span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
                     "</div>" +
                     "</div>");
                 $(".mybolgall").append($blog);
@@ -230,11 +275,15 @@ $(function () {
                 var totalPage = result.totalPage;
                 for(var i=0;i<blist.length;i++){
                     var blog = blist[i];
+                    var dashang = "";
+                    if(blog.bstatusid == 1 ){
+                        dashang = "<span onclick='exceptional("+blog.bid+")' href='#myModal' data-toggle=\"modal\">打赏详情</span>"
+                    }
                     var $blog = $("<div class=\"mybolgli\">" +
                         "<div class=\"ybyb\">" +
                         "<p>"+blog.btitle+"</p>" +
                         "<div><span>"+blog.bcreatetime+"</span></div>" +
-                        "<div><span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
+                        "<div>"+dashang+"<span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
                         "</div>" +
                         "</div>");
                     $(".mybolgall").append($blog);
@@ -275,11 +324,15 @@ $(function () {
                 var totalPage = result.totalPage;
                 for(var i=0;i<blist.length;i++){
                     var blog = blist[i];
+                    var dashang = "";
+                    if(blog.bstatusid == 1 ){
+                        dashang = "<span onclick='exceptional("+blog.bid+")' href='#myModal' data-toggle=\"modal\">打赏详情</span>"
+                    }
                     var $blog = $("<div class=\"mybolgli\">" +
                         "<div class=\"ybyb\">" +
                         "<p>"+blog.btitle+"</p>" +
                         "<div><span>"+blog.bcreatetime+"</span></div>" +
-                        "<div><span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
+                        "<div>"+dashang+"<span onclick='updateblog("+blog.bid+")' >重新发布</span><span onclick='blogview("+blog.bid+")' >查看</span><span onclick='delblog("+blog.bid+")'>删除</span></div>" +
                         "</div>" +
                         "</div>");
                     $(".mybolgall").append($blog);

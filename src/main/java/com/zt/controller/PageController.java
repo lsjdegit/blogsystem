@@ -3,6 +3,10 @@ package com.zt.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PageController {
 
@@ -26,7 +30,9 @@ public class PageController {
      * 进入主页面
      */
     @RequestMapping("index")
-    public String index(){
+    public String index(HttpSession session){
+        List<Integer> bids = new ArrayList<>();
+        session.setAttribute("bids",bids);
         return "forward:/blogtype/all";
     }
 

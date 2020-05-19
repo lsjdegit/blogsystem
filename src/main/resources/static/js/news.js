@@ -57,6 +57,13 @@ function change(obj){
             $(".dul li").remove();
             var mlist = result.list;
             var totalPage = result.totalPage;
+            if(mlist.length == 0){
+                var $null = $("<li><h3 style='color: #888;text-align: center'>暂无信息！</h3></li>");
+                $(".dul").append($null);
+                $(".dul li").show().animate({height:'80px',width:'100%'});
+                $("#centre-paging").fadeOut(1000);
+                return ;
+            }
             for(var i=0;i<mlist.length;i++){
                 var message = mlist[i];
                 var msgGo = "blog";
@@ -127,6 +134,7 @@ function read(){
         success: function (result) {
             if(result){
                 $(".dul li img:nth-of-type(2)").remove();
+                $(".msgcount").fadeOut(500);
             }
         }
     })
@@ -142,13 +150,13 @@ function delMsg(){
         success: function (result) {
             if(result){
                 $("#centre-paging").fadeOut(1000);
-                for(var i=0;i<5;i++){
-                    $(".dul li:eq("+i+")").animate({left:'1300px'});
-                    $(".dul li:eq("+i+")").fadeOut(200);
-                }
-                var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
-                $(".dul").append($null);
-                $(".dul li").show().animate({height:'80px',width:'100%'});
+                $(".dul li").animate({left:'1300px',},function () {
+                    $(".dul li").remove();
+                    var $null = $("<li><h3 style='color: #888;text-align: center;'>暂无信息！</h3></li>");
+                    $(".dul").append($null);
+                    $(".dul li").show().animate({height:'80px',width:'100%'});
+                });
+                $(".msgcount").fadeOut(500);
             }
         }
     })
@@ -236,6 +244,7 @@ $(function () {
     //消息分类
     $(".ul1 li").click(function () {
         var mtypeid = $(this).prev().val();
+        $(".center>input[name=mtypeid]").val(mtypeid);
         $.ajax({
             type:'POST',
             url:ctxPath+"/message/select",

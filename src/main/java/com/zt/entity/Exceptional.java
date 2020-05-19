@@ -16,5 +16,7 @@ public class Exceptional implements Serializable {
     private Integer bid;
     private Integer uid;
     private Integer money;
+    private String etime;
+    private User user;
 
 }

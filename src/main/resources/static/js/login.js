@@ -31,11 +31,21 @@ $(function(){
         })
     })
 
+    background();
+
 })
 
 function getvCode() {
     $("#verifyimg").attr("src",timestamp(ctxPath+"verifyCode"));
 }
+
+function background() {
+    $("body").animate({backgroundPositionY:-335},10000,"linear");
+    $("body").animate({backgroundPositionY:0},10000,"linear",function () {
+        background();
+    });
+}
+
 //为url添加时间戳
 function timestamp(url) {
     var getTimestamp = new Date().getTime();

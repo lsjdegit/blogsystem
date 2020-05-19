@@ -169,11 +169,11 @@
 }
 .ybybzhu div img:first-of-type{
 	 width: 40px;
+	 height:40px;
 	 cursor: pointer;
 	 border-radius: 50%;
 	 float: left;
-
-
+     margin-top:5px;
  }
 .ybybzhu div img:last-of-type{
 	width: 20px;
@@ -243,3 +243,68 @@ ybybzhu div:last-of-type span{
 			height: 80%;
 			padding: auto;
 		}
+.lut,.lut li,.tablogul,.tablogul li,#ult,#ult li,.plul,plul li{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.lut li{
+	width: 25%;
+	text-align: center;
+	float: left;
+}
+.lut li span{
+	display: inline-block;
+}
+.ltop{
+	width:100%;
+	height:100px;
+	padding: 0px 20px;
+	box-sizing: border-box;
+}
+.left{
+	height: 90%;
+	width: 100%;
+	display: inline-block;
+	float:left;
+}
+
+#left-top{
+	width: 100%;
+	height: 200px;
+	background-color: white;
+	border:1px #e3e3e3 solid;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.tablog{
+	margin-top: 20px;
+	width: 100%;
+	background-color: white;
+	border:1px #e3e3e3 solid;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.tablogul a{
+	color: #888;
+}
+.tou{
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	float: left;
+}
+.long{
+	float: left;
+	margin-left: 10px;
+}
+.namess{
+	font-size: 18px;
+}
+.biaoji{
+	width: 25px;
+	height: 25px;
+	margin-left: 5px;
+}

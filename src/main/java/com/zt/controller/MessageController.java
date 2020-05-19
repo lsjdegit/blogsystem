@@ -28,6 +28,7 @@ public class MessageController {
         }
         Integer totalSize = messageService.selectMessage(messageParameter.getUid(),messageParameter.getMtypeid(),0,0).size();
         Integer totalPage = totalSize%pageSize==0?totalSize/pageSize:totalSize/pageSize+1;
+        System.out.println("totalPage = " + totalPage);
         Integer first = pageSize*(messageParameter.getPageIndex()-1);
         List<Message> messageList = messageService.selectMessage(messageParameter.getUid(),messageParameter.getMtypeid(),first,pageSize);
         ListPage listPage = new ListPage();

@@ -23,6 +23,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private MessageMapper messageMapper;
 
+    @Transactional
     @Override
     public Comment addComment(Comment comment) {
         commentMapper.addComment(comment);
@@ -39,7 +40,9 @@ public class CommentServiceImpl implements CommentService {
             Comment comm = commentMapper.getCommentById(comment.getParentid());
             message.setUid(comm.getUser().getUid());
         }
-        messageMapper.addMessage(message);
+        if(message.getYuid() != message.getUid()){
+            messageMapper.addMessage(message);
+        }
         return commentMapper.getCommentById(comment.getCid());
     }
 

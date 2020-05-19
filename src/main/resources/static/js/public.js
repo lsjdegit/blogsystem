@@ -83,6 +83,7 @@ $(function(){
 							$("#head-user>span").replaceWith(span);
 							$("#user-login>span").html("登录");
 							$("input[name=loginUid]").val("");
+							$(".msgcount").fadeOut(500);
 							if(window.location.href != "http://localhost:8080/blogsystem/index"){
 								location.href = ctxPath+"index";
 							}
@@ -98,5 +99,20 @@ $(function(){
 		$("#user-login").hide();
 	});
 
+	//消息提醒
+	if($("input[name=loginUid]").val() != null && $("input[name=loginUid]").val() != 0){
+		$.ajax({
+			type: 'post',
+			url: ctxPath + 'message/unreadCount',
+			data: "uid="+$("input[name=loginUid]").val(),
+			success: function (result) {
+				if(result == 0){
+					return ;
+				}
+				$(".msgcount").html(result);
+				$(".msgcount").fadeIn(500);
+			}
+		})
+	}
 
 })

@@ -14,9 +14,9 @@ public interface MessageMapper {
      * 根据类型查询用户的信息集合
      * @param mtypeid
      */
-    @Select("<script>select * from message where uid=#{uid} and mtypeid=#{mtypeid}" +
+    @Select("<script>select * from message where (uid=#{uid} and mtypeid=#{mtypeid})" +
             "<if test=\"mtypeid==1\" >"+
-            " or mtypeid=4 "+
+            " or (uid=#{uid} and mtypeid=4) "+
             "</if>"+
             " ORDER BY mid DESC "+
             "<if test=\"pageSize!=null and pageSize!=0\" >"+
@@ -60,5 +60,17 @@ public interface MessageMapper {
      */
     @Delete("delete from message where uid=#{uid}")
     public int delMessage(@Param("uid") Integer uid);
+
+    /**
+     * 查询未读重复
+     * @param message
+     * @return
+     */
+    @Select("<script>select count(1) from message where mtypeid=#{mtypeid} and status=0 and yuid=#{yuid} and uid=#{uid} " +
+            "<if test=\"bid!=null and bid!=0\" >"+
+            " and bid=#{bid} "+
+            "</if>"+
+            "</script>")
+    public int reMessage(Message message);
 
 }

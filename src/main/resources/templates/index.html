@@ -24,7 +24,7 @@
 				<img src="img/blog.png" th:src="@{/img/blog.png}" />
 			</div>
 			<ul id="head-ul">
-				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
+				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
 			</ul>
 			<div id="head-user">
 				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
@@ -92,7 +92,7 @@
 				<div id="right-top">
 					<p>
 						博客专家
-						<span>
+						<span href="myModal" icon-dashang>
 							专家申请
 						</span>
 					</p>
@@ -137,7 +137,27 @@
 				<span><i class="iconfont icon-github"></i>GitHub:<a href="https://github.com/lsjdegit/blogsystem.git">源码</a></span>
 			</p>
 		</div>
-
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<p id="myModalLabel" style="text-align: center;font-size: 16px;">打赏详情</p>
+					</div>
+					<div class="modal-body">
+						<span>申请博客专家应具备的条件：</span>
+						<p>
+							1.博客文章总数超过10篇。
+							3.博客文章总的浏览量超过100次以上。
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">申请</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 	<script type="text/javascript">
   	$(function(){

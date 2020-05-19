@@ -22,7 +22,7 @@ public class PraiseServiceImpl implements PraiseService {
     @Transactional
     @Override
     public int addPraise(Praise praise ,Integer uid) {
-        praiseMapper.addPraise(praise);
+        int num = praiseMapper.addPraise(praise);
         Message message = new Message();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         message.setMtime(sdf.format(new Date()));
@@ -30,7 +30,10 @@ public class PraiseServiceImpl implements PraiseService {
         message.setBid(praise.getBid());
         message.setYuid(praise.getUid());
         message.setUid(uid);
-        int num = messageMapper.addMessage(message);
+        int isre = messageMapper.reMessage(message);
+        if(isre == 0 && message.getYuid() != message.getUid()){
+            messageMapper.addMessage(message);
+        }
         return num;
     }
 

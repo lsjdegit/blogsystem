@@ -9,37 +9,41 @@
 		
 	</style>
 	<link href="//at.alicdn.com/t/font_1803890_br7y3itdnoi.css" type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap-theme.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{css/public.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{css/homepage.css}"/>
-	<script type="text/javascript" th:src="@{js/jquery-1.12.4.js}"></script>
-	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:src="@{js/public.js}"></script>
-	<script type="text/javascript" th:src="@{js/homepage.js}"></script>
-	<script type="text/javascript">
-		
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/public.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/homepage.css}"/>
+	<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/public.js}"></script>
+	<script type="text/javascript" th:src="@{/js/homepage.js}"></script>
+	<script type="text/javascript" th:inline="javascript">
+		var ctxPath = [[@{/}]];
 	</script>
 	<body style="background-color: #F5F6F7;">
-		
-		<!-- Header -->
-		<div id="head">
-			<div id="head-logo">
-				<img src="img/blog.png" />
+
+	<!-- Header -->
+	<div id="head">
+		<div id="head-logo">
+			<img src="img/blog.png" th:src="@{/img/blog.png}" />
+		</div>
+		<ul id="head-ul">
+			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
+		</ul>
+		<div id="head-user">
+			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
+			<div id="head-img">
+				<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
+				<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
 			</div>
-			<ul id="head-ul">
-				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
-			</ul>
-			<div id="head-user">
-				<div id="head-img">
-					<img src="img/1.png" />
-				</div>
-				<span>用户名</span>
-				<div id="user-login">
-					<span class="btn">注销</span>
-				</div>
+			<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
+			<span th:if="${session.loginUser == null}">未登录</span>
+			<div id="user-login">
+				<span th:if="${session.loginUser != null}" class="btn">注销</span>
+				<span th:if="${session.loginUser == null}" class="btn">登录</span>
 			</div>
 		</div>
+	</div>
 
 		<div class="homemain">
 			<div class="homehead">
@@ -48,10 +52,10 @@
 				</div>
 				<div class="homejie">
 					<div class="ming">
-						<span>沉默王三</span><span><img src="img/expert.png" /></span>
+						<span  th:text="${user.uname}">沉默王三</span><span><img th:src="@{img/expert.png}" /></span>
 					</div>
 					<span class="wenzijianjie">简介：</span>
-					<p>「沉默王三」原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星；专注于有趣的 Java 技术以及有益的程序人生，祝你快速进阶成为技术大牛，拿到大厂 offer，绝不手软。</p>
+					<p th:text="${user.intro}">「沉默王三」原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星；专注于有趣的 Java 技术以及有益的程序人生，祝你快速进阶成为技术大牛，拿到大厂 offer，绝不手软。</p>
 				</div>
 				<div class="homeguan">
 					<button>关注</button>
@@ -61,34 +65,34 @@
 			<div class="homezhu">
 				<div class="homezhufen">
 					<ul>
-						<li>博客 <span>3</span></li>
-						<li>收藏 <span>3</span></li>
-						<li>粉丝 <span>6</span></li>
-						<li>关注 <span>6</span></li>
+						<li>博客 <span th:text="${user.blogs.size()}">3</span></li>
+						<li>收藏 <span th:text="${user.collects.size()}">3</span></li>
+						<li>粉丝 <span th:text="${user.fans.size()}">6</span></li>
+						<li>关注 <span th:text="${user.cares.size()}">6</span></li>
 					</ul>
 				</div>
-				<div class="homeli">
+				<div class="homeli" th:each="ublog,status:${user.blogs}">
 					<div class="mybolgli">
 						<div class="ybyb">
-							<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
-							<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
-							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>
+							<p class="ybybp1" th:text="${ublog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
+							<div><p class="ybybp2" th:text="${ublog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
+							<div><span th:text="${ublog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ublog.bnumber}">65</span></div>
 						</div>
 					</div>
-					<div class="mybolgli">
-						<div class="ybyb">
-							<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
-							<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
-							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>
-						</div>
-					</div>
-					<div class="mybolgli">
-						<div class="ybyb">
-							<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
-							<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
-							<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>
-						</div>
-					</div>
+					<!--<div class="mybolgli">-->
+						<!--<div class="ybyb">-->
+							<!--<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>-->
+							<!--<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>-->
+							<!--<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="mybolgli">-->
+						<!--<div class="ybyb">-->
+							<!--<p class="ybybp1">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>-->
+							<!--<div><p class="ybybp2">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>-->
+							<!--<div><span>2020-05-9</span> <span class="iconfont icon-liulan">65</span></div>-->
+						<!--</div>-->
+					<!--</div>-->
 					
 				</div>
 			</div>

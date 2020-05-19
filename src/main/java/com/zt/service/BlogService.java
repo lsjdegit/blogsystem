@@ -58,4 +58,11 @@ public interface BlogService {
      */
     public int delBlog( Integer bid);
 
+    /**
+     * 增加浏览量
+     * @param bid
+     * @return
+     */
+    public int addBnumber(Integer bid);
+
 }
