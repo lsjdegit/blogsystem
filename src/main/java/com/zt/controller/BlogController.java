@@ -1,10 +1,6 @@
 package com.zt.controller;
 
-import com.zt.entity.Blog;
-import com.zt.entity.BlogParameter;
-import com.zt.entity.ListPage;
-import com.zt.entity.User;
-import com.zt.mapper.BlogMapper;
+import com.zt.entity.*;
 import com.zt.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,7 +76,34 @@ public class BlogController {
             session.setAttribute("bids",bids);
         }
         Blog blog = blogService.getBlogById(bid);
+        Integer broSize = 0;
+        Integer praSize = 0;
+        Integer blogSize = 0;
+        for (Blog b : blog.getUser().getBlogs()) {
+            broSize += b.getBnumber();
+            praSize += b.getPraises().size();
+            if(b.getBstatusid() == 1){
+                blogSize++;
+            }
+        }
+        //是否关注
+        boolean isFans = false;
+        User user = (User) session.getAttribute("loginUser");
+        if(user != null){
+            Integer fansid = user.getUid();
+            for (User u : blog.getUser().getFans()) {
+                if(u.getUid() == fansid){
+                    isFans = true;
+                    break;
+                }
+            }
+        }
+
         m.addAttribute("blog",blog);
+        m.addAttribute("praSize",praSize);
+        m.addAttribute("broSize",broSize);
+        m.addAttribute("blogSize",blogSize);
+        m.addAttribute("isFans",isFans);
         return "blog";
     }
 

@@ -3,6 +3,9 @@ $(function(){
     //body宽度
     var maxWidth = window.screen.width;
     $("body").css("width",maxWidth);
+
+    //背景图片
+	$("body").css({"background":"url("+ctxPath+"img/indexbackground.jpg) no-repeat 0px 0px","backgroundSize":"110%"});
     
 	// $("#head-ul li:eq(0)").addClass("clickli");
 	$("#head-ul li").hover(function(){

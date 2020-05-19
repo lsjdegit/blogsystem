@@ -92,7 +92,7 @@
 				<div id="right-top">
 					<p>
 						博客专家
-						<span href="myModal" icon-dashang>
+						<span th:if="${session.loginUser != null && session.loginUser?.isexpert == 0}" href="#myModal" data-toggle="modal">
 							专家申请
 						</span>
 					</p>
@@ -142,17 +142,17 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<p id="myModalLabel" style="text-align: center;font-size: 16px;">打赏详情</p>
+						<p id="myModalLabel" style="text-align: center;font-size: 16px;">专家申请</p>
 					</div>
 					<div class="modal-body">
-						<span>申请博客专家应具备的条件：</span>
-						<p>
-							1.博客文章总数超过10篇。
+						<span style="font-size: 18px;font-weight: bolder;line-height: 25px;">申请博客专家应具备的条件：</span>
+						<p style="line-height: 25px;">
+							1.博客文章总数超过10篇。<br>
 							3.博客文章总的浏览量超过100次以上。
 						</p>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">申请</button>
+						<button id="shenqing" class="btn btn-info" data-dismiss="modal" aria-hidden="true">申请</button>
 						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 					</div>
 				</div>

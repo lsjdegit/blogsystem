@@ -289,5 +289,40 @@ $(function(){
         })
     });
 
+    //博客申请
+    $("#shenqing").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: ctxPath + "/user/pansonalselect",
+            success: function (result) {
+                var bnumber = 0;
+                var bsize = 0;
+                for(var i=0;i<result.blogs.length;i++){
+                    var blog = result.blogs[i];
+                    bnumber += blog.bnumber;
+                    if(blog.bstatusid == 1){
+                        bsize += 1;
+                    }
+                }
+                if(bsize < 10 || bnumber<100){
+                    alert("您的条件不符，申请失败！");
+                }else{
+                    $.ajax({
+                        type: 'POST',
+                        url: ctxPath + "user/bianzhuan",
+                        contentType:"application/json",
+                        data:JSON.stringify({"uid":$("input[name=loginUid]").val(),"isexpert":2}),
+                        success: function (result) {
+                            if(result>0){
+                                alert("申请成功，待管理员审核！")
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+    });
+
 
 })

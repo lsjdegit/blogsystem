@@ -85,7 +85,7 @@ $(function () {
         var yuid = $("input[name=loginUid]").val();
         var bid = $("input[name=bid]").val();
         var uid = $("input[name=buid]").val();
-        if(yuid == 0){
+        if(yuid == 0 || uid == ""){
             if(confirm("你还没登录，是否去登录？")){
                 location.href = ctxPath+"login";
             }
@@ -135,7 +135,7 @@ $(function () {
     //打赏验证
     $("#ult li:eq(3)").click(function () {
         var uid = $("input[name=loginUid]").val();
-        if(uid == 0){
+        if(uid == 0 || uid == ""){
             $("#myModal").remove();
             if(confirm("你还没登录，是否去登录？")){
                 location.href = ctxPath+"login";
@@ -148,7 +148,7 @@ $(function () {
     $("#ult li:eq(2)").click(function () {
         var uid = $("input[name=loginUid]").val();
         var bid = $("input[name=bid]").val();
-        if(uid == 0){
+        if(uid == 0 || uid == ""){
             if(confirm("你还没登录，是否去登录？")){
                 location.href = ctxPath+"login";
             }
@@ -197,7 +197,7 @@ $(function () {
         var bid = $("input[name=bid]").val();
         var parentid = $("input[name=parentid]").val();
         var cocontext = $(".pinglun form input[type=text]").val();
-        if(uid == 0){
+        if(uid == 0 || uid == ""){
             if(confirm("你还没登录，是否去登录？")){
                 location.href = ctxPath+"login";
             }
@@ -313,6 +313,45 @@ $(function () {
                 }
             })
         }
+    });
+
+    //关注
+    $(".lbottom button:eq(1)").click(function () {
+        var uid = $("input[name=loginUid]").val();
+        if(uid == 0 || uid == ""){
+            if(confirm("你还没登录，是否去登录？")){
+                location.href = ctxPath+"login";
+            }
+            return ;
+        }
+        var ad = $(this).html();
+        var buid = $(this).next().val();
+        var url = "";
+        if(ad == "关注"){
+            url = "addcare";
+        }else{
+            url = "delcare";
+        }
+        $.ajax({
+            type:'POST',
+            url:ctxPath+"/user/"+url,
+            contentType:"application/json",
+            data:JSON.stringify({"uid":buid,"fansid":uid}),
+            success:function(result){
+                if(result==0){
+                    $(".lbottom button:eq(1)").html("关注");
+                    $(".lbottom button:eq(1)").removeClass("btn-default");
+                    $(".lbottom button:eq(1)").removeClass("btn-danger");
+                    $(".lbottom button:eq(1)").addClass("btn-danger");
+                }
+                if(result==1){
+                    $(".lbottom button:eq(1)").html("取消关注");
+                    $(".lbottom button:eq(1)").removeClass("btn-default");
+                    $(".lbottom button:eq(1)").removeClass("btn-danger");
+                    $(".lbottom button:eq(1)").addClass("btn-default");
+                }
+            }
+        })
     });
 
 })
