@@ -26,6 +26,22 @@ public interface BrowseMapper {
     public int addBrowse(Browse browse);
 
     /**
+     * 浏览记录是否存在
+     * @param browse
+     * @return
+     */
+    @Select("select count(1) from browse where uid=#{uid} and bid=#{bid}")
+    public int isexist(Browse browse);
+
+    /**
+     * 删除存在的浏览记录
+     * @param browse
+     * @return
+     */
+    @Delete("delete from browse where uid=#{uid} and bid=#{bid}")
+    public int delByExist(Browse browse);
+
+    /**
      * 删除浏览记录
      * @param uid
      * @return

@@ -18,7 +18,7 @@
 .bolg1 {
     width: 80%;
     margin: 0 auto;
-    background-color: #f5f6f7;
+    background-color: rgba(0,0,0,0);
 }
 
 .bolg1:after {

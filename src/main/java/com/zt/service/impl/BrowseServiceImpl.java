@@ -8,6 +8,8 @@ import com.zt.service.BrowseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,5 +37,16 @@ public class BrowseServiceImpl implements BrowseService {
     @Override
     public int delall(Integer uid) {
         return browseMapper.delall(uid);
+    }
+
+    @Override
+    public int addBrowse(Browse browse) {
+        int num = browseMapper.isexist(browse);
+        if(num>0){
+            browseMapper.delByExist(browse);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        browse.setBrowsetime(sdf.format(new Date()));
+        return browseMapper.addBrowse(browse);
     }
 }

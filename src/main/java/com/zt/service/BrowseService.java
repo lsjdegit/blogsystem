@@ -12,4 +12,6 @@ public interface BrowseService {
     public List<Browse> getBrowseByUserAll(Integer uid);
 
     public int delall(Integer uid);
+
+    public int addBrowse(Browse browse);
 }
