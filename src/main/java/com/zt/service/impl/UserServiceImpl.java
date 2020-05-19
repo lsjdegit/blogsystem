@@ -124,6 +124,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int isexistUname(String uname) {
+        return userMapper.isexistUname(uname);
+    }
+
+    @Override
     public Integer getBalance(Integer uid) {
         return userMapper.getBalance(uid);
     }

@@ -476,4 +476,14 @@ public class UserController {
         return "personal";
     }
 
+    @RequestMapping("shifou")
+    @ResponseBody
+    public boolean isexist(@RequestParam("uname") String uname){
+        int num = userService.isexistUname(uname);
+        if(num>0) {
+            return true;
+        }
+        return false;
+    }
+
 }

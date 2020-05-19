@@ -149,4 +149,7 @@ public interface UserMapper {
 
     @Select("select * from user")
     public List<User> selectAllUser();
+
+    @Select("SELECT COUNT(1) FROM USER WHERE uname=#{uname}")
+    public int isexistUname(@Param("uname") String uname);
 }

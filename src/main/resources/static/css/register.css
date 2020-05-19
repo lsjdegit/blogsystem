@@ -1,14 +1,20 @@
 .center{
     width:450px;
     height:850px;
-    border: 1px #ccc solid;
+    border: 1px antiquewhite solid;
+    border-radius: 5px;
     margin: 50px auto;
+    background: rgba(256,256,256,0.7);
     color: rgba(0,0,0,0.9);
     font-family: "Times New Roman", Times, serif;
-    background: rgba(256,256,256,0.7);
-    border-radius: 5px;
-    font-family: "Times New Roman", Times, serif;
 }
+
+.center input{
+    color: black;
+    font-size: 18px;
+    border-color: #777;
+}
+
 .title{
     font-size: 22px;
     font-weight: bold;
@@ -54,8 +60,8 @@
     text-indent: 2em;
 }
 .mo{
-    margin-left:280px;
-    margin-top: 50px;
+    float: right;
+    margin-top: 20px;
 }
 #woman{
     margin-left: 50px;

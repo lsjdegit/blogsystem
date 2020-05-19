@@ -107,4 +107,11 @@ public interface UserService {
     public int updatepass(User user);
 
     public List<User> selectAllUser();
+
+    /**
+     * 用户名是否存在
+     * @param uname
+     * @return
+     */
+    public int isexistUname(String uname);
 }
