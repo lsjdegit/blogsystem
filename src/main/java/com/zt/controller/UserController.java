@@ -96,9 +96,9 @@ public class UserController {
         user.setUimage(user.getUname()+".jpg");
         int reg= userService.Register(user);
         if(reg>0){
-           return "login";
+           return "redirect:../login";
        }else{
-           return "register";
+           return "register../register";
        }
     }
 
@@ -445,7 +445,7 @@ public class UserController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "personal";
+        return "redirect:../personal";
 
     }
 

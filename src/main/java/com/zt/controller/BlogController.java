@@ -61,7 +61,7 @@ public class BlogController {
     public String blogview(Integer bid, Model m, HttpSession session){
         List<Integer> bids = (List<Integer>) session.getAttribute("bids");
         if(bids == null){
-            return "index";
+            return "redirect:../index";
         }
         boolean flag = true;
         for (int i=0;i<bids.size();i++) {
