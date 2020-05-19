@@ -62,24 +62,25 @@
                 <ul class="lut">
                     <li><span th:text="${blog.user.fans.size()}">0</span>
                         <p>粉丝</p></li>
-                    <li><span>24</span>
+                    <li><span th:text="${praSize}">24</span>
                         <p>获赞</p></li>
-                    <li><span>24</span>
+                    <li><span th:text="${broSize}">24</span>
                         <p>访问</p></li>
-                    <li><span th:text="${blog.collects.size()}">0</span>
-                        <p>收藏</p></li>
+                    <li><span th:text="${blogSize}">0</span>
+                        <p>博客</p></li>
                 </ul>
             </div>
             <div class="lbottom">
                 <button type="button" class="btn btn-default">TA的主页</button>
-                <button th:if="${session.loginUser?.uid == blog.user.uid}" style="display: none;" type="button" class="btn btn-danger">关注</button>
-                <button th:if="${session.loginUser?.uid != blog.user.uid}" type="button" class="btn btn-danger">关注</button>
+                <button th:if="${session.loginUser?.uid != blog.user.uid && isFans}" type="button" class="btn btn-default">取消关注</button>
+                <button th:if="${session.loginUser?.uid != blog.user.uid && !isFans}" type="button" class="btn btn-danger">关注</button>
+                <input type="hidden" name="buid" th:value="${blog.user.uid}" />
             </div>
         </div>
         <div class="tablog">
             <p style="font-size: 16px; font-weight: bold;margin-left: 30px">TA的博客</p>
             <ul class="tablogul">
-                <li th:each="ublog,status:${blog.user.blogs}">
+                <li th:each="ublog,status:${blog.user.blogs}" th:if="${ublog.bstatusid == 1}">
                     <a th:href="@{'/blog/view?bid='+${ublog.bid}}" th:text="${ublog.btitle}">Linux环境下内存溢出的解决方法</a>
                 </li>
             </ul>

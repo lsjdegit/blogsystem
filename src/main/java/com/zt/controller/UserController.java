@@ -1,7 +1,6 @@
 package com.zt.controller;
 
 import ch.qos.logback.core.util.FileUtil;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.Blog;
 import com.zt.entity.BlogParameter;
 import com.zt.entity.ListPage;
@@ -18,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -28,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -50,23 +47,23 @@ public class UserController {
      */
     @RequestMapping("login")
     @ResponseBody
-    public String loginUser(User user, HttpSession session,String yanzhen){
-       String code=(String)session.getAttribute("VerifyCode");
-        System.out.println("随机验证码:"+code);
-        System.out.println("用户输入验证码:"+yanzhen);
-        user=userService.Login(user);
-        session.setAttribute("loginUser",user);
-        if(user!=null) {//用户名和密码正觉
+    public String loginUser(User user, HttpSession session, String yanzhen) {
+        String code = (String) session.getAttribute("VerifyCode");
+        System.out.println("随机验证码:" + code);
+        System.out.println("用户输入验证码:" + yanzhen);
+        user = userService.Login(user);
+        session.setAttribute("loginUser", user);
+        if (user != null) {//用户名和密码正觉
             if (code.toLowerCase().equals(yanzhen.toLowerCase())) {//验证码输入咸亨却
-                if("admin".equals(user.getUname())) {
+                if ("admin".equals(user.getUname())) {
                     return "admin";
-                }else{
+                } else {
                     return "index";
                 }
-            }else{//验证码输入正确
-                    return "error";
+            } else {//验证码输入正确
+                return "error";
             }
-        }else{//用户名或密码错误
+        } else {//用户名或密码错误
             return "cuo";
         }
     }
@@ -107,6 +104,7 @@ public class UserController {
 
     /**
      * 随机三个专家用户
+     *
      * @param m
      * @return
      */
@@ -141,6 +139,7 @@ public class UserController {
 
     /**
      * 点赞排行榜前三
+     *
      * @param m
      * @return
      */
@@ -179,6 +178,7 @@ public class UserController {
 
     /**
      * 个人中心数据
+     *
      * @param sess
      * @return
      */
@@ -196,6 +196,7 @@ public class UserController {
 
     /**
      * 修改用户
+     *
      * @param user
      * @return
      */
@@ -258,6 +259,7 @@ public class UserController {
 
     /**
      * 收藏分页
+     *
      * @param uid
      * @param pageIndex
      * @return
@@ -276,6 +278,7 @@ public class UserController {
 
     /**
      * 给用户输入的邮箱发送邮件
+     *
      * @param email
      * @param sess
      * @return
@@ -323,6 +326,7 @@ public class UserController {
 
     /**
      * 验证用户输入的验证码是否与发送的验证码是否一致
+     *
      * @param code
      * @param session
      * @return
@@ -387,34 +391,35 @@ public class UserController {
 
     @RequestMapping("getblance")
     @ResponseBody
-    public Integer getBalance(@RequestParam Integer uid){
+    public Integer getBalance(@RequestParam Integer uid) {
         return userService.getBalance(uid);
     }
 
 
     /**
      * 查看单个博主信息
+     *
      * @param uid
      * @param model
      * @return
      */
     @RequestMapping("selectzhuid")
-    public String selectzhuid(Integer uid, Model model){
-        User user=userService.getUserById(uid);
-        model.addAttribute("user",user);
+    public String selectzhuid(Integer uid, Model model) {
+        User user = userService.getUserById(uid);
+        model.addAttribute("user", user);
         return "homepage";
     }
 
     @RequestMapping("getzhuanjia")
     @ResponseBody
-    public UserNumber getzhuanjia(Integer uid){
+    public UserNumber getzhuanjia(Integer uid) {
         System.out.println(uid);
         //总获赞数
-      int gnumber= userService.getgnumber(uid);
-      //总流浪量
-      int bnumber=userService.getbnumber(uid);
-      User us=userService.getUserById(uid);
-        UserNumber un=new UserNumber();
+        int gnumber = userService.getgnumber(uid);
+        //总流浪量
+        int bnumber = userService.getbnumber(uid);
+        User us = userService.getUserById(uid);
+        UserNumber un = new UserNumber();
         un.setUser(us);
         un.setZbnumber(bnumber);
         un.setZpnumber(gnumber);
@@ -423,9 +428,9 @@ public class UserController {
 
     @RequestMapping("bianzhuan")
     @ResponseBody
-    public int bianzhuan(@RequestBody User user){
-       int na= userService.zhuanjia(user);
-        return na;
+    public Integer bianzhuan(@RequestBody User user) {
+        Integer num= userService.zhuanjia(user);
+        return num;
     }
 
     @RequestMapping("updateimg")
@@ -444,6 +449,23 @@ public class UserController {
 
     }
 
+    /**
+     * 博客页面关注和取消关注
+     * @param uurelevance
+     * @return
+     */
+    @RequestMapping("delcare")
+    @ResponseBody
+    public Integer delCare(@RequestBody Uurelevance uurelevance){
+        uurelevanceService.delcare(uurelevance);
+        return 0;
+    }
 
+    @RequestMapping("addcare")
+    @ResponseBody
+    public Integer addCare(@RequestBody Uurelevance uurelevance){
+        uurelevanceService.addcare(uurelevance);
+        return 1;
+    }
 
 }
