@@ -93,7 +93,7 @@ function change(obj){
                     mtitle = message.blog.btitle;
                 }
                 var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
-                    "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
+                    "<img src=\""+ctxPath+"upload/"+message.yuser.uimage +"?t=" + Math.random()+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
                     "<span style='display: inline-block;margin-left: 20px;height: 80px;padding: 0px;font-size: 20px;text-decoration: underline;width: 35%;float: left;'>"+message.blog.btitle+"</span>" +
@@ -213,7 +213,7 @@ $(function () {
                     unread = "<img src=\""+ctxPath+"upload/unread.png\" style='width: 40px;height: 40px;position: absolute;left: 0px;top: 0px;' />";
                 }
                 var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
-                    "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
+                    "<img src=\""+ctxPath+"upload/"+message.yuser.uimage +"?t=" + Math.random()+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                     "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
                     "<span style='display: inline-block;margin-left: 20px;height: 80px;padding: 0px;font-size: 20px;text-decoration: underline;width: 35%;float: left;'>"+message.blog.btitle+"</span>" +
@@ -289,7 +289,7 @@ $(function () {
                         mtitle = message.blog.btitle;
                     }
                     var $message = $("<li onclick='message(\""+msgGo+"\","+id+","+message.mid+")' style='position: relative;'>" +
-                        "<img src=\""+ctxPath+"upload/"+message.yuser.uimage+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
+                        "<img src=\""+ctxPath+"upload/"+message.yuser.uimage +"?t=" + Math.random()+"\" style=\"width: 40px; height: 40px;border-radius: 20px;margin-left: 20px;margin-top: 20px;float: left;\">" +
                         "<span style='font-size: 18px;display: inline-block;height: 80px;float: left;'>"+message.yuser.uname+"</span>" +
                         "<span style='font-size: 18px;display: inline-block;height: 80px;margin-left: 5px;float: left;'>"+mtype+"</span>" +
                         "<span style='display: inline-block;margin-left: 20px;height: 80px;padding: 0px;font-size: 20px;text-decoration: underline;width: 35%;float: left;'>"+mtitle+"</span>" +
