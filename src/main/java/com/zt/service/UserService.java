@@ -1,6 +1,8 @@
 package com.zt.service;
 
+import com.zt.entity.Blog;
 import com.zt.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -82,4 +84,18 @@ public interface UserService {
      * @return
      */
     public Integer getBalance(Integer uid);
+
+    /**
+     * 求获赞数
+     * @param uid
+     * @return
+     */
+    public int getgnumber(Integer uid);
+
+    /**
+     * 求浏览量
+     * @param uid
+     * @return
+     */
+    public int getbnumber(Integer uid);
 }

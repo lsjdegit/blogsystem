@@ -1,5 +1,6 @@
 package com.zt.service.impl;
 
+import com.zt.entity.Blog;
 import com.zt.entity.User;
 import com.zt.mapper.UserMapper;
 import com.zt.service.UserService;
@@ -109,5 +110,31 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer getBalance(Integer uid) {
         return userMapper.getBalance(uid);
+    }
+
+    @Override
+    public int getgnumber(Integer uid) {
+      User user= userMapper.getUserById(uid);
+     List<Blog> bloglist= user.getBlogs();
+     int gnumber=0;
+     if(bloglist!=null){
+            for (int i = 0; i < bloglist.size(); i++) {
+                gnumber+=bloglist.get(i).getGnumber();
+            }
+        }
+        return gnumber;
+    }
+
+    @Override
+    public int getbnumber(Integer uid) {
+        User user= userMapper.getUserById(uid);
+        List<Blog> bloglist= user.getBlogs();
+        int bnumber=0;
+        if(bloglist!=null){
+            for (int i = 0; i < bloglist.size(); i++) {
+                bnumber+=bloglist.get(i).getBnumber();
+            }
+        }
+        return bnumber;
     }
 }

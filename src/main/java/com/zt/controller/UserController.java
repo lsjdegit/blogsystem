@@ -1,6 +1,7 @@
 package com.zt.controller;
 
 import ch.qos.logback.core.util.FileUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.zt.entity.Blog;
 import com.zt.entity.BlogParameter;
 import com.zt.entity.ListPage;
@@ -341,6 +342,43 @@ public class UserController {
     @ResponseBody
     public Integer getBalance(@RequestParam Integer uid){
         return userService.getBalance(uid);
+    }
+
+
+    /**
+     * 查看单个博主信息
+     * @param uid
+     * @param model
+     * @return
+     */
+    @RequestMapping("selectzhuid")
+    public String selectzhuid(Integer uid, Model model){
+        User user=userService.getUserById(uid);
+        model.addAttribute("user",user);
+        return "homepage";
+    }
+
+    @RequestMapping("getzhuanjia")
+    @ResponseBody
+    public UserNumber getzhuanjia(Integer uid){
+        System.out.println(uid);
+        //总获赞数
+      int gnumber= userService.getgnumber(uid);
+      //总流浪量
+      int bnumber=userService.getbnumber(uid);
+      User us=userService.getUserById(uid);
+        UserNumber un=new UserNumber();
+        un.setUser(us);
+        un.setZbnumber(bnumber);
+        un.setZpnumber(gnumber);
+        return un;
+    }
+
+    @RequestMapping("bianzhuan")
+    @ResponseBody
+    public int bianzhuan(@RequestBody User user){
+       int na= userService.zhuanjia(user);
+        return na;
     }
 
 

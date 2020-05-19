@@ -73,7 +73,7 @@
                     "<span>"+blog.bcreatetime+"</span>"+
                     "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
                     "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                    "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                    "<span class=\"iconfont icon-liulan\">"+blog.comments.length+"</span>" +
                     "</div>"+
                     "</div>"+
                     "</div>");
@@ -421,7 +421,7 @@ $(function(){
                         "<span>"+blog.bcreatetime+"</span>"+
                         "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
                         "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                        "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                        "<span class=\"iconfont icon-liulan\">"+blog.collects.length+"</span>" +
                         "</div>"+
                         "</div>"+
                         "</div>");
@@ -510,18 +510,34 @@ $(function(){
                 success:function(result){
                     var ulist= result.list;
                     var totalPage = result.totalPage;
+                    var fei= "<img src=\""+ctxPath+"/img/username.png\" />";
+                    var bozhu= "<img src=\""+ctxPath+"/img/expert.png\" />";
                     for(var i=0;i<ulist.length;i++){
                         var blog=ulist[i];
-                        var $blog= $("<div class=\"mybolgli\">"+
-                            "<div class=\"ybybzhu\">"+
-                            "<div class=\"ybnat\">"+
-                            "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
-                            "<img src=\""+ctxPath+"/img/username.png\" />"+
-                            "<span>"+blog.uname+"</span>"+
-                            "<span>"+blog.email+"</span>"+
-                            "</div>"+
-                            "</div>"+
-                            "</div>");
+                        if(blog.isexpert==0) {
+                            var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                                "<div class=\"ybybzhu\">" +
+                                "<div class=\"ybnat\">" +
+                                "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                                fei +
+                                "<span>" + blog.uname + "</span>" +
+                                "<span>" + blog.email + "</span>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>");
+
+                        }else if(blog.isexpert==1){
+                            var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                                "<div class=\"ybybzhu\">" +
+                                "<div class=\"ybnat\">" +
+                                "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                                bozhu +
+                                "<span>" + blog.uname + "</span>" +
+                                "<span>" + blog.email + "</span>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>");
+                        }
                         $(".bolgallzhu").prepend($blog);
                     }
                     $(".blog").show().animate({height:'80px',width:'100%'});
@@ -561,7 +577,7 @@ $(function(){
                             var totalPage = result.totalPage;
                             for(var i=0;i<ulist.length;i++){
                                 var blog=ulist[i];
-                                var $blog= $("<div class=\"mybolgli\">"+
+                                var $blog= $("<div onclick=\"exceptional("+blog.uid+")\" class=\"mybolgli\" href='#myModal2' data-toggle=\"modal\">"+
                                     "<div class=\"ybybzhu\">"+
                                     "<div class=\"ybnat\">"+
                                     "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
@@ -608,18 +624,34 @@ $(function(){
                         success:function(result){
                             var ulist= result.list;
                             var totalPage = result.totalPage;
+                            var fei= "<img src=\""+ctxPath+"/img/username.png\" />";
+                            var bozhu= "<img src=\""+ctxPath+"/img/expert.png\" />";
                             for(var i=0;i<ulist.length;i++){
                                 var blog=ulist[i];
-                                var $blog= $("<div class=\"mybolgli\">"+
-                                    "<div class=\"ybybzhu\">"+
-                                    "<div class=\"ybnat\">"+
-                                    "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
-                                    "<img src=\""+ctxPath+"/img/username.png\" />"+
-                                    "<span>"+blog.uname+"</span>"+
-                                    "<span>"+blog.email+"</span>"+
-                                    "</div>"+
-                                    "</div>"+
-                                    "</div>");
+                                if(blog.isexpert==0) {
+                                    var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                                        "<div class=\"ybybzhu\">" +
+                                        "<div class=\"ybnat\">" +
+                                        "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                                        fei +
+                                        "<span>" + blog.uname + "</span>" +
+                                        "<span>" + blog.email + "</span>" +
+                                        "</div>" +
+                                        "</div>" +
+                                        "</div>");
+
+                                }else if(blog.isexpert==1){
+                                    var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                                        "<div class=\"ybybzhu\">" +
+                                        "<div class=\"ybnat\">" +
+                                        "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                                        bozhu +
+                                        "<span>" + blog.uname + "</span>" +
+                                        "<span>" + blog.email + "</span>" +
+                                        "</div>" +
+                                        "</div>" +
+                                        "</div>");
+                                }
                                 $(".bolgallzhu").prepend($blog);
                             }
                             $(".blog").show().animate({height:'80px',width:'100%'});
@@ -655,18 +687,34 @@ $(function(){
             success:function(result){
                 var ulist= result.list;
                 var totalPage = result.totalPage;
+                var fei= "<img src=\""+ctxPath+"/img/username.png\" />";
+                var bozhu= "<img src=\""+ctxPath+"/img/expert.png\" />";
                 for(var i=0;i<ulist.length;i++){
                     var blog=ulist[i];
-                    var $blog= $("<div class=\"mybolgli\">"+
-                        "<div class=\"ybybzhu\">"+
-                        "<div class=\"ybnat\">"+
-                        "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
-                        "<img src=\""+ctxPath+"/img/username.png\" />"+
-                        "<span>"+blog.uname+"</span>"+
-                        "<span>"+blog.email+"</span>"+
-                        "</div>"+
-                        "</div>"+
-                        "</div>");
+                    if(blog.isexpert==0) {
+                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                            "<div class=\"ybybzhu\">" +
+                            "<div class=\"ybnat\">" +
+                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                            fei +
+                            "<span>" + blog.uname + "</span>" +
+                            "<span>" + blog.email + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>");
+
+                    }else if(blog.isexpert==1){
+                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                            "<div class=\"ybybzhu\">" +
+                            "<div class=\"ybnat\">" +
+                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                            bozhu +
+                            "<span>" + blog.uname + "</span>" +
+                            "<span>" + blog.email + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>");
+                    }
                     $(".bolgallzhu").prepend($blog);
                 }
                 $(".blog").show().animate({height:'80px',width:'100%'});
@@ -694,6 +742,22 @@ $(function(){
     $("#boke").click(function(){
         $(".pag li button").attr("onclick","change(this)");
     })
+    /**
+     * 申请专家
+     */
+    $("#jingshen").click(function(){
+        $.ajax({
+            type:'post',
+            url:'user/bianzhuan',
+            contentType:'application/json',
+            data:JSON.stringify({"isexpert":1,"uid":$("#usid").val()}),
+            success:function(result){
+                $("#myModal2").modal('hide');
+                window.location.href="adminindex";
+            }
+        })
+    })
+
 })
 
             /**
@@ -708,8 +772,62 @@ $(function(){
              * @param id
              */
             function adminshen(id){
-                            window.location.href="blog/selectidzhu?bid="+id;
+                window.location.href="blog/selectidzhu?bid="+id;
                         }
+
+            /**
+             * 管理员点击博主进入对应博主的个人页面
+             * @param id
+             */
+            function bozhu(id){
+                window.location.href="user/selectzhuid?uid="+id;
+            }
+
+            /**
+             * 管理员单击要申请专家的用户弹出对应的模态框
+             * @param id
+             */
+            function exceptional(uid){
+                var id=uid;
+                $(".left-top").empty();
+                $.ajax({
+                    type:'post',
+                    url:'user/getzhuanjia',
+                    data:"uid="+id,
+                    success:function (result) {
+                       var gid= result.zpnumber;
+                       var bid=result.zbnumber;
+                        var blog=result.user;
+                        var  $blog=$("<div class=\"left-top\">"+
+                          "<div class=\"ltop\">"+
+                          "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
+                          "<div class=\"long\">"+
+                          "<p class=\"name\" >"+
+                          "<span>"+blog.uname+"</span>"+
+                          "<img  class=\"biaoji\" src=\"img/expert.png\">"+
+                          "</p>"+
+                          "</div>"+
+                          "</div>"+
+                          "<div class=\"lcenter\">"+
+                          "<ul class=\"lut\">"+
+                          "<li><span>"+blog.fans.length+"</span>"+
+                          "<p>粉丝</p></li>"+
+                          "<li><span>"+gid+"</span>"+
+                          "<p>获赞</p></li>"+
+                          "<li><span>"+bid+"</span>"+
+                          "<p>访问</p></li>"+
+                          "<li><span>"+blog.blogs.length+"</span>"+
+                          "<p>博客</p></li>"+
+                          "</ul>"+
+                          "</div>"+
+                            "<input type=\"hidden\" id=\"usid\" value=\""+blog.uid+"\">"+
+                          "</div>");
+
+                        $(".left").prepend($blog);
+                    }
+                })
+            }
+
 
 
 

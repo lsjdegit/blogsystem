@@ -1,5 +1,6 @@
 package com.zt.mapper;
 
+import com.zt.entity.Blog;
 import com.zt.entity.User;
 import org.apache.ibatis.annotations.*;
 
@@ -138,5 +139,6 @@ public interface UserMapper {
      */
     @Select("select balance from user where uid=#{uid}")
     public Integer getBalance(@Param("uid") Integer uid);
+
 
 }

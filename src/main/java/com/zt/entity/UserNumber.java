@@ -6,7 +6,8 @@ import lombok.Data;
 public class UserNumber {
     private User user;
     private Integer pnumber;
-
+    private Integer zpnumber;
+    private Integer zbnumber;
 
 
 }
