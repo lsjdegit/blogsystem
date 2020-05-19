@@ -27,6 +27,7 @@
 		</ul>
 		<div id="head-user">
 			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
+			<input type="hidden" name="loginuimage" th:value="${session.loginUser?.uimage}">
 			<div id="head-img">
 				<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
 				<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>

@@ -187,7 +187,8 @@ $(function() {
 			$(".xx1 span:eq(1)").html("关注："+caress);
 			$(".xx1 span:eq(2)").html("粉丝："+fanss);
 			$(".xx1 span:eq(4)").html("余额："+bl);
-			$(".imghead img").attr("src",ctxPath+"upload/"+img);
+			$(".imghead img").attr("src",ctxPath+"upload/"+img+"?t="+Math.random());
+			$(".modal-body img").attr("src",ctxPath+"upload/"+img+"?t="+Math.random());
 			$(".xx2 p:eq(0)").html("姓名："+name);
 			$(".xx2 p:eq(2)").html("性别："+sex);
 			$(".xx2 p:eq(3)").html("年龄："+age);

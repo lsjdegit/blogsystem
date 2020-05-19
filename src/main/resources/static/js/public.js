@@ -6,7 +6,10 @@ $(function(){
 
     //背景图片
 	$("body").css({"background":"url("+ctxPath+"img/indexbackground.jpg) no-repeat 0px 0px","backgroundSize":"110%"});
-    
+
+	//头像
+	$("#head-img img").attr("src",ctxPath+"upload/"+$("input[name=loginuimage]").val()+"?t="+Math.random());
+
 	// $("#head-ul li:eq(0)").addClass("clickli");
 	$("#head-ul li").hover(function(){
 		$(this).addClass("hoverli");
