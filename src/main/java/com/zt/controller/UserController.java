@@ -168,7 +168,7 @@ public class UserController {
     @ResponseBody
     public User personalselect(HttpSession sess) {
         User kl = (User) sess.getAttribute("loginUser");
-        User puser = userService.getUserById(kl.getUid());
+        User puser = userService.getUserByIdpersonal(kl.getUid());
 //        System.out.println(puser);
 //        System.out.println(puser.getFans());
 //        System.out.println(puser.getBalance());

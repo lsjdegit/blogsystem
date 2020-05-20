@@ -37,8 +37,7 @@ public interface CollectMapper {
     @Select("select * from collect where uid=#{uid} LIMIT #{first},#{pageSize}")
     @Results({
             @Result(id=true,column="collectid",property="collectid"),
-            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
-            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById"))
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogByIdCollect"))
     })
     public List<Collect> getCollectsByUserfen(@Param("uid") Integer uid, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
 

@@ -14,6 +14,10 @@ public interface BrowseMapper {
 
 
     @Select("select * from browse where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="borwseid",property="browseid"),
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogByIdCollect"))
+    })
     public List<Browse> getBrowseByUserAll(@Param("uid") Integer uid);
 
 

@@ -27,6 +27,7 @@ public class User implements Serializable {
 	private List<Browse> browses;
 	private List<User> cares;
 	private List<User> fans;
+	@JsonBackReference(value = "collects")
 	private List<Collect> collects;
 
 	public User(String uname, String upassword) {

@@ -24,6 +24,21 @@ public interface BlogMapper {
     public Blog getBlogById(@Param("bid") Integer bid);
 
     /**
+     * 根据id无引用
+     * @param bid
+     * @return
+     */
+    @Select("select * from blog where bid=#{bid}")
+    public Blog getBlogByIdBrowse(@Param("bid") Integer bid);
+
+    @Select("select * from blog where bid=#{bid}")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserByIdBlog"))
+    })
+    public Blog getBlogByIdCollect(@Param("bid") Integer bid);
+
+    /**
      * 根据用户id查拥有的博客集合
      * @param uid
      * @return

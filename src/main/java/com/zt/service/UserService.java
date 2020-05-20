@@ -131,4 +131,6 @@ public interface UserService {
      * @return
      */
     public int isexistUname(String uname);
+
+    public User getUserByIdpersonal(Integer uid);
 }

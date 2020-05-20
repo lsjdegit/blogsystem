@@ -154,6 +154,13 @@ function xiaoguan(obj){
 		contentType:"application/json",
 		data:JSON.stringify({"uid":careid,"fansid":uid}),
 		success:function(result){
+			/*$(obj).parent().remove();
+			var num = result.length;
+			if(num==0){
+				var $kong = $("<h3> 空空如也！"+
+					"</h3>");
+				$(".careall").append($kong);
+			}*/
 			if(result){
 				$(obj).parent().remove();
 			}
@@ -528,7 +535,7 @@ $(function() {
 			success:function(result) {
 				var cares=result.cares;//关注集合
 				var caress = result.cares.length; //关注量
-				var unm = result.collects.length;
+
 				//alert(bolgs);
 				//alert(caress);
 				var $care=$("<div class=\"care\">"+

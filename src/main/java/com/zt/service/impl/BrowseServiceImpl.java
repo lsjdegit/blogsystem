@@ -33,7 +33,7 @@ public class BrowseServiceImpl implements BrowseService {
     public List<Browse> getBrowseByUserAll(Integer uid) {
         List<Browse> browses = browseMapper.getBrowseByUserAll(uid);
         for(int i=0; i<browses.size();i++){
-            Blog blog=blogMapper.getBlogById(browses.get(i).getBid());
+            Blog blog=blogMapper.getBlogByIdBrowse(browses.get(i).getBid());
             browses.get(i).setBlog(blog);
         }
         return browses;

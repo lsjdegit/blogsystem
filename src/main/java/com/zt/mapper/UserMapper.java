@@ -80,6 +80,19 @@ public interface UserMapper {
     @Select("select * from user where uid=#{uid}")
     @Results({
             @Result(id=true,column="uid",property="uid"),
+            @Result(column="uid",property="cares",many=@Many(select="com.zt.mapper.UserMapper.getCareByUser")),
+            @Result(column="uid",property="fans",many=@Many(select="com.zt.mapper.UserMapper.getFansByUser"))
+    })
+    public User getUserByIdpersonal(@Param("uid") Integer uid);
+
+    /**
+     * 根据id获得用户
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="uid",property="uid"),
             @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
     })
     public User getUserByIdIndex(@Param("uid") Integer uid);

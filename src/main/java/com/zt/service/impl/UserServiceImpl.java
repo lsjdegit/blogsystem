@@ -144,6 +144,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByIdpersonal(Integer uid) {
+        return userMapper.getUserByIdpersonal(uid);
+    }
+
+    @Override
     public Integer getBalance(Integer uid) {
         return userMapper.getBalance(uid);
     }
