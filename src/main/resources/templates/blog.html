@@ -49,7 +49,7 @@
 <div class="zong">
     <div class="left">
         <div id="left-top">
-            <div class="ltop" style="cursor: pointer;" th:onclick="'bozhu('+${blog.user.uid}+')'">
+            <div class="ltop" >
                 <img src="img/backgrounp.png" th:src="@{'/upload/'+${blog.user.uimage}}" class="tou"
                      style="width: 80px; height: 80px; border-radius: 40px;float: left;">
                 <div style="float: left; margin-left: 10px;">
@@ -72,7 +72,7 @@
                 </ul>
             </div>
             <div class="lbottom">
-                <button type="button" class="btn btn-default">TA的主页</button>
+                <button type="button" class="btn btn-default" th:onclick="'bozhu('+${blog.user.uid}+')'">TA的主页</button>
                 <button th:if="${session.loginUser?.uid != blog.user.uid && isFans}" type="button" class="btn btn-default">取消关注</button>
                 <button th:if="${session.loginUser?.uid != blog.user.uid && !isFans}" type="button" class="btn btn-danger">关注</button>
                 <input type="hidden" name="buid" th:value="${blog.user.uid}" />

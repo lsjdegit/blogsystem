@@ -98,7 +98,7 @@
 						</span>
 					</p>
 					<ul>
-						<li th:each="user,status:${eUserList}">
+						<li th:each="user,status:${eUserList}" style="cursor: pointer;"  th:onclick="'bozhu('+${user.uid}+')'">
 							<div>
 								<div>
 									<img src="img/hyxd.jpg" th:src="@{'/upload/'+${user.uimage}}" />
@@ -115,7 +115,7 @@
 						博客排行榜
 					</p>
 					<ul>
-						<li th:each="user,status:${guserList}" th:if="${status.index} lt 3">
+						<li th:each="user,status:${guserList}" th:if="${status.index} lt 3" style="cursor: pointer"  th:onclick="'bozhu('+${user.uid}+')'">
 							<div>
 								<div>
 									<img src="img/hyxd.jpg" th:src="@{'/upload/'+${user.uimage}}" />

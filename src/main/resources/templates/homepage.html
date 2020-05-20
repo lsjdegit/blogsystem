@@ -53,13 +53,15 @@
 				</div>
 				<div class="homejie">
 					<div class="ming">
-						<span  th:text="${user.uname}">沉默王三</span><span><img th:src="@{img/expert.png}" /></span>
+						<span  th:text="${user.uname}">沉默王三</span><span><img th:if="${user.isexpert == 1}" th:src="@{/img/expert.png}" /></span>
 					</div>
 					<span class="wenzijianjie">简介：</span>
 					<p th:text="${user.intro}">「沉默王三」原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星；专注于有趣的 Java 技术以及有益的程序人生，祝你快速进阶成为技术大牛，拿到大厂 offer，绝不手软。</p>
 				</div>
 				<div class="homeguan">
-					<button>关注</button>
+					<button th:if="${session.loginUser?.uid != user.uid && isFans}" type="button" class="btn btn-default">取消关注</button>
+					<button th:if="${session.loginUser?.uid != user.uid && !isFans}" type="button" class="btn btn-danger">关注</button>
+					<input type="hidden" name="buid" th:value="${user.uid}" />
 				</div>
 			</div>
 
@@ -75,7 +77,7 @@
 				<div class="homeli">
 					<!--我的博客-->
 					<div class="mybolgli" th:each="ublog,status:${user.blogs}" style="display:none">
-						<div class="ybyb" >
+						<div class="ybyb" style="cursor: pointer;" th:onclick="'blogview('+${ublog.bid}+')'" >
 							<p class="ybybp1" th:text="${ublog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
 							<div><p class="ybybp2" th:text="${ublog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
 							<div><span th:text="${ublog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ublog.bnumber}">65</span></div>
@@ -84,7 +86,7 @@
 
 					<!--收藏的博客-->
 					<div class="mybolgli1" th:each="ucoll,status:${user.collects}"  style="display: none">
-						<div class="ybyb">
+						<div class="ybyb" style="cursor: pointer;" th:onclick="'blogview('+${ucoll.bid}+')'">
 							<p class="ybybp1" th:text="${ucoll.blog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
 							<div><p class="ybybp2" th:text="${ucoll.blog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
 							<div><span th:text="${ucoll.blog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ucoll.blog.bnumber}">65</span></div>
@@ -93,8 +95,8 @@
 
 					<!--粉丝-->
 					<div class="mybolgli2" th:each="ufans,status:${user.fans}" style="display: none">
-						<div class="ybyb">
-							<img th:src="@{'/upload/'+${user.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+						<div class="ybyb" style="cursor: pointer;" th:onclick="'bozhu('+${ufans.uid}+')'">
+							<img th:src="@{'/upload/'+${ufans.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
 							<span class="ybybp1" th:text="${ufans.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
 							<!--<span class="ybybp2" th:text="${ufans.sex}" style="display: inline-block;font-size: 12px;float: left"></span>-->
 						</div>
@@ -102,9 +104,9 @@
 
 					<!--我的关注-->
 					<div class="mybolgli3" th:each="ucares,status:${user.cares}" style="display: none">
-						<div class="ybyb">
+						<div class="ybyb" style="cursor: pointer;" th:onclick="'bozhu('+${ucares.uid}+')'">
 							<!--th:src="@{'/upload/'+${blog.user.uimage}}"-->
-							<img th:src="@{'/upload/'+${user.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+							<img th:src="@{'/upload/'+${ucares.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
 							<span class="ybybp1" th:text="${ucares.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
 						</div>
 					</div>

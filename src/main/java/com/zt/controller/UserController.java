@@ -407,9 +407,22 @@ public class UserController {
      * @return
      */
     @RequestMapping("selectzhuid")
-    public String selectzhuid(Integer uid, Model model) {
-        User user = userService.getUserById(uid);
-        model.addAttribute("user", user);
+    public String selectzhuid(Integer uid, Model model,HttpSession session) {
+        User u = userService.getUserById(uid);
+        //是否关注
+        User user = (User) session.getAttribute("loginUser");
+        boolean isFans = false;
+        if(user != null){
+            Integer fansid = user.getUid();
+            for (User f : u.getFans()) {
+                if(f.getUid() == fansid){
+                    isFans = true;
+                    break;
+                }
+            }
+        }
+        model.addAttribute("isFans",isFans);
+        model.addAttribute("user", u);
         return "homepage";
     }
 

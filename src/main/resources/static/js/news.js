@@ -120,7 +120,7 @@ function message(type,id,mid){
     if(type == "blog"){
         location.href = ctxPath+"blog/view?bid="+id;
     }else if(type == "user"){
-
+        location.href = ctxPath+"user/selectzhuid?uid=" + id;
     }
 }
 
