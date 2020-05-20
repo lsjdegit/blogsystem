@@ -63,7 +63,7 @@
             var totalPage = result.totalPage;
             for(var a=0;a<blist.length;a++){
                 var blog=blist[a];
-                var $blog= $("<div class=\"mybolgli\">"+
+                var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
                     "<div class=\"ybyb\">"+
                     "<p title=\"查看\">"+blog.btitle+"</p>"+
                     "<div>"	 + "<img src=\"/upload/"+blog.user.uimage+"\" />" +
@@ -268,7 +268,7 @@ $(function(){
 				var totalPage = result.totalPage;
 				for(var a=0;a<blist.length;a++){
 					var blog=blist[a];
-					var $blog= $("<div class=\"mybolgli\">"+
+					var $blog= $("<div class=\"mybolgli\"  onclick=\"adminshen("+blog.bid+")\">"+
 						"<div class=\"ybyb\">"+
 						"<p title=\"查看\">"+blog.btitle+"</p>"+
 						"<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
@@ -305,7 +305,7 @@ $(function(){
 		})
 			})
     /**
-     * 点击待审核遍历所有已审核的博客
+     * 点击已审核遍历所有已审核的博客
      */
     $("#yi").click(function(){
         $(".pag li button").attr("onclick","change(this)");
@@ -322,7 +322,7 @@ $(function(){
                 var totalPage = result.totalPage;
                 for(var a=0;a<blist.length;a++){
                     var blog=blist[a];
-                    var $blog= $("<div class=\"mybolgli\">"+
+                    var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
                         "<div class=\"ybyb\">"+
                         "<p title=\"查看\">"+blog.btitle+"</p>"+
                         "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
@@ -426,7 +426,7 @@ $(function(){
                 var totalPage = result.totalPage;
                 for(var a=0;a<blist.length;a++){
                     var blog=blist[a];
-                    var $blog= $("<div class=\"mybolgli\">"+
+                    var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
                         "<div class=\"ybyb\">"+
                         "<p title=\"查看\">"+blog.btitle+"</p>"+
                         "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
@@ -436,7 +436,7 @@ $(function(){
                         "<span>"+blog.bcreatetime+"</span>"+
                         "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
                         "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                        "<span class=\"iconfont icon-liulan\">"+blog.collects.length+"</span>" +
+                        "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
                         "</div>"+
                         "</div>"+
                         "</div>");
@@ -771,7 +771,7 @@ $(function(){
              * @param id
              */
             function adminshen(id){
-                window.location.href="blog/selectidzhu?bid="+id;
+                window.location.href="blog/view?bid="+id;
                         }
 
             /**
