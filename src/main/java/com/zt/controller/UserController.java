@@ -381,12 +381,15 @@ public class UserController {
         return false;
     }
     @RequestMapping("updatepass")
-    public String updatepass(User user){
-        int num = userService.updatepass(user);
-        if(num>0){
-            return "login";
+    public String updatepass(Integer uid,String pass){
+        User user = new User();
+        user.setUid(uid);
+        user.setUpassword(pass);
+        int pa = userService.updatepass(user);
+        if(pa>0){
+            return "redirect:../login";
         }
-        return "personal";
+        return "redirect:../personal";
     }
 
     @RequestMapping("getblance")
@@ -469,11 +472,13 @@ public class UserController {
     }
 
     @RequestMapping("addbalance")
-    public String addUserBalance(User user){
-        int zong = user.getBalance() + userService.getBalance(user.getUid());
+    public String addUserBalance(Integer uid,Integer balance){
+        User user = new User();
+        int zong = balance + userService.getBalance(uid);
         user.setBalance(zong);
+        user.setUid(uid);
         int j = userService.updateUserbalance(user);
-        return "personal";
+        return "redirect:../personal";
     }
 
     @RequestMapping("shifou")
@@ -485,5 +490,7 @@ public class UserController {
         }
         return false;
     }
+
+
 
 }

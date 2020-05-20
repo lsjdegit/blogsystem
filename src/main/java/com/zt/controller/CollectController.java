@@ -68,6 +68,7 @@ public class CollectController {
         int unm=collectService.delCollect(ct);
         ListPage coll=new ListPage();
         System.out.println(blogParameter.getPageIndex());
+        System.out.println("传来的页码："+blogParameter.getPageIndex());
         Integer first = pageSize*(blogParameter.getPageIndex()-1);
         System.out.println(first);
         List co=collectService.getCollectsByUserfen(blogParameter.getUid(),first,pageSize);

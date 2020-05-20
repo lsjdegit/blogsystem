@@ -26,8 +26,9 @@
 		.dright{
 			float: left;
 			background-color: white;
-			width: 79.5%;
+			width: 78.5%;
 			margin-bottom: 20px;
+			margin-left: 10px;
 			border:0.5px #F5F6F7 solid;
 		}
 		.dleft ul{
@@ -133,7 +134,7 @@
 		.rhead{
 			margin-top: 20px;
 			margin-left: 3%;
-			width: 100%;
+			width: 90%;
 			height: 50px;
 			padding-top: 15px;
 			padding-bottom: 10px;
@@ -147,6 +148,11 @@
 			font-size: 14px;
 			margin-right: 5%;
 		}
+        .rhead p:first-of-type{
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+        }
 		.scboq{
 			width: 100%;
 			height: 550px;
@@ -308,7 +314,7 @@
         .browsehead{
             margin-top: 20px;
             margin-left: 3%;
-            width: 100%;
+            width: 90%;
             height: 50px;
             padding-top: 15px;
             padding-bottom: 10px;
@@ -321,6 +327,11 @@
             color: #122B40;
             font-size: 14px;
             margin-right: 5%;
+        }
+        .browsehead p:first-of-type{
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
         }
 		.quanshan{
 			cursor: pointer;
@@ -543,9 +554,21 @@
 			cursor: pointer;
 		}
 
-		.moneyul li p:hover{
+		.moneyhover{
 			color: #00BFF3;
 			border-color: #00BFF3;
+		}
+
+		.quec{
+			color: white;
+			background-color: #1B9AF7;
+			width: 40%;
+			margin: 0 auto;
+			height: 40px;
+			line-height: 40px;
+			font-size: 16px;
+			text-align: center;
+			border-radius: 3px;
 		}
 
 

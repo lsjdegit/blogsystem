@@ -52,6 +52,7 @@ function change(coll){
 				$(".scboq").append($blogdan);
 
 			}
+			alert(pageIndex);
 			$("#collcurrentPage").val(pageIndex);
 
 		}
@@ -59,8 +60,14 @@ function change(coll){
 
 }
 
-//看博客
+//看收藏的博客
 function vie(obj){
+	var bid=$(obj).next().val();
+	alert(bid);
+	location.href = ctxPath+"blog/view?bid="+bid;
+}
+//看浏览过的博客
+function lvie(obj){
 	var bid=$(obj).next().val();
 	alert(bid);
 	location.href = ctxPath+"blog/view?bid="+bid;
@@ -68,6 +75,7 @@ function vie(obj){
 //取消收藏
 function qusou(obj){
 	var pageIndex=$("#collcurrentPage").val();
+	alert(pageIndex);
 	var bid=$(obj).prev().val();
 	var uid=$("input[name=loginUid]").val();
 	$.ajax({
@@ -81,6 +89,13 @@ function qusou(obj){
 			$(".rhead p span").text(tatalpage);
 			$("#colltotalPage").val(tatalpage);
 			$(".boti").remove();
+			alert("条数："+collects.length);
+			alert("页数："+tatalpage);
+			if(collects.length==0){
+				var $kong = $("<h3> 暂无收藏！"+
+					"</h3>");
+				$(".scboq").append($kong);
+			}
 			for(var i=0;i<collects.length;i++){
 				var blog = collects[i].blog;
 				var $blogdan = $("<div class=\"boti\">" +
@@ -362,10 +377,8 @@ $(function() {
 		$(".fans").hide();
 		$(".care").hide();
         $(".mima").hide();
-
 		var uid=$("input[name=loginUid]").val();
 		var pageIndex = 1;
-
 		$.ajax({
 			type:'POST',
 			url:ctxPath+"/collect/selectcollects",
@@ -376,25 +389,21 @@ $(function() {
 				var unm=result.list.length;
 				var tatalpage =result.totalPage;
 				//alert(unm);
-				var $liufen=$("<div class=\"liufen\">"+
-                    "<ul class=\"liupage\">"+
-                    "<li class=\"one\" onclick=\"change(this)\">"+"首页</li>"+
-                    " <li class=\"prev\" onclick=\"change(this)\">上"+"</li>"+
-                    "<li class=\"next\" onclick=\"change(this)\">下"+"</li>"+
-                    "<li class=\"next\" onclick=\"change(this)\">尾页"+"</li>"+
-                    "</ul>"+
-                    "<input type=\"hidden\" id=\"colltotalPage\" value="+tatalpage+">"+
-                    "<input type=\"hidden\" id=\"collcurrentPage\" value=\"1\"/>"+
-                    "</div>");
-
-
+				alert(pageIndex);
 			    var $rhead=$("<div class=\"rhead\">"+
+					"<p>我的收藏"+"</p>"+
+					"<input type=\"hidden\" id=\"collcurrentPage\" value="+pageIndex+">"+
 			    	"<p>共"+ "<span>"+tatalpage+"</span>"+ "页</p>"+
 					"</div>");
 			    $(".dright").append($rhead); //加头
 			    var $scboq=$("<div class=\"scboq\">"+
 					"</div>");
 				$(".dright").append($scboq); //加装博文的盒子
+				if(collects.length==0){
+					var $kong = $("<h3> 暂无收藏！"+
+						"</h3>");
+					$(".scboq").append($kong);
+				}
 				for(var i=0;i<collects.length;i++){
 					var blog = collects[i].blog;
 					var $blogdan = $("<div class=\"boti\">" +
@@ -414,6 +423,16 @@ $(function() {
 					$(".scboq").append($blogdan);
 
 	            }
+				var $liufen=$("<div class=\"liufen\">"+
+					"<ul class=\"liupage\">"+
+					"<li class=\"one\" onclick=\"change(this)\">"+"首页</li>"+
+					" <li class=\"prev\" onclick=\"change(this)\">上"+"</li>"+
+					"<li class=\"next\" onclick=\"change(this)\">下"+"</li>"+
+					"<li class=\"next\" onclick=\"change(this)\">尾页"+"</li>"+
+					"</ul>"+
+					"<input type=\"hidden\" id=\"colltotalPage\" value="+tatalpage+">"+
+					"<input type=\"hidden\" id=\"collcurrentPage\" value="+pageIndex+"/>"+
+					"</div>");
 				if(tatalpage>1){
 					$(".dright").append($liufen);
 				}
@@ -559,6 +578,7 @@ $(function() {
 				var tatalpage =result.totalPage; // 总页数
 				//alert(browses);
 				var $browsehead=$("<div class=\"browsehead\">"+
+					"<p>浏览记录"+"</p>"+
 					"<p>共"+ " <span>"+browses+" </span>"+ "条 内 容</p>"+
 					"<p>"+"|</p>"+
 					"<p class=\"quanshan\" onclick=\"delbrowse()\">"+"删除记录</p>"+
@@ -576,7 +596,8 @@ $(function() {
 					var br = browse[i];
 					var blog = blogs[i];
 					var $blogdan = $("<div class=\"browseboti\">" +
-						"<p class=\"titlebo\">"+blog.btitle+"</p>" +
+						"<p class=\"titlebo\" onclick=\"lvie(this)\">"+blog.btitle+"</p>" +
+						"<input type=\"hidden\" id=\"collbid\" value="+blog.bid+">"+
 						//"<button class=\"browsequsc\">删除记录"+"</button>" +
 						"<div class=\"browsezhaiyao\">" +
 						"<p>"+blog.babstract+"</p>" +
@@ -603,46 +624,64 @@ $(function() {
 	})
     //密码修改
     $(".ul1 li:eq(5)").click(function(){
+		$(".mima").hide();
         $(".imghead,.p1,.xx").hide(); //个人资料
         $(".rhead,.scboq,.liufen").hide(); //我的收藏
         $(".browsehead,.browsescboq,.browsefen").hide();
         $(".fans").hide();
         $(".care").hide();
         $(".mima").show();
+
+		$(".xinmi").val("");
+		$(".zaimi").val("");
+		$(".yuanmi").val("");
+		$(".xinmi").next().text("");
+		$(".zaimi").next().text("");
+		$(".yuanmi").next().text("");
     })
 
     //修改密码
-    $(".qrxg").click(function(){
-        alert("lll");
+    $("#uppass").submit(function(){
+    	//alert("lll");
         var pass=$("input[name=loginpass]").val();
         var xm=$(".xinmi").val();
         var zim= $(".zaimi").val();
         var xsm=$(".yuanmi").val();
+        //alert("再"+zim+"新："+xm);
         if(xm=="" || zim=="" || xsm==""){
             alert("请输入完整！");
-        }else if(zimi!= xm){
-            alert("输入的密码不一致");
+            return false;
+        }else if(zim!= xm){
+            alert("输入的密码不一致！");
             $(".zaimi").val("");
             $(".xinmi").val("");
-        }else{
-            $("#mima").submit();
+            return false;
+        }else if(pass == xm){
+			alert("密码与原密码一致！");
+			$(".zaimi").val("");
+			$(".xinmi").val("");
+			return false;
+		}else{
+            return true;
         }
-
     })
 
     $(".yuanmi").blur(function(){
         var uid=$("input[name=loginUid]").val();
         var pass=$("input[name=loginpass]").val();
         var xsm=$(".yuanmi").val();
+		//alert(xsm+" |"+pass);
         if(xsm==pass){
-            $(".yuanmi").next().text();
+            $(".yuanmi").next().text("");
+			$(".xinmi,.zaimi").prop("readonly",false);
+			$(".xinmi,.zaimi").val("");
         }else{
             $(".yuanmi").next().text("密码输入错误!");
-            $(".xinmi,.zaimi").attr("readonly","true");
+            $(".xinmi,.zaimi").prop("readonly",true);
             $(".xinmi,.zaimi").val("");
         }
     })
-
+   //换头像
     $("#myimgfile").submit(function(){
     	var skong = $("#file").val();
     	//alert(skong);
@@ -653,10 +692,18 @@ $(function() {
     		return true;
 		}
 	})
-
-
-
-
-
+	//充值
+	//$("#moneyul li:eq(0) p").addClass("moneyhover");
+	var xc = $(".moneyul li:eq(0) p span:eq(1)").text();
+	$(".quec span").text(xc);
+	$(".moneyul li").click(function(){
+		var yc = $(this).children("p").children("span:eq(1)").html();
+		$(".quec span").text(yc);
+	})
+	$(".quec").click(function(){
+		var uid = $("input[name=loginUid]").val();
+		var money = $(".quec span").text();
+		window.location.href="user/addbalance?uid="+uid+"&balance="+money;
+	})
 
 })

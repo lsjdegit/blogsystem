@@ -32,7 +32,7 @@
 				<img src="img/blog.png" th:src="@{/img/blog.png}" />
 			</div>
 			<ul id="head-ul">
-				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心</li><li>个人中心</li>
+				<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
 			</ul>
 			<div id="head-user">
 				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
@@ -65,9 +65,10 @@
 			</div>
 			<div class="dright">
 				<div class="mima">
-					<form action="" method="post">
+					<form th:action="@{/user/updatepass}" method="post" id="uppass">
+                        <input type="hidden" name="uid" th:value="${session.loginUser?.uid}">
 						<sapn>请输入现密码：</sapn><input type="password" class="yuanmi"/><span></span><br>
-						<sapn>请输入新密码：</sapn><input type="password" class="xinmi"/><span></span><br>
+						<sapn>请输入新密码：</sapn><input type="password" class="xinmi" name="pass"/><span></span><br>
 						<sapn>请确认新密码：</sapn><input type="password" class="zaimi"/><span></span><br>
 						<input type="submit" value="确认修改"  class="qrxg"/>
 					</form>
@@ -92,7 +93,7 @@
 				</div>
 				<div class="xx">
 					<div class="xx1">
-						<span>用户名：凛冽零</span><br>
+						<span>用户名：凛冽零</span><img ><br>
 						<span>关注 0</span><span>粉丝 1</span><span>|</span><span>余额 0</span><span><a href="#mymoney" role="button" class="btn" data-toggle="modal">充值</a></span>
 					</div>
 					<div class="xx2">
@@ -113,10 +114,11 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<p id="mymoneyLabel" style="font-size: 16px;">余额：<span class="yue"> </span></p>
+								<p id="mymoneyLabel" style="font-size: 16px;">余额：<span class="yue" style="color: aqua"> </span></p>
 							</div>
 							<div class="modal-body">
-								<ul class="moneyul">
+								<p>充值数额：</p>
+								<ul class="moneyul" id="moneyul">
 									<li>
 										<p><span>￥</span><span>1</span></p>
 									</li>
@@ -136,6 +138,7 @@
 										<p><span>￥</span><span>128</span></p>
 									</li>
 								</ul>
+								<p class="quec">确认支付 ￥ <span></span></p>
 							</div>
 							<div class="modal-footer">
 								<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
