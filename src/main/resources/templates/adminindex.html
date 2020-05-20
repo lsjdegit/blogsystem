@@ -33,10 +33,18 @@
 				<li id="boke">博客管理</li><li id="bozhu">博主管理</li>
 			</ul>
 			<div id="head-user">
+				<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
+				<input type="hidden" name="loginuimage" th:value="${session.loginUser?.uimage}">
 				<div id="head-img">
-					<img src="img/hyxd.png" th:src="@{/img/hyxd.jpg}" />
+					<img th:if="${session.loginUser != null}" th:src="@{'/upload/'+${session.loginUser.uimage}}" />
+					<img th:src="@{/img/userhead.png}" th:if="${session.loginUser == null}"/>
 				</div>
-				<span>管理员</span>
+				<span th:if="${session.loginUser != null}" th:text="${session.loginUser?.uname}"></span>
+				<span th:if="${session.loginUser == null}">未登录</span>
+				<div id="user-login">
+					<span th:if="${session.loginUser != null}" class="btn">注销</span>
+					<span th:if="${session.loginUser == null}" class="btn">登录</span>
+				</div>
 			</div>
 		</div>
 		
@@ -199,7 +207,7 @@
 					 </div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">有待考量</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="youdai">有待考量</button>
 						<button type="button" class="btn btn-primary" id="jingshen">晋升专家</button>
 					</div>
 				</div>
