@@ -76,9 +76,9 @@ function change(obj) {
                     "</div>"+
                     "<div>"+
                     "<span>"+blog.bcreatetime+"</span>"+
-                    "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+                    "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
                     "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                    "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                    "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
                     "</div>"+
                     "</div>"+
                     "</div>");
@@ -281,9 +281,9 @@ $(function () {
 						"</div>"+
 						"<div>"+
 						"<span>"+blog.bcreatetime+"</span>"+
-						"<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+						"<span class=\"iconfont icon-good_filled\">"+blog.bnumber+"</span>" +
 						"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-						"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+						"<span class=\"iconfont icon-shoucang\">"+blog.gnumber+"</span>" +
 						"</div>"+
 						"</div>"+
 						"</div>");
@@ -340,9 +340,9 @@ $(function () {
                         "</div>"+
                         "<div>"+
                         "<span>"+blog.bcreatetime+"</span>"+
-                        "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+                        "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
                         "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                        "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                        "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
                         "</div>"+
                         "</div>"+
                         "</div>");
@@ -374,56 +374,51 @@ $(function () {
         $(".bolgall").empty();
         var sid = 0;
         $("#bstatusid").val(sid);
-        $.ajax({
-            type: 'post',
-            url: 'blog/selectst',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                "bcreatetime": $("input[name=date]").val(),
-                "searchBlog": $("input[name=btitle]").val(),
-                "pageIndex": 1,
-                "bstatusid": $("#bstatusid").val()
-            }),
-            success: function (result) {
-                var blist = result.list;
-                var totalPage = result.totalPage;
-                for (var a = 0; a < blist.length; a++) {
-                    var blog = blist[a];
-                    var $blog = $("<div class=\"mybolgli\" onclick=\"adminver(" + blog.bid + ")\">" +
-                        "<div class=\"ybyb\">" +
-                        "<p title=\"查看\">" + blog.btitle + "</p>" +
-                        "<div>" + "<img src=\"" + ctxPath + "/upload/" + blog.user.uimage + "\" />" +
-                        "<span>" + blog.user.uname + "</span>" +
-                        "</div>" +
-                        "<div>" +
-                        "<span>" + blog.bcreatetime + "</span>" +
-                        "<span class=\"iconfont icon-liulan\">" + blog.bnumber + "</span>" +
-                        "<span class=\"iconfont icon-liulan\">" + blog.gnumber + "</span>" +
-                        "<span class=\"iconfont icon-liulan\">" + blog.gnumber + "</span>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>");
-                    $(".bolgall").prepend($blog);
-                }
-                $(".blog").show().animate({height: '80px', width: '100%'});
-                //页码
-                $("#totalPage").val(totalPage);
-                if (totalPage < 2) {
-                    $("#centre-paging").hide();
-                } else {
-                    $("#centre-paging").show();
-                    $(".pIndex").remove();
-                    for (var i = 0; i < totalPage; i++) {
-                        var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">" + (i + 1) + "</button></li>");
-                        if (i == 0) {
-                            li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">" + (i + 1) + "</button></li>");
-                        }
-                        $("#next").before(li);
-                    }
-                }
-            }
+       $.ajax({
+           type:'post',
+           url:'blog/selectst',
+           contentType:'application/json',
+           data:JSON.stringify({"bcreatetime":$("input[name=date]").val(),"searchBlog":$("input[name=btitle]").val(),"pageIndex":1,"bstatusid":$("#bstatusid").val()}),
+           success:function(result) {
+               var blist = result.list;
+               var totalPage = result.totalPage;
+               for(var a=0;a<blist.length;a++){
+                   var blog=blist[a];
+                   var $blog= $("<div class=\"mybolgli\" onclick=\"adminver("+blog.bid+")\">"+
+                       "<div class=\"ybyb\">"+
+                       "<p title=\"查看\">"+blog.btitle+"</p>"+
+                       "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
+                       "<span>"+blog.user.uname+"</span>"+
+                       "</div>"+
+                       "<div>"+
+                       "<span>"+blog.bcreatetime+"</span>"+
+                       "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
+                       "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                       "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
+                       "</div>"+
+                       "</div>"+
+                       "</div>");
+                   $(".bolgall").prepend($blog);
+               }
+                   $(".blog").show().animate({height:'80px',width:'100%'});
+                   //页码
+                   $("#totalPage").val(totalPage);
+                   if(totalPage<2){
+                       $("#centre-paging").hide();
+                   }else{
+                       $("#centre-paging").show();
+                       $(".pIndex").remove();
+                       for(var i=0;i<totalPage;i++){
+                           var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
+                           if(i==0){
+                               li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">"+(i+1)+"</button></li>");
+                           }
+                           $("#next").before(li);
+                       }
+                   }
+               }
+           })
         })
-    })
 
     /**
      * 下拉框选择博客类型遍历对应的博客
@@ -455,9 +450,9 @@ $(function () {
                         "</div>"+
                         "<div>"+
                         "<span>"+blog.bcreatetime+"</span>"+
-                        "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+                        "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
                         "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                        "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                        "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
                         "</div>"+
                         "</div>"+
                         "</div>");
@@ -485,53 +480,48 @@ $(function () {
     /**
      * 首次进入现实所有已经审核的博客
      */
-    $.ajax({
-        type: 'post',
-        url: 'blog/selectst',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            "bcreatetime": $("input[name=date]").val(),
-            "searchBlog": $("input[name=btitle]").val(),
-            "pageIndex": 1,
-            "bstatusid": $("#bstatusid").val()
-        }),
-        success: function (result) {
-            var blist = result.list;
-            var totalPage = result.totalPage;
-            for (var a = 0; a < blist.length; a++) {
-                var blog = blist[a];
-                var $blog = $("<div class=\"mybolgli\" onclick=\"adminshen(" + blog.bid + ")\">" +
-                    "<div class=\"ybyb\">" +
-                    "<p title=\"查看\">" + blog.btitle + "</p>" +
-                    "<div>" + "<img src=\"" + ctxPath + "/upload/" + blog.user.uimage + "\" />" +
-                    "<span>" + blog.user.uname + "</span>" +
-                    "</div>" +
-                    "<div>" +
-                    "<span>" + blog.bcreatetime + "</span>" +
-                    "<span class=\"iconfont icon-liulan\">" + blog.bnumber + "</span>" +
-                    "<span class=\"iconfont icon-liulan\">" + blog.gnumber + "</span>" +
-                    "<span class=\"iconfont icon-liulan\">" + blog.gnumber + "</span>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>");
-                $(".bolgall").prepend($blog);
-            }
-            $(".blog").show().animate({height: '80px', width: '100%'});
-            //页码
-            $("#totalPage").val(totalPage);
-            if (totalPage < 2) {
-                $("#centre-paging").hide();
-            } else {
-                $("#centre-paging").show();
-                $(".pIndex").remove();
-                for (var i = 0; i < totalPage; i++) {
-                    var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">" + (i + 1) + "</button></li>");
-                    if (i == 0) {
-                        li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">" + (i + 1) + "</button></li>");
+	$.ajax({
+		type:'post',
+		url:'blog/selectst',
+		contentType:'application/json',
+        data:JSON.stringify({"bcreatetime":$("input[name=date]").val(),"searchBlog":$("input[name=btitle]").val(),"pageIndex":1,"bstatusid":$("#bstatusid").val()}),
+		success:function(result){
+			var blist = result.list;
+			var totalPage = result.totalPage;
+			for(var a=0;a<blist.length;a++){
+				var blog=blist[a];
+				var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
+					"<div class=\"ybyb\">"+
+					"<p title=\"查看\">"+blog.btitle+"</p>"+
+					"<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
+	                 "<span>"+blog.user.uname+"</span>"+
+					"</div>"+
+					"<div>"+
+					"<span>"+blog.bcreatetime+"</span>"+
+					"<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
+					"<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+					"<span class=\"iconfont icon-shoucang\">"+blog.gnumber+"</span>" +
+					"</div>"+
+					"</div>"+
+					"</div>");
+				$(".bolgall").prepend($blog);
+			}
+                    $(".blog").show().animate({height:'80px',width:'100%'});
+                    //页码
+                    $("#totalPage").val(totalPage);
+                    if(totalPage<2){
+                        $("#centre-paging").hide();
+                    }else{
+                        $("#centre-paging").show();
+                        $(".pIndex").remove();
+                        for(var i=0;i<totalPage;i++){
+                            var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">"+(i+1)+"</button></li>");
+                            if(i==0){
+                                li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">"+(i+1)+"</button></li>");
+                            }
+                            $("#next").before(li);
+                        }
                     }
-                    $("#next").before(li);
-                }
-            }
 
         }
 
@@ -783,6 +773,19 @@ $(function () {
         })
     })
 
+    $("#youdai").click(function(){
+        $.ajax({
+            type:'post',
+            url:'user/bianzhuan',
+            contentType:'application/json',
+            data:JSON.stringify({"isexpert":0,"uid":$("#usid").val()}),
+            success:function(result){
+                $("#myModal2").modal('hide');
+                window.location.href="adminindex";
+            }
+        })
+    })
+
 })
 
 /**
@@ -808,48 +811,46 @@ function bozhu(id) {
     window.location.href = "user/selectzhuid?uid=" + id;
 }
 
-/**
- * 管理员单击要申请专家的用户弹出对应的模态框
- * @param id
- */
-function exceptional(uid) {
-    var id = uid;
-    $(".left-top").empty();
-    $.ajax({
-        type: 'post',
-        url: 'user/getzhuanjia',
-        data: "uid=" + id,
-        success: function (result) {
-            alert(result.user.uname);
-            var gid = result.zpnumber;
-            var bid = result.zbnumber;
-            var blog = result.user;
-            alert(gid);
-            alert(bid);
-            var $blog = $("<div class=\"left-top\">" +
-                "<div class=\"ltop\">" +
-                "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
-                "<div class=\"long\">" +
-                "<p class=\"name\" >" +
-                "<span>" + blog.uname + "</span>" +
-                "<img  class=\"biaoji\" src=\"img/expert.png\">" +
-                "</p>" +
-                "</div>" +
-                "</div>" +
-                "<div class=\"lcenter\">" +
-                "<ul class=\"lut\">" +
-                "<li><span>" + blog.fans.length + "</span>" +
-                "<p>粉丝</p></li>" +
-                "<li><span>" + gid + "</span>" +
-                "<p>获赞</p></li>" +
-                "<li><span>" + bid + "</span>" +
-                "<p>访问</p></li>" +
-                "<li><span>" + blog.blogs.length + "</span>" +
-                "<p>博客</p></li>" +
-                "</ul>" +
-                "</div>" +
-                "<input type=\"hidden\" id=\"usid\" value=\"" + blog.uid + "\">" +
-                "</div>");
+            /**
+             * 管理员单击要申请专家的用户弹出对应的模态框
+             * @param id
+             */
+            function exceptional(uid){
+                var id=uid;
+                $(".left-top").empty();
+                $.ajax({
+                    type:'post',
+                    url:'user/getzhuanjia',
+                    data:"uid="+id,
+                    success:function (result) {
+
+                       var gid= result.zpnumber;
+                       var bid=result.zbnumber;
+                       var blog=result.user;
+                       var  $blog=$("<div class=\"left-top\">"+
+                          "<div class=\"ltop\">"+
+                          "<img src=\""+ctxPath+"/upload/"+blog.uimage+"\" />" +
+                          "<div class=\"long\">"+
+                          "<p class=\"name\" >"+
+                          "<span>"+blog.uname+"</span>"+
+                          "<img  class=\"biaoji\" src=\"img/expert.png\">"+
+                          "</p>"+
+                          "</div>"+
+                          "</div>"+
+                          "<div class=\"lcenter\">"+
+                          "<ul class=\"lut\">"+
+                          "<li><span>"+blog.fans.length+"</span>"+
+                          "<p>粉丝</p></li>"+
+                          "<li><span>"+gid+"</span>"+
+                          "<p>获赞</p></li>"+
+                          "<li><span>"+bid+"</span>"+
+                          "<p>访问</p></li>"+
+                          "<li><span>"+blog.blogs.length+"</span>"+
+                          "<p>博客</p></li>"+
+                          "</ul>"+
+                          "</div>"+
+                            "<input type=\"hidden\" id=\"usid\" value=\""+blog.uid+"\">"+
+                          "</div>");
 
             $(".left").prepend($blog);
         }
