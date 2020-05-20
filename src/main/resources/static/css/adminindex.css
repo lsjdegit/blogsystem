@@ -262,7 +262,7 @@ ybybzhu div:last-of-type span{
 	padding: 0px 20px;
 	box-sizing: border-box;
 }
-.ltop img:nth-of-type(0){
+.ltop img{
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
