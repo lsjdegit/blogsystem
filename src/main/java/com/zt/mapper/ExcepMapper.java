@@ -17,4 +17,11 @@ public interface ExcepMapper {
     @Insert("insert into exceptional(bid,uid,money,etime) values(#{bid},#{uid},#{money},#{etime})")
     public int addExcep(Exceptional exceptional);
 
+    /**
+     * 根据bid清除打赏记录
+     * @return
+     */
+    @Delete("delete from exceptional where bid=#{bid}")
+    public int delExcepByBlog(@Param("bid") Integer bid);
+
 }

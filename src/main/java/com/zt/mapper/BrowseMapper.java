@@ -48,4 +48,11 @@ public interface BrowseMapper {
      */
     @Delete("DELETE FROM browse WHERE uid=#{uid}")
     public int delall(Integer uid);
+
+    /**
+     * 根据bid清除浏览记录
+     * @return
+     */
+    @Delete("delete from browse where bid=#{bid}")
+    public int delBrowseByBlog(@Param("bid") Integer bid);
 }
