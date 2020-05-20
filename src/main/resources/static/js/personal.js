@@ -63,13 +63,13 @@ function change(coll){
 //看收藏的博客
 function vie(obj){
 	var bid=$(obj).next().val();
-	alert(bid);
+	//alert(bid);
 	location.href = ctxPath+"blog/view?bid="+bid;
 }
 //看浏览过的博客
 function lvie(obj){
 	var bid=$(obj).next().val();
-	alert(bid);
+	//alert(bid);
 	location.href = ctxPath+"blog/view?bid="+bid;
 }
 //取消收藏
@@ -182,6 +182,7 @@ function delbrowse(){
                 var $kong = $("<h3> 暂无记录！"+
                     "</h3>");
                 $(".browsescboq").append($kong);
+                $(".browsehead span").text("0 ");
             }
         }
 
@@ -535,7 +536,6 @@ $(function() {
 			success:function(result) {
 				var cares=result.cares;//关注集合
 				var caress = result.cares.length; //关注量
-
 				//alert(bolgs);
 				//alert(caress);
 				var $care=$("<div class=\"care\">"+
