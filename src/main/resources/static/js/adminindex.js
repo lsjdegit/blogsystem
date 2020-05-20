@@ -852,7 +852,7 @@ function bozhu(id) {
                           "<div class=\"long\">"+
                           "<p class=\"name\" >"+
                           "<span>"+blog.uname+"</span>"+
-                          "<img  class=\"biaoji\" src=\"img/username.png\">"+
+
                           "</p>"+
                           "</div>"+
                           "</div>"+
