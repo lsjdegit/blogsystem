@@ -355,12 +355,15 @@ public class UserController {
      */
     @RequestMapping("deluu")
     @ResponseBody
-    public boolean delcare(@RequestBody Uurelevance uurelevance){
+    public ListPage delcare(@RequestBody Uurelevance uurelevance){
         int num =uurelevanceService.delcare(uurelevance);
+        List user = uurelevanceService.uucarelist(uurelevance.getFansid());
+        ListPage list = new ListPage();
+        list.setList(user);
         if(num>0){
-            return true;
+            return list;
         }
-        return false;
+        return list;
     }
     @RequestMapping("updatepass")
     public String updatepass(Integer uid,String pass){

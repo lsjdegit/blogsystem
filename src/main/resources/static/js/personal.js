@@ -154,16 +154,17 @@ function xiaoguan(obj){
 		contentType:"application/json",
 		data:JSON.stringify({"uid":careid,"fansid":uid}),
 		success:function(result){
-			/*$(obj).parent().remove();
-			var num = result.length;
+			$(obj).parent().remove();
+			var num = result.list.length;
 			if(num==0){
 				var $kong = $("<h3> 空空如也！"+
 					"</h3>");
 				$(".careall").append($kong);
-			}*/
-			if(result){
-				$(obj).parent().remove();
 			}
+			$(".carehead span").text(num);
+			/*if(result){
+				$(obj).parent().remove();
+			}*/
 		}
 	})
 
@@ -231,7 +232,7 @@ $(function() {
 			if(epstatic==1){
 				$(".xx1 span:eq(0)").after($ep);
 			}
-			$(".xx1 img").attr("src",ctxPath+"upload/expert.png");
+			$(".xx1 img").attr("src",ctxPath+"img/expert.png");
 
 		}
 
