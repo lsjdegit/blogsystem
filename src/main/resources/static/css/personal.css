@@ -165,10 +165,10 @@
 			padding-right: 5%;
 		}
 		.boti{
-			height: 120px;
-			width: 100%;
-			/*width: 0px;
-			height: 0px;*/
+			/*height: 120px;
+			width: 100%;*/
+			width: 0px;
+			height: 0px;
 			border-bottom: #1B9AF7 1px solid;
 			padding-top: 10px;
 			padding-bottom: 10px;
@@ -584,6 +584,11 @@
 			font-size: 16px;
 			text-align: center;
 			border-radius: 3px;
+			cursor: pointer;
+		}
+		#myimgfile img{
+			width: 200px;
+			height: 200px;
 		}
 
 
