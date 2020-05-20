@@ -10,7 +10,7 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailUtil {
 
 	// 发件人的邮箱-修改为自己的
-	public static String emailAccount = "907512682@qq.com";
+	public static String emailAccount = "1653533573@qq.com";
 	// 发件人邮箱授权码-修改为自己的
 	public static String emailPassword = "gkgksluslfkgbcdc";
 	// 发件人邮箱服务地址-修改为自己的
