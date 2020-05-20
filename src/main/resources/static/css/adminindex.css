@@ -262,6 +262,11 @@ ybybzhu div:last-of-type span{
 	padding: 0px 20px;
 	box-sizing: border-box;
 }
+.ltop img{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
 .left{
 	height: 90%;
 	width: 100%;
