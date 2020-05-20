@@ -27,7 +27,7 @@
 <div id="head">
     <input type="hidden" name="loginuimage" th:value="${session.loginUser?.uimage}">
     <div id="head-logo">
-        <img src="img/blog.png"/>
+        <img th:src="@{/img/blog.png}"/>
     </div>
     <ul id="head-uli">
         <li id="boke">博客管理</li><li id="bozhu">博主管理</li>
