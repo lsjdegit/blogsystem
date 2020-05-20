@@ -75,7 +75,7 @@ function lvie(obj){
 //取消收藏
 function qusou(obj){
 	var pageIndex=$("#collcurrentPage").val();
-	alert(pageIndex);
+	//alert(pageIndex);
 	var bid=$(obj).prev().val();
 	var uid=$("input[name=loginUid]").val();
 	$.ajax({
@@ -89,8 +89,8 @@ function qusou(obj){
 			$(".rhead p span").text(tatalpage);
 			$("#colltotalPage").val(tatalpage);
 			$(".boti").remove();
-			alert("条数："+collects.length);
-			alert("页数："+tatalpage);
+			//alert("条数："+collects.length);
+			//alert("页数："+tatalpage);
 			if(collects.length==0){
 				var $kong = $("<h3> 暂无收藏！"+
 					"</h3>");
@@ -106,6 +106,7 @@ function qusou(obj){
 					"<p>"+blog.babstract+"</p>" +
 					"</div>" +
 					"<div class=\"author\">" +
+					"<span>博主："+"</span>" +
 					"<span>"+blog.user.uname+"</span>" +
 					"<span>|" +
 					"</span>" +
@@ -114,6 +115,7 @@ function qusou(obj){
 					"</div>");
 				$(".scboq").append($blogdan);
 			}
+			//$(".boti").show().animate({height: '120px', width: '100%'}, "50");
 			if(tatalpage==1){
 				$(".liufen").hide();
 			}
@@ -197,7 +199,15 @@ $(function() {
 			var sex=result.sex; //性别
 			var age=result.age; //年龄
 			var dc=result.intro; //简介
+			var epstatic = result.isexpert; // 是否专家
+			var $ep = $("<img src=\"img/expert.png}\">");
 			//alert(email);
+			if(age==null){
+				age="";
+			}
+			if(dc==null){
+				dc="";
+			}
 			$(".xx1 span:eq(0)").html("用户名："+name);
 			$(".xx1 span:eq(1)").html("关注："+caress);
 			$(".xx1 span:eq(2)").html("粉丝："+fanss);
@@ -210,6 +220,10 @@ $(function() {
 			$(".xx2 p:eq(4)").html("邮箱："+email);
 			$(".xx2 p:eq(5)").html("简介："+dc);
 			$(".yue").text("￥"+bl);
+			if(epstatic==1){
+				$(".xx1 span:eq(0)").after($ep);
+			}
+			$(".xx1 img").attr("src",ctxPath+"upload/expert.png");
 
 		}
 
@@ -354,6 +368,12 @@ $(function() {
 				var age=result.age; //年龄
 				var dc=result.intro; //简介
 				//alert(email);
+				if(age==null){
+					age="";
+				}
+				if(dc==null){
+					dc="";
+				}
 				$(".xx1 span:eq(0)").html("用户名："+name);
 				$(".xx1 span:eq(1)").html("关注："+caress);
 				$(".xx1 span:eq(2)").html("粉丝："+fanss);
@@ -389,7 +409,7 @@ $(function() {
 				var unm=result.list.length;
 				var tatalpage =result.totalPage;
 				//alert(unm);
-				alert(pageIndex);
+				//alert(pageIndex);
 			    var $rhead=$("<div class=\"rhead\">"+
 					"<p>我的收藏"+"</p>"+
 					"<input type=\"hidden\" id=\"collcurrentPage\" value="+pageIndex+">"+
@@ -414,6 +434,7 @@ $(function() {
 						"<p>"+blog.babstract+"</p>" +
 						"</div>" +
 						"<div class=\"author\">" +
+						"<span>博主"+"</span>" +
 						"<span>"+blog.user.uname+"</span>" +
 						"<span>|" +
 						"</span>" +
