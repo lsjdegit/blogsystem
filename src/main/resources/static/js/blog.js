@@ -23,7 +23,7 @@ function delComm(obj){
     if(!confirm("删除此评论？")){
         return ;
     }
-    var cid = $(obj).next().val();
+    var cid = $(obj).parent().children("input[name=cid]").val();
     $.ajax({
         type: 'POST',
         url: ctxPath + "/comment/del",
@@ -241,7 +241,7 @@ $(function () {
                         "<p style=\"margin-left: 10px;float: left\">" +
                         "<span style=\"margin-left: 5px\">"+result.user.uname+"</span>" +
                         "<span>回复</span>" +
-                        "<span style=\"margin-left: 5px\" >"+result.user.uname+"</span>" +
+                        "<span style=\"margin-left: 5px\" >"+result.parent.uname+"</span>" +
                         "<sapn>：</sapn>" +
                         "</p>" +
                         "<p style=\"margin-left: 30px;\">" +

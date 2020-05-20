@@ -93,7 +93,7 @@ public class UserController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        user.setUimage(user.getUname()+".jpg");
+        user.setUimage(user.getUname()+"head.jpg");
         int reg= userService.Register(user);
         if(reg>0){
            return "redirect:../login";

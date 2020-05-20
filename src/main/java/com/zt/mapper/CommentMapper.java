@@ -44,6 +44,27 @@ public interface CommentMapper {
     })
     public Comment getCommentById(@Param("cid")Integer cid);
 
+    /**
+     * 根据id获取评论 添加评论，引用user
+     * @param cid
+     * @return
+     */
+    @Select("select * from comment where cid=#{cid}")
+    @Results({
+            @Result(id=true,column="cid",property="cid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserByIdBlog")),
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdNo"))
+    })
+    public Comment getCommentByIdComm(@Param("cid")Integer cid);
+
+    /**
+     * 根据id获取评论 无引用
+     * @param cid
+     * @return
+     */
+    @Select("select * from comment where cid=#{cid}")
+    public Comment getCommentByIdNo(@Param("cid")Integer cid);
+
     @Select("select * from comment where parentid=#{parentid} ORDER BY cid DESC")
     @Results({
             @Result(id=true,column="cid",property="cid"),
