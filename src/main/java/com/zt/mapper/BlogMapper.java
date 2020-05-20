@@ -31,6 +31,18 @@ public interface BlogMapper {
     @Select("select * from blog where bid=#{bid}")
     public Blog getBlogByIdBrowse(@Param("bid") Integer bid);
 
+    /**
+     * 根据id 引用点赞集合
+     * @param bid
+     * @return
+     */
+    @Select("select * from blog where bid=#{bid}")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlogBlog"))
+    })
+    public Blog getBlogByIdIndex(@Param("bid") Integer bid);
+
     @Select("select * from blog where bid=#{bid}")
     @Results({
             @Result(id=true,column="bid",property="bid"),

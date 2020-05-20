@@ -38,7 +38,7 @@ public interface UserMapper {
     @Select("select * from user where isexpert=1 order by rand() limit 0,3")
     @Results({
             @Result(id=true,column="uid",property="uid"),
-            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByIdBrowse"))
     })
     public List<User> eUsers();
 
@@ -93,7 +93,7 @@ public interface UserMapper {
     @Select("select * from user where uid=#{uid}")
     @Results({
             @Result(id=true,column="uid",property="uid"),
-            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByIdBrowse"))
     })
     public User getUserByIdIndex(@Param("uid") Integer uid);
 

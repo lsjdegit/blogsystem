@@ -25,8 +25,8 @@ public interface MessageMapper {
             "</script>")
     @Results({
             @Result(id=true,column="mid",property="mid"),
-            @Result(column="yuid",property="yuser",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
-            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById"))
+            @Result(column="yuid",property="yuser",one=@One(select="com.zt.mapper.UserMapper.getUserByIdBlog")),
+            @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogByIdBrowse"))
     })
     public List<Message> selectMessage(@Param("uid") Integer uid, @Param("mtypeid") Integer mtypeid,@Param("first")Integer first, @Param("pageSize")Integer pageSize);
 
