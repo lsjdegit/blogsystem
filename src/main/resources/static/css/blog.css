@@ -101,6 +101,7 @@
     box-sizing: border-box;
     border: 1px white solid;
     display: none;
+    overflow: auto;
 }
 .rcenter .title{
     font-size: 20px;

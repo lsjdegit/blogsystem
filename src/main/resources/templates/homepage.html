@@ -86,7 +86,7 @@
 
 					<!--收藏的博客-->
 					<div class="mybolgli1" th:each="ucoll,status:${user.collects}"  style="display: none">
-						<div class="ybyb" style="cursor: pointer;" th:onclick="'blogview('+${ucoll.bid}+')'">
+						<div class="ybyb" style="cursor: pointer;" th:onclick="'blogview('+${ucoll.blog.bid}+')'">
 							<p class="ybybp1" th:text="${ucoll.blog.btitle}">菜鸟必进 extends（继承） 和 implements（实现） 的区别</p>
 							<div><p class="ybybp2" th:text="${ucoll.blog.babstract}">原创公号作者，《web全栈开发进阶之路》图书作者，CSDN 2019 年度博客之星</p></div>
 							<div><span th:text="${ucoll.blog.bcreatetime}">2020-05-9</span> <span class="iconfont icon-liulan" th:text="${ucoll.blog.bnumber}">65</span></div>
