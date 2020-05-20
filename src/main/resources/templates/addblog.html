@@ -55,7 +55,7 @@
 				<!--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="请填写博客摘要"></button>-->
 				<p>
 					<span>摘要：</span>
-					<textarea class="form-control" rows="3" th:text="${blog?.babstract}"></textarea>
+					<textarea maxlength="100" class="form-control" rows="3" th:text="${blog?.babstract}"></textarea>
 				</p>
 				<span>
 					文章类型:
