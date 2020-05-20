@@ -45,5 +45,9 @@ $(function () {
             }
         })
     })
+
+    $("#boke").click(function(){
+        window.location.href="../adminindex";
+    })
 })
 

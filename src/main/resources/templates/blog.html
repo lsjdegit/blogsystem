@@ -49,11 +49,11 @@
 <div class="zong">
     <div class="left">
         <div id="left-top">
-            <div class="ltop">
+            <div class="ltop" style="cursor: pointer;" th:onclick="'bozhu('+${blog.user.uid}+')'">
                 <img src="img/backgrounp.png" th:src="@{'/upload/'+${blog.user.uimage}}" class="tou"
                      style="width: 80px; height: 80px; border-radius: 40px;float: left;">
                 <div style="float: left; margin-left: 10px;">
-                    <p class="name" style="font-size: 18px;">
+                    <p class="name" style="font-size: 18px;" >
                         <span th:text="${blog.user.uname}">用户名</span>
                         <img style="width: 25px;height: 25px;margin-left: 5px" src="img/expert.png" th:src="@{/img/expert.png}" th:if="${blog.user.isexpert == 1}">
                     </p>

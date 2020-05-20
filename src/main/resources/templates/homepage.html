@@ -49,7 +49,7 @@
 		<div class="homemain">
 			<div class="homehead">
 				<div class="homeimg">
-					<img src="img/ly.jpg">
+					<img th:src="@{'/upload/'+${user.uimage}}">
 				</div>
 				<div class="homejie">
 					<div class="ming">
@@ -94,7 +94,7 @@
 					<!--粉丝-->
 					<div class="mybolgli2" th:each="ufans,status:${user.fans}" style="display: none">
 						<div class="ybyb">
-							<img th:src="@{/img/background.jpg}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+							<img th:src="@{'/upload/'+${user.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
 							<span class="ybybp1" th:text="${ufans.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
 							<!--<span class="ybybp2" th:text="${ufans.sex}" style="display: inline-block;font-size: 12px;float: left"></span>-->
 						</div>
@@ -104,7 +104,7 @@
 					<div class="mybolgli3" th:each="ucares,status:${user.cares}" style="display: none">
 						<div class="ybyb">
 							<!--th:src="@{'/upload/'+${blog.user.uimage}}"-->
-							<img th:src="@{/img/background.jpg}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
+							<img th:src="@{'/upload/'+${user.uimage}}" style="width: 40px;height: 40px; border-radius: 50%; float: left">
 							<span class="ybybp1" th:text="${ucares.uname}" style="display: inline;font-size: 12px; float: left;width: 20%;margin-left: 20px;margin-top: 10px"></span>
 						</div>
 					</div>
