@@ -1,11 +1,26 @@
+function background() {
+	$("body").animate({backgroundPositionY:"-1px"},1,"linear");
+	$("body").animate({backgroundPositionX:"-1px"},1,"linear");
+	$("body").animate({backgroundPositionY:"0px"},1,"linear");
+	$("body").animate({backgroundPositionX:"0px"},1,"linear",function () {
+		background();
+	});
+}
+
+//博主主页
+function bozhu(uid) {
+	window.location.href = ctxPath+"user/selectzhuid?uid=" + uid;
+}
+
 $(function(){
+	background();
     
     //body宽度
     var maxWidth = window.screen.width;
     $("body").css("width",maxWidth);
 
     //背景图片
-	$("body").css({"background":"url("+ctxPath+"img/indexbackground.jpg) no-repeat 0px 0px","backgroundSize":"100%"});
+	$("body").css({"background":"url("+ctxPath+"img/indexbackground.jpg) 0px 0px","backgroundSize":"110%"});
 
 	//头像
 	if($("input[name=loginuimage]").val() != ""){

@@ -31,8 +31,11 @@ public class PageController {
      */
     @RequestMapping("index")
     public String index(HttpSession session){
-        List<Integer> bids = new ArrayList<>();
-        session.setAttribute("bids",bids);
+        List<Integer> bids = (List<Integer>) session.getAttribute("bids");
+        if(bids == null){
+            bids = new ArrayList<>();
+            session.setAttribute("bids",bids);
+        }
         return "forward:/blogtype/all";
     }
 
