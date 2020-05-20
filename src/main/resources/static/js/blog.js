@@ -214,8 +214,8 @@ $(function () {
             data:JSON.stringify({"bid":bid,"uid":uid,"parentid":parentid,"cocontext":cocontext}),
             async:false,
             success: function (result) {
-                var cnumber = parseInt($("#ult li:eq(1) span:eq(3)").html());
-                $("#ult li:eq(1) span:eq(3)").html(cnumber+1);
+                var cnumber = parseInt($("#ult li:eq(1) span:eq(2)").html());
+                $("#ult li:eq(1) span:eq(2)").html(cnumber+1);
                 $(".pinglun form input[type=text]").val("");
                 if(parentid == 0){
                     var $comment = $("<li>" +
@@ -241,7 +241,7 @@ $(function () {
                         "<p style=\"margin-left: 10px;float: left\">" +
                         "<span style=\"margin-left: 5px\">"+result.user.uname+"</span>" +
                         "<span>回复</span>" +
-                        "<span style=\"margin-left: 5px\" >"+result.parent.uname+"</span>" +
+                        "<span style=\"margin-left: 5px\" >"+result.parent.user.uname+"</span>" +
                         "<sapn>：</sapn>" +
                         "</p>" +
                         "<p style=\"margin-left: 30px;\">" +

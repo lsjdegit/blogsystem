@@ -16,7 +16,7 @@ public interface CommentMapper {
             @Result(id=true,column="cid",property="cid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
-            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentById")),
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdParent")),
             @Result(column="cid",property="sons",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByParent"))
     })
     public List<Comment> getCommentsByBlog(@Param("bid")Integer bid);
@@ -39,7 +39,7 @@ public interface CommentMapper {
             @Result(id=true,column="cid",property="cid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
-            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentById")),
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdParent")),
             @Result(column="cid",property="sons",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByParent"))
     })
     public Comment getCommentById(@Param("cid")Integer cid);
@@ -53,7 +53,7 @@ public interface CommentMapper {
     @Results({
             @Result(id=true,column="cid",property="cid"),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserByIdBlog")),
-            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdNo"))
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdParent"))
     })
     public Comment getCommentByIdComm(@Param("cid")Integer cid);
 
@@ -65,12 +65,24 @@ public interface CommentMapper {
     @Select("select * from comment where cid=#{cid}")
     public Comment getCommentByIdNo(@Param("cid")Integer cid);
 
+    /**
+     * 根据id获取评论 引用user
+     * @param cid
+     * @return
+     */
+    @Select("select * from comment where cid=#{cid}")
+    @Results({
+            @Result(id=true,column="cid",property="cid"),
+            @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserByIdBlog"))
+    })
+    public Comment getCommentByIdParent(@Param("cid")Integer cid);
+
     @Select("select * from comment where parentid=#{parentid} ORDER BY cid DESC")
     @Results({
             @Result(id=true,column="cid",property="cid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogById")),
             @Result(column="uid",property="user",one=@One(select="com.zt.mapper.UserMapper.getUserById")),
-            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentById")),
+            @Result(column="parentid",property="parent",one=@One(select="com.zt.mapper.CommentMapper.getCommentByIdParent")),
             @Result(column="cid",property="sons",many=@Many(select="com.zt.mapper.CommentMapper.getCommentsByParent"))
     })
     public List<Comment> getCommentsByParent(@Param("parentid")Integer parentid);

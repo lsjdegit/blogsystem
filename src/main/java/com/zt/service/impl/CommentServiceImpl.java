@@ -33,11 +33,11 @@ public class CommentServiceImpl implements CommentService {
         message.setMtypeid(1);
         message.setBid(comment.getBid());
         message.setYuid(comment.getUid());
-        Blog blog = blogMapper.getBlogById(comment.getBid());
+        Blog blog = blogMapper.getBlogByIdCollect(comment.getBid());
         message.setUid(blog.getUser().getUid());
         if(comment.getParentid() != 0){
             message.setMtypeid(4);
-            Comment comm = commentMapper.getCommentById(comment.getParentid());
+            Comment comm = commentMapper.getCommentByIdParent(comment.getParentid());
             message.setUid(comm.getUser().getUid());
         }
         if(message.getYuid() != message.getUid()){

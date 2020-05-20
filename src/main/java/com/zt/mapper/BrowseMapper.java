@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface BrowseMapper {
 
-    @Select("select * from browse where uid=#{uid} LIMIT #{first},#{pageSize}")
+    @Select("select * from browse where uid=#{uid} ORDER BY browseid DESC LIMIT #{first},#{pageSize}")
     public List<Browse> getBrowseByUser(@Param("uid") Integer uid, @Param("first")Integer first, @Param("pageSize")Integer pageSize);
 
 
-    @Select("select * from browse where uid=#{uid}")
+    @Select("select * from browse where uid=#{uid} ORDER BY browseid DESC ")
     @Results({
             @Result(id=true,column="borwseid",property="browseid"),
             @Result(column="bid",property="blog",one=@One(select="com.zt.mapper.BlogMapper.getBlogByIdCollect"))

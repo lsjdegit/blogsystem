@@ -65,7 +65,7 @@ public interface UserMapper {
     public User getUserById(@Param("uid") Integer uid);
 
     /**
-     * 根据id获得用户
+     * 根据id获得用户 无引用
      * @param uid
      * @return
      */
