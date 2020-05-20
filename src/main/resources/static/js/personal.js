@@ -512,8 +512,8 @@ $(function() {
 						}
 					}
 					var $fansli=$("<div class=\"fansli\">"+
-						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
-						"<span>"+user.uname+"</span>"+
+						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" onclick=\"bozhu("+user.uid+")\"/>" +
+						"<span onclick=\"bozhu("+user.uid+")\">"+user.uname+"</span>"+
 						"<input type=\"hidden\" id=\"fansid\" value="+user.uid+">"+
 						"<span class=\"quguan\" onclick=\"guan(this)\">"+guan+"</span>"+
 						"</div>");
@@ -562,8 +562,8 @@ $(function() {
 				for(var i=0;i<cares.length;i++){
 					var user=cares[i];
 					var $careli=$("<div class=\"careli\">"+
-						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" />" +
-						"<span>"+user.uname+"</span>"+
+						"<img src=\""+ctxPath+"upload/"+user.uimage+"\" onclick=\"bozhu("+user.uid+")\" />" +
+						"<span onclick=\"bozhu("+user.uid+")\">"+user.uname+"</span>"+
 						"<input type=\"hidden\" id=\"careid\" value="+user.uid+">"+
 						"<span class=\"quguan\" onclick=\"xiaoguan(this)\">"+"取消关注</span>"+
 						"</div>");
@@ -629,17 +629,6 @@ $(function() {
 						"</div>");
 					$(".browsescboq").append($blogdan);
 				}
-				/*var $browsefen=$("<div class=\"browsefen\">"+
-					"<ul class=\"browsepage\">"+
-					"<li class=\"one\">"+"首页</li>"+
-					" <li class=\"prev\">上"+"</li>"+
-					"<li class=\"next\">下"+"</li>"+
-					"<li class=\"next\">下"+"</li>"+
-					"</ul>"+
-					"<input type=\"hidden\" id=\"browsecaretotalPage\" value=\"1\"/>"+
-					"<input type=\"hidden\" id=\"browsecarecurrentPage\" value=\"1\"/>"+
-					"</div>");
-				$(".care").append($browsefen);*/
 			}
 		});
 	})

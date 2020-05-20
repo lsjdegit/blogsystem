@@ -31,7 +31,12 @@ public class BrowseServiceImpl implements BrowseService {
 
     @Override
     public List<Browse> getBrowseByUserAll(Integer uid) {
-        return browseMapper.getBrowseByUserAll(uid);
+        List<Browse> browses = browseMapper.getBrowseByUserAll(uid);
+        for(int i=0; i<browses.size();i++){
+            Blog blog=blogMapper.getBlogById(browses.get(i).getBid());
+            browses.get(i).setBlog(blog);
+        }
+        return browses;
     }
 
     @Override

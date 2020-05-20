@@ -16,7 +16,7 @@ public class BrowseController {
     @Autowired
     private BrowseService browseService;
 
-    private Integer pageSize = 4;
+    private Integer pageSize = 10;
 
 
 
