@@ -71,21 +71,21 @@ function change(obj) {
                 var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
                     "<div class=\"ybyb\">"+
                     "<p title=\"查看\">"+blog.btitle+"</p>"+
-                    "<div>"	 + "<img src=\"/upload/"+blog.user.uimage+"\" />" +
+                    "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
                     "<span>"+blog.user.uname+"</span>"+
                     "</div>"+
                     "<div>"+
                     "<span>"+blog.bcreatetime+"</span>"+
                     "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
-                    "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-                    "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
+                    "<span class=\"iconfont icon-liulan\">"+blog.bnumber+"</span>" +
+                    "<span class=\"iconfont icon-shoucang\">"+blog.gnumber+"</span>" +
                     "</div>"+
                     "</div>"+
                     "</div>");
 
                 $(".bolgall").prepend($blog);
             }
-            $(".mybolgli").show().animate({height: '80px', width: '100%'});
+            $(".blog").show().animate({height: '80px', width: '100%'});
         }
     })
 }
@@ -154,7 +154,8 @@ function changezhu(obj) {
             var bozhu = "<img src=\"" + ctxPath + "/img/expert.png\" />";
             for (var i = 0; i < ulist.length; i++) {
                 var blog = ulist[i];
-                if (blog.isexpert == 0) {
+
+                if (blog.isexpert != 1) {
                     var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
                         "<div class=\"ybybzhu\">" +
                         "<div class=\"ybnat\">" +
@@ -268,29 +269,28 @@ $(function () {
 			url:'blog/selectst',
 			contentType:'application/json',
 			data:JSON.stringify({"bcreatetime":$("input[name=date]").val(),"searchBlog":$("input[name=btitle]").val(),"pageIndex":1,"bstatusid":$("#bstatusid").val()}),
-			success:function(result){
-				var blist = result.list;
-				var totalPage = result.totalPage;
-				for(var a=0;a<blist.length;a++){
-					var blog=blist[a];
-					var $blog= $("<div class=\"mybolgli\"  onclick=\"adminshen("+blog.bid+")\">"+
-						"<div class=\"ybyb\">"+
-						"<p title=\"查看\">"+blog.btitle+"</p>"+
-						"<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
-						"<span>"+blog.user.uname+"</span>"+
-						"</div>"+
-						"<div>"+
-						"<span>"+blog.bcreatetime+"</span>"+
-						"<span class=\"iconfont icon-good_filled\">"+blog.bnumber+"</span>" +
-						"<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
-						"<span class=\"iconfont icon-shoucang\">"+blog.gnumber+"</span>" +
-						"</div>"+
-						"</div>"+
-						"</div>");
-
+            success: function (result) {
+                var blist = result.list;
+                var totalPage = result.totalPage;
+                for(var a=0;a<blist.length;a++){
+                    var blog=blist[a];
+                    var $blog= $("<div class=\"mybolgli\" onclick=\"adminshen("+blog.bid+")\">"+
+                        "<div class=\"ybyb\">"+
+                        "<p title=\"查看\">"+blog.btitle+"</p>"+
+                        "<div>"	 + "<img src=\""+ctxPath+"/upload/"+blog.user.uimage+"\" />" +
+                        "<span>"+blog.user.uname+"</span>"+
+                        "</div>"+
+                        "<div>"+
+                        "<span>"+blog.bcreatetime+"</span>"+
+                        "<span class=\"iconfont icon-good_filled\">"+blog.praises.length+"</span>" +
+                        "<span class=\"iconfont icon-liulan\">"+blog.gnumber+"</span>" +
+                        "<span class=\"iconfont icon-shoucang\">"+blog.bnumber+"</span>" +
+                        "</div>"+
+                        "</div>"+
+                        "</div>");
                     $(".bolgall").prepend($blog);
                 }
-                $(".mybolgli").show().animate({height: '80px', width: '100%'});
+                $(".blog").show().animate({height: '80px', width: '100%'});
                 //页码
                 $("#totalPage").val(totalPage);
                 if (totalPage < 2) {
@@ -298,9 +298,9 @@ $(function () {
                 } else {
                     $("#centre-paging").show();
                     $(".pIndex").remove();
-                    for (var a = 0; a < totalPage; a++) {
+                    for (var i = 0; i < totalPage; i++) {
                         var li = $("<li class=\"pIndex\"><button onclick=\"change(this)\">" + (i + 1) + "</button></li>");
-                        if (a == 0) {
+                        if (i == 0) {
                             li = $("<li class=\"pIndex\"><button onclick=\"change(this)\" style=\"border: none;\">" + (i + 1) + "</button></li>");
                         }
                         $("#next").before(li);
@@ -537,7 +537,7 @@ $(function () {
             type: 'post',
             url: 'user/selectall',
             contentType: 'application/json',
-            data: JSON.stringify({"pageIndex": 1, "isexpert": $("#isexpert").val()}),
+            data: JSON.stringify({"pageIndex": 1}),
             success: function (result) {
                 var ulist = result.list;
                 var totalPage = result.totalPage;
@@ -545,7 +545,8 @@ $(function () {
                 var bozhu = "<img src=\"" + ctxPath + "/img/expert.png\" />";
                 for (var i = 0; i < ulist.length; i++) {
                     var blog = ulist[i];
-                    if (blog.isexpert == 0) {
+
+                    if (blog.isexpert != 1) {
                         var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
                             "<div class=\"ybybzhu\">" +
                             "<div class=\"ybnat\">" +
@@ -659,7 +660,8 @@ $(function () {
                 var bozhu = "<img src=\"" + ctxPath + "/img/expert.png\" />";
                 for (var i = 0; i < ulist.length; i++) {
                     var blog = ulist[i];
-                    if (blog.isexpert == 0) {
+
+                    if (blog.isexpert != 1) {
                         var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
                             "<div class=\"ybybzhu\">" +
                             "<div class=\"ybnat\">" +
@@ -718,18 +720,35 @@ $(function () {
             success: function (result) {
                 var ulist = result.list;
                 var totalPage = result.totalPage;
+                var fei = "<img src=\"" + ctxPath + "/img/username.png\" />";
+                var bozhu = "<img src=\"" + ctxPath + "/img/expert.png\" />";
                 for (var i = 0; i < ulist.length; i++) {
                     var blog = ulist[i];
-                    var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
-                        "<div class=\"ybybzhu\">" +
-                        "<div class=\"ybnat\">" +
-                        "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
-                        "<img src=\"" + ctxPath + "/img/expert.png\" />" +
-                        "<span>" + blog.uname + "</span>" +
-                        "<span>" + blog.email + "</span>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>");
+
+                    if (blog.isexpert != 1) {
+                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                            "<div class=\"ybybzhu\">" +
+                            "<div class=\"ybnat\">" +
+                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                            fei +
+                            "<span>" + blog.uname + "</span>" +
+                            "<span>" + blog.email + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>");
+
+                    } else if (blog.isexpert == 1) {
+                        var $blog = $("<div class=\"mybolgli\" onclick=\"bozhu(" + blog.uid + ")\">" +
+                            "<div class=\"ybybzhu\">" +
+                            "<div class=\"ybnat\">" +
+                            "<img src=\"" + ctxPath + "/upload/" + blog.uimage + "\" />" +
+                            bozhu +
+                            "<span>" + blog.uname + "</span>" +
+                            "<span>" + blog.email + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>");
+                    }
                     $(".bolgallzhu").prepend($blog);
                 }
                 $(".blog").show().animate({height: '80px', width: '100%'});

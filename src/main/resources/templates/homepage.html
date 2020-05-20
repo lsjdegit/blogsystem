@@ -27,9 +27,17 @@
 		<div id="head-logo">
 			<img src="img/blog.png" th:src="@{/img/blog.png}" />
 		</div>
+		<span th:if="${session.loginUser.uname != 'admin'}">
 		<ul id="head-ul">
 			<li>主页</li><li>我的博客</li><li>写博客</li><li>消息中心<span class="msgcount">99</span></li><li>个人中心</li>
 		</ul>
+		</span>
+		<span th:if="${session.loginUser.uname == 'admin'}">
+		<ul id="head-uli">
+			<li id="boke">博客管理</li><li id="bozhu">博主管理</li>
+		</ul>
+		</span>
+
 		<div id="head-user">
 			<input type="hidden" name="loginUid" th:value="${session.loginUser?.uid}">
 			<input type="hidden" name="loginuimage" th:value="${session.loginUser?.uimage}">

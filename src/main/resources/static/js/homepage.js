@@ -100,4 +100,8 @@ $(function () {
             }
         })
     });
+    $("#bozhu").addClass("clickli");
+    $("#boke").click(function(){
+        window.location.href="../adminindex";
+    })
 })
