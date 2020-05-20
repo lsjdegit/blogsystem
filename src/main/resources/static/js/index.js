@@ -58,6 +58,7 @@ function change(obj) {
         url: ctxPath + "/blog/select",
         contentType: "application/json",
         data: JSON.stringify({"btid": btid, "uid": uid, "pageIndex": pageIndex, "searchBlog": searchBlog}),
+        async:true,
         success: function (result) {
             $(".blog").remove();
             var blist = result.list;
@@ -118,6 +119,7 @@ $(function () {
         url: ctxPath + "/blog/select",
         contentType: "application/json",
         data: JSON.stringify({"btid": 0, "uid": 0, "pageIndex": 1, "searchBlog": ""}),
+        async:true,
         success: function (result) {
             var blist = result.list;
             var totalPage = result.totalPage;
@@ -183,6 +185,7 @@ $(function () {
             url: ctxPath + "/blog/select",
             contentType: "application/json",
             data: JSON.stringify({"btid": btid, "uid": uid, "pageIndex": 1, "searchBlog": ""}),
+            async:true,
             success: function (result) {
                 $(".blog").remove();
                 var blist = result.list;
@@ -243,6 +246,7 @@ $(function () {
             url: ctxPath + "/blog/select",
             contentType: "application/json",
             data: JSON.stringify({"btid": btid, "uid": uid, "pageIndex": 1, "searchBlog": searchBlog}),
+            async:true,
             success: function (result) {
                 $(".blog").remove();
                 var blist = result.list;

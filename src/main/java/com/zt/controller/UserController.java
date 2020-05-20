@@ -110,30 +110,10 @@ public class UserController {
      */
     @RequestMapping("expert")
     public String expertUser(Model m){
-        List<User> userList = userService.expertUser();
-        List<User> eUserList = new ArrayList<>();
-        do{
-            for (User user : userList) {
-                int i = Math.random()>0.5?1:0;
-                if(eUserList.size()<3 ){
-                    if(i == 1){
-                        boolean flag = true;
-                        for (User u : eUserList) {
-                            if(u.getUid().equals(user.getUid())){
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if(flag){
-                            eUserList.add(user);
-                        }
-                    }
-                }else {
-                    break;
-                }
-            }
-        }while (eUserList.size()<3);
-        m.addAttribute("eUserList",eUserList);
+        System.out.println("expert1 = " + new Date());
+        List<User> userList = userService.eUsers();
+        m.addAttribute("eUserList",userList);
+        System.out.println("expert2 = " + new Date());
         return "forward:guser";
     }
 
@@ -145,10 +125,11 @@ public class UserController {
      */
     @RequestMapping("guser")
     public String gUser(Model m) {
-        List<User> userList = userService.selectAll(null, null, 0, 0);
+        System.out.println("guser1 = " + new Date());
+        List<User> userList = userService.selectAllIndex();
         List<UserNumber> uns = new ArrayList<>();
         for (User user : userList) {
-            User u = userService.getUserById(user.getUid());
+            User u = userService.getUserByIdIndex(user.getUid());
             List<Blog> blogList = u.getBlogs();
             Integer gnumber = 0;
             for (int i = 0; i < blogList.size(); i++) {
@@ -173,6 +154,7 @@ public class UserController {
         }
         m.addAttribute("guserList", guserList);
         m.addAttribute("gList", gList);
+        System.out.println("guser2 = " + new Date());
         return "index";
     }
 

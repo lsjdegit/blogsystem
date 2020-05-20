@@ -32,6 +32,17 @@ public interface UserMapper {
     public List<User> expertUser();
 
     /**
+     * 随机三个专家认证的用户
+     * @return
+     */
+    @Select("select * from user where isexpert=1 order by rand() limit 0,3")
+    @Results({
+            @Result(id=true,column="uid",property="uid"),
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+    })
+    public List<User> eUsers();
+
+    /**
      * 根据点赞数量的用户排行榜
      * @return
      */
@@ -52,6 +63,26 @@ public interface UserMapper {
             @Result(column="uid",property="collects",many=@Many(select="com.zt.mapper.CollectMapper.getCollectsByUser"))
     })
     public User getUserById(@Param("uid") Integer uid);
+
+    /**
+     * 根据id获得用户
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid=#{uid}")
+    public User getUserByIdBlog(@Param("uid") Integer uid);
+
+    /**
+     * 根据id获得用户
+     * @param uid
+     * @return
+     */
+    @Select("select * from user where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="uid",property="uid"),
+            @Result(column="uid",property="blogs",many=@Many(select="com.zt.mapper.BlogMapper.getBlogByUser"))
+    })
+    public User getUserByIdIndex(@Param("uid") Integer uid);
 
     /**
      * 根据用户id查关注的用户集合
@@ -113,6 +144,13 @@ public interface UserMapper {
            +"</if>"
            +"</script>")
     public List<User> selectAll(@Param("uname")String uname,@Param("isexpert")Integer isexpert,@Param("first")Integer first, @Param("pageSize")Integer pageSize);
+
+    /**
+     * 查询所有普通用户
+     * @return
+     */
+   @Select("select * from user where isadmin=0")
+    public List<User> selectAllIndex();
 
     /**
      * 专家申请

@@ -29,6 +29,12 @@ public interface UserService {
     public List<User> expertUser();
 
     /**
+     * 专家认证用户
+     * @return
+     */
+    public List<User> eUsers();
+
+    /**
      * 根据点赞数量的用户排行榜
      * @return
      */
@@ -38,6 +44,17 @@ public interface UserService {
      * 根据用户id查用户数据（关注、粉丝、浏览记录）
      */
     public User getUserById(Integer uid);
+
+    /**
+     * 根据用户id查用户数据（博客集合）
+     */
+    public User getUserByIdIndex(Integer uid);
+
+    /**
+     * 所有普通用户
+     * @return
+     */
+    public List<User> selectAllIndex();
 
     /**
      * 根据用户id修改用户基础信息

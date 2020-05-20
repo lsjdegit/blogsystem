@@ -22,6 +22,14 @@ public interface CommentMapper {
     public List<Comment> getCommentsByBlog(@Param("bid")Integer bid);
 
     /**
+     * 根据博客查询评论集合 无引用
+     * @param bid
+     * @return
+     */
+    @Select("select * from comment where bid=#{bid} ORDER BY cid DESC")
+    public List<Comment> getCommentsByBlogBlog(@Param("bid")Integer bid);
+
+    /**
      * 根据id获取评论
      * @param cid
      * @return

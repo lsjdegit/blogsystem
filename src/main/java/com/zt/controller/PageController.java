@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,6 +32,7 @@ public class PageController {
      */
     @RequestMapping("index")
     public String index(HttpSession session){
+        System.out.println("index = " + new Date());
         List<Integer> bids = (List<Integer>) session.getAttribute("bids");
         if(bids == null){
             bids = new ArrayList<>();

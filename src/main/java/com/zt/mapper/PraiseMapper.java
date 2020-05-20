@@ -14,6 +14,9 @@ public interface PraiseMapper {
     })
     public List<Praise> getPraiseByBlog(@Param("bid") Integer bid);
 
+    @Select("select * from praise where bid=#{bid}")
+    public List<Praise> getPraiseByBlogBlog(@Param("bid") Integer bid);
+
     /**
      * 点赞
      * @param praise

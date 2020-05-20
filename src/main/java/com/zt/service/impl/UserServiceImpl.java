@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.expertUser();
     }
 
+    @Override
+    public List<User> eUsers() {
+        return userMapper.eUsers();
+    }
+
     public List<User> rankingUser(){
         List<User> userList = new ArrayList<>();
         List<Integer> uids = userMapper.rankingUser();
@@ -59,6 +64,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer uid) {
         return userMapper.getUserById(uid);
+    }
+
+    @Override
+    public User getUserByIdIndex(Integer uid) {
+        return userMapper.getUserByIdIndex(uid);
+    }
+
+    @Override
+    public List<User> selectAllIndex() {
+        return userMapper.selectAllIndex();
     }
 
 

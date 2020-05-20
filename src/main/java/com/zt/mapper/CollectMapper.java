@@ -15,6 +15,9 @@ public interface CollectMapper {
     })
     public List<Collect> getCollectByBlog(@Param("bid") Integer bid);
 
+    @Select("select * from collect where bid=#{bid}")
+    public List<Collect> getCollectByBlogBlog(@Param("bid") Integer bid);
+
 
     @Select("select * from collect where uid=#{uid}")
     @Results({
