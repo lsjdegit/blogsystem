@@ -31,6 +31,8 @@ function delComm(obj){
         success: function (result) {
             if(result){
                 $(obj).parents("li").remove();
+                var cnumber = parseInt($("#ult li:eq(1) span:eq(2)").html());
+                $("#ult li:eq(1) span:eq(2)").html(cnumber-1);
             }
         }
     })
@@ -50,6 +52,8 @@ function delSonComm(obj){
             if(result){
                 var sons = parseInt($(obj).parents("li").children("p").eq(0).children("span").eq(3).html().substr(1,1));
                 $(obj).parents("li").children("p").eq(0).children("span").eq(3).html("("+(sons-1)+")");
+                var cnumber = parseInt($("#ult li:eq(1) span:eq(2)").html());
+                $("#ult li:eq(1) span:eq(2)").html(cnumber-1);
                 if(sons == 1){
                     $(obj).parents("li").children("p").eq(0).children("span").eq(3).hide();
                     $(obj).parents("li").children("p").eq(0).children("span").eq(4).hide();
