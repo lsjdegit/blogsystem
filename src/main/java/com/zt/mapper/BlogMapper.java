@@ -63,6 +63,26 @@ public interface BlogMapper {
     public List<Blog> getBlogByUser(@Param("uid") Integer uid);
 
     /**
+     * 根据用户id查拥有的博客集合
+     * @param uid
+     * @return
+     */
+    @Select("select * from blog where uid=#{uid}")
+    @Results({
+            @Result(id=true,column="bid",property="bid"),
+            @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlogBlog"))
+    })
+    public List<Blog> getBlogByUserPrais(@Param("uid") Integer uid);
+
+    /**
+     * 根据用户id查拥有的博客集合
+     * @param uid
+     * @return
+     */
+    @Select("select * from blog where uid=#{uid}")
+    public List<Blog> getBlogByUserIndex(@Param("uid") Integer uid);
+
+    /**
      * 查询blog
      * @param btid
      * @param userList
