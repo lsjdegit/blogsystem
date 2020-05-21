@@ -55,7 +55,7 @@ public interface BlogMapper {
      * @param uid
      * @return
      */
-    @Select("select * from blog where uid=#{uid}")
+    @Select("select * from blog where uid=#{uid} and bstatusid = 1")
     @Results({
             @Result(id=true,column="bid",property="bid"),
             @Result(column="bid",property="praises",many=@Many(select="com.zt.mapper.PraiseMapper.getPraiseByBlog"))
