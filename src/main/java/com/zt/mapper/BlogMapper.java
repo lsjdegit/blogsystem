@@ -79,7 +79,7 @@ public interface BlogMapper {
      * @param uid
      * @return
      */
-    @Select("select * from blog where uid=#{uid}")
+    @Select("select * from blog where uid=#{uid} and bstatusid = 1 ")
     public List<Blog> getBlogByUserIndex(@Param("uid") Integer uid);
 
     /**
