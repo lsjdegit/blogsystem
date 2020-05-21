@@ -50,9 +50,9 @@ function change(coll){
 					"</div>" +
 					"</div>");
 				$(".scboq").append($blogdan);
-
 			}
-			alert(pageIndex);
+			$(".boti").show().animate({height: '120px', width: '100%'}, "50");
+			//alert(pageIndex);
 			$("#collcurrentPage").val(pageIndex);
 
 		}
@@ -115,7 +115,7 @@ function qusou(obj){
 					"</div>");
 				$(".scboq").append($blogdan);
 			}
-			//$(".boti").show().animate({height: '120px', width: '100%'}, "50");
+			$(".boti").show().animate({height: '120px', width: '100%'}, "50");
 			if(tatalpage==1){
 				$(".liufen").hide();
 			}
