@@ -206,7 +206,7 @@
 	width: 25%;
 	float: right;
 	background: white;
-	background: #f5f6f7;
+	background: rgba(0,0,0,0);
 }
 
 #right-top{
