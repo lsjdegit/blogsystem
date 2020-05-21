@@ -12,7 +12,7 @@ public class JavaMailUtil {
 	// 发件人的邮箱-修改为自己的
 	public static String emailAccount = "1653533573@qq.com";
 	// 发件人邮箱授权码-修改为自己的
-	public static String emailPassword = "gkgksluslfkgbcdc";
+	public static String emailPassword = "ukcusyysjxowddfc";
 	// 发件人邮箱服务地址-修改为自己的
 	public static String emailSMTPHost = "smtp.qq.com";
 	// 收件人邮箱
